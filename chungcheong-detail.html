@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>충청·대전·세종 대학 상세정보</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { height:100vh; overflow:hidden; margin:0; }
+    #info-panel { width:100%; min-width:100%; border-left:none; height:100vh; }
+  </style>
+</head>
+<body>
+<div class="info-panel" id="info-panel"></div>
+<script>
+const UNI_DETAILS = {
+
+  '충남대학교': {
+    fullName: '충남대학교',
+    location: '대전 유성구',
+    badges: ['chungcheong', 'national', 'med'],
+    changes: [
+      { title: '학생부종합전형 면접 비율 변경', from: '서류100', to: '1단계 서류100(3배수) → 2단계 서류70+면접30' },
+    ],
+    susi: [
+      { type:'교과', name:'학생부교과(일반)', count:776, minReq:'●', method:'학생부(교과) 100' },
+      { type:'교과', name:'지역인재교과',     count:234, minReq:'●', method:'학생부(교과) 100' },
+      { type:'종합', name:'PRISM인재',        count:726, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류70+면접30' },
+      { type:'종합', name:'지역인재종합',      count:327, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류70+면접30' },
+    ],
+    minScore: [
+      { name:'학생부교과(일반)', track:'의예과',     국:'○', 수:'○(미/기)', 영:'○', 탐:'과2', req:'4합5', note:'' },
+      { name:'학생부교과(일반)', track:'수의예과',   국:'○', 수:'○', 영:'○', 탐:'2', req:'4합7', note:'' },
+      { name:'학생부교과(일반)', track:'인문/자연', 국:'○', 수:'○', 영:'○', 탐:'—', req:'없음', note:'' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+      { track:'의예', 국:25, 수:'30', 영:'20', 탐:25, 비고:'과탐 필수' },
+    ],
+  },
+
+  '충북대학교': {
+    fullName: '충북대학교',
+    location: '충북 청주',
+    badges: ['chungcheong', 'national', 'med'],
+    changes: [
+      { title: '지역인재전형 확대', from: '기존 비율', to: '의예·수의예·약학 지역인재 비율 확대' },
+    ],
+    susi: [
+      { type:'교과', name:'학생부교과',    count:665, minReq:'일부●', method:'학생부(교과) 100' },
+      { type:'종합', name:'학생부종합Ⅰ',  count:549, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류70+면접30' },
+      { type:'종합', name:'학생부종합Ⅱ',  count:254, minReq:'—', method:'서류100' },
+    ],
+    minScore: [
+      { name:'학생부교과', track:'의예과',   국:'○', 수:'○(미/기)', 영:'○', 탐:'과2', req:'4합5', note:'' },
+      { name:'학생부교과', track:'수의예과', 국:'○', 수:'○', 영:'○', 탐:'2', req:'3합6', note:'' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '단국대(천안)': {
+    fullName: '단국대학교(천안)',
+    location: '충남 천안',
+    badges: ['chungcheong', 'med'],
+    changes: [
+      { title: '논술전형 신설', from: '논술전형 미운영', to: '2027학년도 논술전형 신설' },
+    ],
+    susi: [
+      { type:'교과', name:'학생부교과(일반)', count:487, minReq:'●', method:'학생부(교과) 100' },
+      { type:'종합', name:'DKU인재',         count:572, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류70+면접30' },
+      { type:'논술', name:'논술우수자',       count:210, minReq:'●', method:'논술70 + 학생부30' },
+    ],
+    minScore: [
+      { name:'학생부교과', track:'의예과', 국:'○', 수:'○(미/기)', 영:'○', 탐:'과2', req:'4합5', note:'' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '순천향대학교': {
+    fullName: '순천향대학교',
+    location: '충남 아산',
+    badges: ['chungcheong', 'med'],
+    changes: [
+      { title: '의예과 학생부종합 확대', from: '기존 인원', to: '의예과 종합전형 모집인원 확대' },
+    ],
+    susi: [
+      { type:'교과', name:'학생부교과(일반)', count:612, minReq:'●', method:'학생부(교과) 100' },
+      { type:'종합', name:'학생부종합(일반)', count:456, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류60+면접40' },
+    ],
+    minScore: [
+      { name:'학생부교과', track:'의예과', 국:'○', 수:'○(미/기)', 영:'○', 탐:'과2', req:'4합5', note:'' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'15', 탐:30, 비고:'' },
+      { track:'자연', 국:25, 수:'35', 영:'15', 탐:25, 비고:'' },
+    ],
+  },
+
+  '고려대(세종)': {
+    fullName: '고려대학교(세종)',
+    location: '세종특별자치시',
+    badges: ['chungcheong'],
+    changes: [
+      { title: '학생부교과전형 수능최저 완화', from: '기존 기준', to: '수능최저학력기준 일부 완화' },
+    ],
+    susi: [
+      { type:'교과', name:'학교추천',     count:315, minReq:'●', method:'학생부(교과) 100' },
+      { type:'종합', name:'학업우수자',   count:280, minReq:'—', method:'서류100' },
+      { type:'종합', name:'고른기회',     count:65,  minReq:'—', method:'❶ 서류100(3배수) ❷ 서류70+면접30' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:35, 수:'25', 영:'15', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'35', 영:'15', 탐:25, 비고:'' },
+    ],
+  },
+
+  '공주대학교': {
+    fullName: '공주대학교',
+    location: '충남 공주',
+    badges: ['chungcheong', 'national'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'일반(교과)', count:820, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'학생부종합', count:412, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류60+면접40' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '한남대학교': {
+    fullName: '한남대학교',
+    location: '대전 대덕구',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과(일반)', count:670, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'한남인재',         count:345, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류60+면접40' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  'KAIST': {
+    fullName: 'KAIST (한국과학기술원)',
+    location: '대전 유성구',
+    badges: ['chungcheong', 'national'],
+    changes: [
+      { title: '입학전형 자율화', from: '기존 전형', to: '학생부·자기소개서·추천서 종합평가' },
+    ],
+    susi: [
+      { type:'종합', name:'일반전형', count:700, minReq:'—', method:'서류100 (3배수) → 1단계+면접+구술' },
+      { type:'종합', name:'특기자전형', count:50, minReq:'—', method:'서류100 (과학·수학 특기)' },
+    ],
+    jeongsi: [],
+  },
+
+  '한국교원대': {
+    fullName: '한국교원대학교',
+    location: '충북 청주',
+    badges: ['chungcheong', 'national'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:210, minReq:'●', method:'학생부(교과) 100' },
+      { type:'종합', name:'학생부종합', count:270, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류60+면접40' },
+    ],
+    minScore: [
+      { name:'학생부교과', track:'전체', 국:'○', 수:'○', 영:'○', 탐:'1', req:'3합9', note:'' },
+    ],
+    jeongsi: [
+      { track:'전체', 국:25, 수:'25', 영:'25', 탐:25, 비고:'균등 반영' },
+    ],
+  },
+
+  '한국교통대': {
+    fullName: '한국교통대학교',
+    location: '충북 충주',
+    badges: ['chungcheong', 'national'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:520, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'학생부종합', count:330, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류60+면접40' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '한밭대학교': {
+    fullName: '한밭대학교',
+    location: '대전 유성구',
+    badges: ['chungcheong', 'national'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:480, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'한밭인재', count:290, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류60+면접40' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '건양대학교': {
+    fullName: '건양대학교',
+    location: '충남 논산',
+    badges: ['chungcheong', 'med'],
+    changes: [
+      { title: '의예과 지역인재 확대', from: '기존 비율', to: '의예과 지역인재 모집 비율 확대' },
+    ],
+    susi: [
+      { type:'교과', name:'학생부교과', count:420, minReq:'●', method:'학생부(교과) 100' },
+      { type:'종합', name:'건양우수인재', count:350, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류70+면접30' },
+    ],
+    minScore: [
+      { name:'학생부교과', track:'의예과', 국:'○', 수:'○(미/기)', 영:'○', 탐:'과2', req:'4합6', note:'' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '대전대학교': {
+    fullName: '대전대학교',
+    location: '대전 동구',
+    badges: ['chungcheong', 'med'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:380, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'혜화인재', count:280, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류60+면접40' },
+    ],
+    minScore: [
+      { name:'학생부교과', track:'한의예과', 국:'○', 수:'○', 영:'○', 탐:'2', req:'3합6', note:'' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '호서대학교': {
+    fullName: '호서대학교',
+    location: '충남 아산',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:550, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'호서인재', count:380, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류60+면접40' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '백석대학교': {
+    fullName: '백석대학교',
+    location: '충남 천안',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:620, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'백석인재', count:350, minReq:'—', method:'서류100' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '선문대학교': {
+    fullName: '선문대학교',
+    location: '충남 아산',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:480, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'선문인재', count:300, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류60+면접40' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '상명대(천안)': {
+    fullName: '상명대학교(천안)',
+    location: '충남 천안',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:350, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'상명인재', count:250, minReq:'—', method:'서류100' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '남서울대학교': {
+    fullName: '남서울대학교',
+    location: '충남 천안',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:400, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'남서울인재', count:220, minReq:'—', method:'서류100' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '배재대학교': {
+    fullName: '배재대학교',
+    location: '대전 서구',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:420, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'배재인재', count:280, minReq:'—', method:'서류100' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '목원대학교': {
+    fullName: '목원대학교',
+    location: '대전 서구',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:380, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'목원인재', count:250, minReq:'—', method:'서류100' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '우송대학교': {
+    fullName: '우송대학교',
+    location: '대전 동구',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:450, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'우송인재', count:300, minReq:'—', method:'서류100' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '청주대학교': {
+    fullName: '청주대학교',
+    location: '충북 청주',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:500, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'청주인재', count:300, minReq:'—', method:'서류100' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+  '서원대학교': {
+    fullName: '서원대학교',
+    location: '충북 청주',
+    badges: ['chungcheong'],
+    changes: [],
+    susi: [
+      { type:'교과', name:'학생부교과', count:400, minReq:'—', method:'학생부(교과) 100' },
+      { type:'종합', name:'서원인재', count:250, minReq:'—', method:'서류100' },
+    ],
+    jeongsi: [
+      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
+      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+    ],
+  },
+
+};
+
+// Back to list — tell parent to restore
+function renderRegionSummary() {
+  if (window.parent !== window) {
+    window.parent.postMessage({type:'backToList'}, '*');
+    return;
+  }
+}
+
+function showUniversityDetail(key) {
+  const d = UNI_DETAILS[key];
+  document.getElementById('info-panel').classList.add('wide');
+
+  if (!d) {
+    document.getElementById('info-panel').innerHTML = `
+      <div class="detail-page">
+        <div class="detail-header">
+          <div class="detail-nav">
+            <button class="detail-back" onclick="renderRegionSummary()">← 목록으로</button>
+          </div>
+          <div class="detail-uni-name">${key}</div>
+        </div>
+        <div class="no-data">
+          <div style="font-size:32px;margin-bottom:12px">📋</div>
+          <div style="color:#64748b;font-size:14px;font-weight:600">상세 정보 준비중</div>
+          <div style="color:#334155;font-size:12px;margin-top:8px">2027 모집요강 발표 후 업데이트 예정입니다</div>
+        </div>
+      </div>`;
+    return;
+  }
+
+  const badgeHtml = (d.badges||[]).map(b => {
+    if(b==='seoul') return '<span class="detail-badge badge-seoul">서울권</span>';
+    if(b==='gyeonggi') return '<span class="detail-badge badge-gyeonggi">경기·인천권</span>';
+    if(b==='chungcheong') return '<span class="detail-badge badge-gyeonggi">충청·대전·세종권</span>';
+    if(b==='gangwon') return '<span class="detail-badge badge-gyeonggi">강원권</span>';
+    if(b==='gyeongsang') return '<span class="detail-badge badge-gyeonggi">경상·대구·부산권</span>';
+    if(b==='jeolla') return '<span class="detail-badge badge-gyeonggi">전라·광주권</span>';
+    if(b==='jeju') return '<span class="detail-badge badge-gyeonggi">제주권</span>';
+    if(b==='national') return '<span class="detail-badge badge-national">국립</span>';
+    if(b==='med') return '<span class="detail-badge badge-med">의학계열</span>';
+    return '';
+  }).join('');
+
+  // Changes section
+  const changesHtml = (d.changes||[]).map(c => `
+    <div class="change-item">
+      <div class="change-title">▪ ${c.title}</div>
+      <div class="change-arrow">
+        <span class="from">2026: ${c.from}</span>
+        <span class="arr">→</span>
+        <span class="to">2027: ${c.to}</span>
+      </div>
+    </div>`).join('');
+
+  // 수시 table
+  const susiRows = (d.susi||[]).map(r => {
+    const typeClass = r.type==='교과'?'gyogwa':r.type==='종합'?'jonghap':'nonsul';
+    const minHtml = r.minReq && r.minReq!=='—'
+      ? `<span class="dot-req">${r.minReq}</span>` : `<span style="color:#334155">—</span>`;
+    return `<tr>
+      <td class="td-type ${typeClass}">${r.type}</td>
+      <td class="td-name">${r.name}</td>
+      <td class="td-count">${r.count}</td>
+      <td class="td-min">${minHtml}</td>
+      <td class="td-method">${r.method.replace(/❶/g,'<span class="step">❶</span>').replace(/❷/g,'<span class="step">❷</span>')}</td>
+    </tr>`;
+  }).join('');
+
+  // Min score table
+  const minRows = (d.minScore||[]).map(r => `<tr>
+    <td class="row-name" style="color:#e2e8f0;font-weight:700;white-space:nowrap">${r.name}</td>
+    <td class="row-track" style="color:#94a3b8;font-size:10px">${r.track}</td>
+    <td class="td-ok">${r.국||'—'}</td>
+    <td>${r.수==='☆'?`<span style="color:#fbbf24">☆</span>`:(r.수||'—')}</td>
+    <td class="td-ok">${r.영||'—'}</td>
+    <td style="text-align:center;color:#94a3b8">${r.탐||'—'}</td>
+    <td class="td-req">${r.req}</td>
+    <td class="td-note">${r.note||''}</td>
+  </tr>`).join('');
+
+  // Jeongsi table
+  const jeongsiRows = (d.jeongsi||[]).map(r => `<tr>
+    <td class="td-track" style="text-align:left;color:#1e293b;font-weight:600;white-space:nowrap">${r.track}</td>
+    <td class="pct">${r.국}</td>
+    <td class="pct-hi">${r.수}</td>
+    <td>${r.영}</td>
+    <td class="pct">${r.탐}</td>
+    <td style="color:#64748b;font-size:10px;text-align:left">${r.비고||''}</td>
+  </tr>`).join('');
+
+  document.getElementById('info-panel').innerHTML = `
+  <div class="detail-page">
+    <div class="detail-header">
+      <div class="detail-nav">
+        <button class="detail-back" onclick="renderRegionSummary()">← 목록으로</button>
+      </div>
+      <div class="detail-uni-name">${d.fullName}</div>
+      <div class="detail-badges">${badgeHtml}</div>
+    </div>
+    <div class="detail-body">
+
+      ${d.changes && d.changes.length ? `
+      <div class="detail-section">
+        <div class="detail-section-title" style="--accent:#f59e0b">1. 전년도와 차이점 (주요 변경사항)</div>
+        <div class="changes-box">${changesHtml}</div>
+      </div>` : ''}
+
+      ${d.susi && d.susi.length ? `
+      <div class="detail-section">
+        <div class="detail-section-title" style="--accent:#3b82f6">2. 수시모집 — 전형방법</div>
+        <table class="adm-table">
+          <thead><tr>
+            <th class="th-susi" style="width:38px">구분</th>
+            <th class="th-susi">전형명</th>
+            <th class="th-susi" style="width:44px">인원</th>
+            <th class="th-susi" style="width:44px">최저</th>
+            <th class="th-susi">전형방법</th>
+          </tr></thead>
+          <tbody>${susiRows}</tbody>
+        </table>
+      </div>` : ''}
+
+      ${d.minScore && d.minScore.length ? `
+      <div class="detail-section">
+        <div class="detail-section-title" style="--accent:#a78bfa">3. 수시모집 — 최저학력기준</div>
+        <table class="adm-table min-table">
+          <thead><tr>
+            <th style="background:#1a1a2e;color:#94a3b8">전형</th>
+            <th style="background:#1a1a2e;color:#94a3b8">계열</th>
+            <th style="background:#1a1a2e;color:#6ee7b7">국</th>
+            <th style="background:#1a1a2e;color:#6ee7b7">수</th>
+            <th style="background:#1a1a2e;color:#6ee7b7">영</th>
+            <th style="background:#1a1a2e;color:#6ee7b7">탐</th>
+            <th style="background:#1a1a2e;color:#f87171">최저</th>
+            <th style="background:#1a1a2e;color:#64748b">비고</th>
+          </tr></thead>
+          <tbody>${minRows}</tbody>
+        </table>
+        <div style="font-size:10px;color:#475569;margin-top:6px">☆ = 수학 필수 / ○ = 해당 영역</div>
+      </div>` : ''}
+
+      ${d.jeongsi && d.jeongsi.length ? `
+      <div class="detail-section">
+        <div class="detail-section-title" style="--accent:#7dd3fc">4. 정시모집 — 수능 반영</div>
+        <table class="adm-table jeongsi-table">
+          <thead><tr>
+            <th class="th-jeongsi">계열</th>
+            <th class="th-jeongsi">국어</th>
+            <th class="th-jeongsi">수학</th>
+            <th class="th-jeongsi">영어</th>
+            <th class="th-jeongsi">탐구</th>
+            <th class="th-jeongsi" style="text-align:left">비고</th>
+          </tr></thead>
+          <tbody>${jeongsiRows}</tbody>
+        </table>
+      </div>` : ''}
+
+      ${d.top10Susi ? `
+      <div class="detail-section">
+        <div class="detail-section-title" style="--accent:#f59e0b">원서접수 TOP 10 — 수시 (2025학년도)</div>
+        <table class="adm-table" style="font-size:12px">
+          <thead><tr>
+            <th style="background:#334155;color:#fff;width:24px">#</th>
+            <th style="background:#334155;color:#fff;text-align:left">모집단위</th>
+            <th style="background:#334155;color:#fff;text-align:left">전형명</th>
+            <th style="background:#334155;color:#fff;width:40px">모집</th>
+            <th style="background:#334155;color:#fff;width:48px">지원</th>
+            <th style="background:#334155;color:#fff;width:60px">경쟁률</th>
+          </tr></thead>
+          <tbody>${d.top10Susi.map(r => `<tr>
+            <td style="text-align:center;font-weight:800;color:#f59e0b">${r.rank}</td>
+            <td style="text-align:left;font-weight:600;color:#1e293b">${r.dept}</td>
+            <td style="text-align:left;font-size:10px;color:#64748b">${r.type}</td>
+            <td style="text-align:center;font-weight:700;color:#3b82f6">${r.모집}</td>
+            <td style="text-align:center;color:#475569">${r.지원.toLocaleString()}</td>
+            <td style="text-align:center;font-weight:700;color:#dc2626">${r.경쟁}</td>
+          </tr>`).join('')}</tbody>
+        </table>
+      </div>` : ''}
+
+      ${d.top10Jeongsi ? `
+      <div class="detail-section">
+        <div class="detail-section-title" style="--accent:#0ea5e9">원서접수 TOP 10 — 정시 (2025학년도)</div>
+        <table class="adm-table" style="font-size:12px">
+          <thead><tr>
+            <th style="background:#0e4272;color:#fff;width:24px">#</th>
+            <th style="background:#0e4272;color:#fff;width:50px">시기</th>
+            <th style="background:#0e4272;color:#fff;text-align:left">모집단위</th>
+            <th style="background:#0e4272;color:#fff;text-align:left">전형명</th>
+            <th style="background:#0e4272;color:#fff;width:40px">모집</th>
+            <th style="background:#0e4272;color:#fff;width:48px">지원</th>
+            <th style="background:#0e4272;color:#fff;width:60px">경쟁률</th>
+          </tr></thead>
+          <tbody>${d.top10Jeongsi.map(r => `<tr>
+            <td style="text-align:center;font-weight:800;color:#0ea5e9">${r.rank}</td>
+            <td style="text-align:center;font-size:10px;color:#64748b">${r.시기}</td>
+            <td style="text-align:left;font-weight:600;color:#1e293b">${r.dept}</td>
+            <td style="text-align:left;font-size:10px;color:#64748b">${r.type}</td>
+            <td style="text-align:center;font-weight:700;color:#3b82f6">${r.모집}</td>
+            <td style="text-align:center;color:#475569">${r.지원.toLocaleString()}</td>
+            <td style="text-align:center;font-weight:700;color:#dc2626">${r.경쟁}</td>
+          </tr>`).join('')}</tbody>
+        </table>
+      </div>` : ''}
+
+      <div class="detail-note">
+        <strong>※ 주의사항</strong><br>
+        본 자료는 2027 대입전형 시행계획 기준으로 작성되었습니다.<br>
+        세부 모집인원 및 일정은 각 대학 모집요강(5월 말 발표 예정)을 반드시 확인하시기 바랍니다.<br>
+        경쟁률·취업률 등 통계자료 출처: <strong>adiga.kr</strong> (대입정보포털)
+      </div>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════
+// Init: read URL params and show detail
+// ═══════════════════════════════════════════
+(function init() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const targetUni = urlParams.get('uni');
+  if (targetUni) {
+    showUniversityDetail(targetUni);
+  } else {
+    document.getElementById('info-panel').innerHTML = '<div style="padding:40px;text-align:center;color:#94a3b8">대학을 선택해주세요</div>';
+  }
+})();
+</script>
+</body>
+</html>

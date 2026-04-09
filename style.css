@@ -1,0 +1,191 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Apple SD Gothic Neo','Malgun Gothic','맑은 고딕','Noto Sans KR',sans-serif;background:#f1f5f9;color:#1e293b;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+
+/* ── Header ── */
+header{background:#fff;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.logo-wrap{display:flex;align-items:baseline;gap:12px}
+.logo{font-size:21px;font-weight:900;letter-spacing:-.5px}
+.logo .sen{color:#f59e0b}
+.logo .main{color:#1e293b}
+.badge{font-size:11px;background:#eff6ff;border:1px solid #bfdbfe;color:#2563eb;padding:2px 10px;border-radius:100px;font-weight:600}
+.header-sub{font-size:12px;color:#94a3b8;text-align:right;line-height:1.6}
+.header-title{font-size:15px;font-weight:700;color:#64748b;margin-left:12px}
+
+/* ── Main layout ── */
+main{flex:1;display:flex;overflow:hidden}
+
+/* ── Map Panel ── */
+.map-panel{flex:1;display:flex;flex-direction:column;align-items:stretch;justify-content:stretch;padding:12px;background:#fff;position:relative;overflow:hidden;border-right:1px solid #e2e8f0}
+
+/* Breadcrumb */
+.breadcrumb{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:8px;z-index:10}
+.bc-btn{background:#fff;border:1px solid #cbd5e1;color:#2563eb;padding:9px 22px;border-radius:24px;font-size:18px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+.bc-btn:hover{background:#eff6ff;border-color:#93c5fd}
+.bc-sep{color:#cbd5e1;font-size:12px}
+.bc-cur{color:#94a3b8;font-size:12px}
+
+/* Korea SVG legend */
+.legend{position:absolute;top:14px;left:14px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-size:11px;z-index:5;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.legend-title{color:#94a3b8;font-weight:700;margin-bottom:6px;font-size:10px;letter-spacing:.05em;text-transform:uppercase}
+.legend-item{display:flex;align-items:center;gap:7px;margin-bottom:4px;color:#475569}
+.legend-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+
+/* Korea SVG sizing */
+#korea-view{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+#korea-view svg{flex-shrink:0;height:calc(100vh - 110px);width:auto;display:block}
+
+/* Korea SVG regions */
+.region{cursor:pointer;transition:filter .15s,opacity .15s,stroke-width .15s;stroke-linejoin:round;stroke-linecap:round}
+.region:hover{filter:brightness(.93) saturate(1.3)}
+.region.active{filter:brightness(.88) saturate(1.5)}
+.region.dimmed{opacity:.25}
+.map-label{pointer-events:none;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-weight:700}
+.map-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:12px;color:#94a3b8;pointer-events:none}
+
+/* ── Seoul/Gyeonggi University Map ── */
+#seoul-view{width:100%;height:100%;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;padding-top:8px}
+.uni-map-outer{position:relative;overflow:auto;flex:1;width:100%;display:flex;align-items:flex-start;justify-content:center;padding:0 12px 12px}
+.uni-map-container{position:relative;display:block;width:100%;max-width:100%}
+.uni-map-container img{width:100%;height:auto;display:block;user-select:none;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.1)}
+
+/* University markers */
+.uni-marker{position:absolute;transform:translate(-50%,-50%);cursor:pointer;z-index:3}
+.uni-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid rgba(255,255,255,.9);transition:all .15s;flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.uni-label-wrap{display:flex;align-items:center;gap:3px;pointer-events:none}
+.uni-label{font-size:16px;font-weight:700;white-space:nowrap;line-height:1;transition:all .15s;color:#1e293b;background:#fff;padding:5px 10px;border-radius:6px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.uni-marker:hover .uni-dot{transform:scale(1.6);border-color:#fff}
+.uni-marker:hover .uni-label{color:#2563eb!important;border-color:#93c5fd;background:#eff6ff;box-shadow:0 2px 8px rgba(37,99,235,.2)}
+.uni-marker.selected .uni-dot{transform:scale(1.8);border-color:#f59e0b;box-shadow:0 0 8px rgba(245,158,11,.5)}
+.uni-marker.selected .uni-label{color:#d97706!important}
+
+/* ── Info Panel ── */
+.info-panel{width:420px;min-width:400px;background:#fff;border-left:1px solid #e2e8f0;overflow-y:auto;display:flex;flex-direction:column;transition:width .3s}
+.info-panel.wide{width:55%;min-width:55%}
+.info-panel::-webkit-scrollbar{width:4px}
+.info-panel::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:2px}
+
+/* Placeholder */
+.placeholder{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;gap:10px}
+.placeholder-icon{width:72px;height:72px;border-radius:16px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:4px}
+.placeholder h3{font-size:16px;color:#94a3b8;font-weight:600}
+.placeholder p{font-size:13px;color:#cbd5e1;line-height:1.6}
+
+/* Region summary */
+.region-content{padding:24px 20px;animation:fadeSlide .25s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+.region-header{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #f1f5f9}
+.region-color-bar{width:36px;height:4px;border-radius:2px;margin-bottom:10px}
+.region-name{font-size:22px;font-weight:800;color:#0f172a}
+.region-meta{display:flex;gap:14px;margin-top:6px}
+.region-stat{font-size:12px;color:#94a3b8}
+.region-stat strong{color:#475569;font-weight:700}
+.sub-map{width:100%;border-radius:8px;overflow:hidden;margin-bottom:16px;border:1px solid #e2e8f0;background:#f8fafc}
+.sub-map img{width:100%;display:block}
+.sub-map-label{background:#f8fafc;padding:7px 12px;font-size:11px;color:#94a3b8;text-align:center;border-top:1px solid #e2e8f0}
+.section-title{font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase;margin:14px 0 8px}
+.uni-list{display:flex;flex-direction:column;gap:5px}
+.uni-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:9px;padding:10px 13px;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:3px}
+.uni-item:hover{background:#eff6ff;border-color:#93c5fd;transform:translateX(2px)}
+.uni-item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.uni-name{font-size:13px;font-weight:700;color:#1e293b;flex:1}
+.uni-national{font-size:10px;background:#fefce8;border:1px solid #fde68a;color:#d97706;padding:1px 5px;border-radius:3px;white-space:nowrap}
+.uni-location{font-size:11px;color:#94a3b8}
+.uni-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:2px}
+.tag{font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;white-space:nowrap}
+.tag-susi{background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe}
+.tag-jeongsi{background:#f5f3ff;color:#7c3aed;border:1px solid #ddd6fe}
+.tag-med{background:#fff1f2;color:#e11d48;border:1px solid #fecdd3}
+.tag-eng{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0}
+.tag-edu{background:#fffbeb;color:#d97706;border:1px solid #fde68a}
+
+/* ── University Detail Page ── */
+.detail-page{padding:0;animation:fadeSlide .25s ease}
+.detail-header{padding:18px 20px 14px;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:10;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.detail-nav{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.detail-back{background:#f8fafc;border:1px solid #e2e8f0;color:#64748b;padding:4px 12px;border-radius:14px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .15s}
+.detail-back:hover{background:#eff6ff;border-color:#93c5fd;color:#2563eb}
+.detail-uni-name{font-size:24px;font-weight:900;color:#0f172a;letter-spacing:-.3px}
+.detail-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.detail-badge{font-size:10px;padding:3px 9px;border-radius:4px;font-weight:700}
+.badge-seoul{background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe}
+.badge-gyeonggi{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0}
+.badge-national{background:#fffbeb;color:#d97706;border:1px solid #fde68a}
+.badge-med{background:#fff1f2;color:#e11d48;border:1px solid #fecdd3}
+
+.detail-body{padding:16px 20px 24px}
+.detail-section{margin-bottom:20px}
+.detail-section-title{font-size:16px;font-weight:800;color:#334155;letter-spacing:.02em;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #f1f5f9;display:flex;align-items:center;gap:8px}
+.detail-section-title::before{content:'';display:inline-block;width:3px;height:16px;border-radius:2px;background:var(--accent,#2563eb)}
+
+/* Changes box */
+.changes-box{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px}
+.change-item{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #fef3c7}
+.change-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.change-title{font-size:16px;font-weight:700;color:#b45309;margin-bottom:4px}
+.change-arrow{display:flex;align-items:flex-start;gap:6px;font-size:15px;color:#64748b;line-height:1.5}
+.change-arrow .from{color:#94a3b8}
+.change-arrow .arr{color:#f59e0b;flex-shrink:0;margin-top:1px}
+.change-arrow .to{color:#1e293b}
+
+/* Tables */
+.adm-table{width:100%;border-collapse:collapse;font-size:16px;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0}
+.adm-table th{padding:10px 12px;text-align:center;font-weight:700;font-size:15px;letter-spacing:.03em}
+.adm-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;vertical-align:middle;line-height:1.4}
+.adm-table tr:last-child td{border-bottom:none}
+.adm-table tr:hover td{background:#f8fafc}
+.th-susi{background:#1e40af;color:#fff}
+.th-gyogwa{background:#166534;color:#fff}
+.th-jonghap{background:#5b21b6;color:#fff}
+.th-nonsul{background:#991b1b;color:#fff}
+.th-jeongsi{background:#0e4272;color:#fff}
+.td-type{font-weight:700;text-align:center;font-size:13px;padding:7px 6px}
+.td-type.gyogwa{color:#16a34a}
+.td-type.jonghap{color:#7c3aed}
+.td-type.nonsul{color:#dc2626}
+.td-name{color:#1e293b;font-weight:600}
+.td-count{text-align:center;color:#64748b;font-weight:700}
+.td-min{text-align:center}
+.td-min .dot-req{color:#dc2626}
+.td-method{color:#334155;font-size:15px}
+.td-method .step{color:#2563eb;font-weight:700}
+.td-ok{color:#16a34a;text-align:center}
+.td-star{color:#d97706;text-align:center}
+.td-req{font-weight:700;color:#dc2626;text-align:center}
+.td-note{color:#94a3b8;font-size:13px}
+.score-good{color:#16a34a;font-weight:700}
+.score-neutral{color:#64748b}
+
+/* Min score table */
+.min-table th{background:#f1f5f9;color:#475569;text-align:center;font-size:13px;border-bottom:1px solid #e2e8f0}
+.min-table .row-name{color:#1e293b;font-weight:700}
+.min-table .row-track{color:#64748b;font-size:13px}
+
+/* Jeongsi table */
+.jeongsi-table th{background:#f0f9ff;color:#0369a1;text-align:center;font-size:13px;border-bottom:1px solid #e2e8f0}
+.jeongsi-table td{text-align:center}
+.jeongsi-table .td-track{text-align:left;color:#1e293b;font-weight:600}
+.jeongsi-table .pct{color:#2563eb;font-weight:700}
+.jeongsi-table .pct-hi{color:#16a34a;font-weight:700}
+.jeongsi-table .nd{color:#cbd5e1}
+
+/* Notes */
+.detail-note{margin-top:16px;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;line-height:1.7}
+.detail-note strong{color:#475569}
+
+/* No data */
+.no-data{text-align:center;padding:30px;color:#94a3b8;font-size:13px}
+
+/* SVG university markers */
+.svg-uni-marker{transition:opacity .15s}
+.svg-uni-marker:hover .uni-bg{fill:#eff6ff;stroke:#93c5fd}
+.svg-uni-marker:hover .uni-txt{fill:#2563eb}
+.svg-uni-marker:hover circle{r:2;stroke-width:0.6}
+.svg-uni-marker.selected .uni-bg{fill:#fffbeb;stroke:#f59e0b}
+.svg-uni-marker.selected .uni-txt{fill:#d97706}
+.svg-uni-marker.selected circle{fill:#f59e0b;stroke:#fff}
+
+/* Adm types grid */
+.adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px}
+.adm-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:7px;padding:9px 11px}
+.adm-name{color:#475569;font-weight:600;font-size:11px;margin-bottom:2px}
+.adm-desc{color:#94a3b8;font-size:10px}
