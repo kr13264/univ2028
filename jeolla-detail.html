@@ -120,7 +120,8 @@ function renderRegionSummary() {
 }
 
 function showUniversityDetail(key) {
-  const d = UNI_DETAILS[key];
+  let _d = UNI_DETAILS[key]; if(!_d){const _f=Object.keys(UNI_DETAILS).find(k=>key.includes(k)||k.includes(key));if(_f)_d=UNI_DETAILS[_f];}
+  const d = _d;
   document.getElementById('info-panel').classList.add('wide');
 
   if (!d) {
@@ -135,7 +136,7 @@ function showUniversityDetail(key) {
         <div class="no-data">
           <div style="font-size:32px;margin-bottom:12px">📋</div>
           <div style="color:#64748b;font-size:14px;font-weight:600">상세 정보 준비중</div>
-          <div style="color:#334155;font-size:12px;margin-top:8px">2027 모집요강 발표 후 업데이트 예정입니다</div>
+          <div style="color:#334155;font-size:13px;margin-top:8px">2027 모집요강 발표 후 업데이트 예정입니다</div>
         </div>
       </div>`;
     return;
@@ -182,11 +183,11 @@ function showUniversityDetail(key) {
   // Min score table
   const minRows = (d.minScore||[]).map(r => `<tr>
     <td class="row-name" style="color:#e2e8f0;font-weight:700;white-space:nowrap">${r.name}</td>
-    <td class="row-track" style="color:#94a3b8;font-size:10px">${r.track}</td>
+    <td class="row-track" style="color:#64748b;font-size:13px">${r.track}</td>
     <td class="td-ok">${r.국||'—'}</td>
     <td>${r.수==='☆'?`<span style="color:#fbbf24">☆</span>`:(r.수||'—')}</td>
     <td class="td-ok">${r.영||'—'}</td>
-    <td style="text-align:center;color:#94a3b8">${r.탐||'—'}</td>
+    <td style="text-align:center;color:#64748b">${r.탐||'—'}</td>
     <td class="td-req">${r.req}</td>
     <td class="td-note">${r.note||''}</td>
   </tr>`).join('');
@@ -198,7 +199,7 @@ function showUniversityDetail(key) {
     <td class="pct-hi">${r.수}</td>
     <td>${r.영}</td>
     <td class="pct">${r.탐}</td>
-    <td style="color:#64748b;font-size:10px;text-align:left">${r.비고||''}</td>
+    <td style="color:#64748b;font-size:13px;text-align:left">${r.비고||''}</td>
   </tr>`).join('');
 
   document.getElementById('info-panel').innerHTML = `
@@ -238,18 +239,18 @@ function showUniversityDetail(key) {
         <div class="detail-section-title" style="--accent:#a78bfa">3. 수시모집 — 최저학력기준</div>
         <table class="adm-table min-table">
           <thead><tr>
-            <th style="background:#1a1a2e;color:#94a3b8">전형</th>
-            <th style="background:#1a1a2e;color:#94a3b8">계열</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">국</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">수</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">영</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">탐</th>
-            <th style="background:#1a1a2e;color:#f87171">최저</th>
-            <th style="background:#1a1a2e;color:#64748b">비고</th>
+            <th style="background:#f1f5f9;color:#475569">전형</th>
+            <th style="background:#f1f5f9;color:#475569">계열</th>
+            <th style="background:#f1f5f9;color:#475569">국</th>
+            <th style="background:#f1f5f9;color:#475569">수</th>
+            <th style="background:#f1f5f9;color:#475569">영</th>
+            <th style="background:#f1f5f9;color:#475569">탐</th>
+            <th style="background:#f1f5f9;color:#475569">최저</th>
+            <th style="background:#f1f5f9;color:#475569">비고</th>
           </tr></thead>
           <tbody>${minRows}</tbody>
         </table>
-        <div style="font-size:10px;color:#475569;margin-top:6px">☆ = 수학 필수 / ○ = 해당 영역</div>
+        <div style="font-size:13px;color:#475569;margin-top:6px">☆ = 수학 필수 / ○ = 해당 영역</div>
       </div>` : ''}
 
       ${d.jeongsi && d.jeongsi.length ? `
@@ -271,19 +272,19 @@ function showUniversityDetail(key) {
       ${d.top10Susi ? `
       <div class="detail-section">
         <div class="detail-section-title" style="--accent:#f59e0b">원서접수 TOP 10 — 수시 (2025학년도)</div>
-        <table class="adm-table" style="font-size:12px">
+        <table class="adm-table" style="font-size:13px">
           <thead><tr>
-            <th style="background:#334155;color:#fff;width:24px">#</th>
-            <th style="background:#334155;color:#fff;text-align:left">모집단위</th>
-            <th style="background:#334155;color:#fff;text-align:left">전형명</th>
-            <th style="background:#334155;color:#fff;width:40px">모집</th>
-            <th style="background:#334155;color:#fff;width:48px">지원</th>
-            <th style="background:#334155;color:#fff;width:60px">경쟁률</th>
+            <th style="background:#f1f5f9;color:#475569;width:24px">#</th>
+            <th style="background:#f1f5f9;color:#475569;text-align:left">모집단위</th>
+            <th style="background:#f1f5f9;color:#475569;text-align:left">전형명</th>
+            <th style="background:#f1f5f9;color:#475569;width:40px">모집</th>
+            <th style="background:#f1f5f9;color:#475569;width:48px">지원</th>
+            <th style="background:#f1f5f9;color:#475569;width:60px">경쟁률</th>
           </tr></thead>
           <tbody>${d.top10Susi.map(r => `<tr>
             <td style="text-align:center;font-weight:800;color:#f59e0b">${r.rank}</td>
             <td style="text-align:left;font-weight:600;color:#1e293b">${r.dept}</td>
-            <td style="text-align:left;font-size:10px;color:#64748b">${r.type}</td>
+            <td style="text-align:left;font-size:13px;color:#64748b">${r.type}</td>
             <td style="text-align:center;font-weight:700;color:#3b82f6">${r.모집}</td>
             <td style="text-align:center;color:#475569">${r.지원.toLocaleString()}</td>
             <td style="text-align:center;font-weight:700;color:#dc2626">${r.경쟁}</td>
@@ -294,21 +295,21 @@ function showUniversityDetail(key) {
       ${d.top10Jeongsi ? `
       <div class="detail-section">
         <div class="detail-section-title" style="--accent:#0ea5e9">원서접수 TOP 10 — 정시 (2025학년도)</div>
-        <table class="adm-table" style="font-size:12px">
+        <table class="adm-table" style="font-size:13px">
           <thead><tr>
-            <th style="background:#0e4272;color:#fff;width:24px">#</th>
-            <th style="background:#0e4272;color:#fff;width:50px">시기</th>
-            <th style="background:#0e4272;color:#fff;text-align:left">모집단위</th>
-            <th style="background:#0e4272;color:#fff;text-align:left">전형명</th>
-            <th style="background:#0e4272;color:#fff;width:40px">모집</th>
-            <th style="background:#0e4272;color:#fff;width:48px">지원</th>
-            <th style="background:#0e4272;color:#fff;width:60px">경쟁률</th>
+            <th style="background:#f1f5f9;color:#475569;width:24px">#</th>
+            <th style="background:#f1f5f9;color:#475569;width:50px">시기</th>
+            <th style="background:#f1f5f9;color:#475569;text-align:left">모집단위</th>
+            <th style="background:#f1f5f9;color:#475569;text-align:left">전형명</th>
+            <th style="background:#f1f5f9;color:#475569;width:40px">모집</th>
+            <th style="background:#f1f5f9;color:#475569;width:48px">지원</th>
+            <th style="background:#f1f5f9;color:#475569;width:60px">경쟁률</th>
           </tr></thead>
           <tbody>${d.top10Jeongsi.map(r => `<tr>
             <td style="text-align:center;font-weight:800;color:#0ea5e9">${r.rank}</td>
-            <td style="text-align:center;font-size:10px;color:#64748b">${r.시기}</td>
+            <td style="text-align:center;font-size:13px;color:#64748b">${r.시기}</td>
             <td style="text-align:left;font-weight:600;color:#1e293b">${r.dept}</td>
-            <td style="text-align:left;font-size:10px;color:#64748b">${r.type}</td>
+            <td style="text-align:left;font-size:13px;color:#64748b">${r.type}</td>
             <td style="text-align:center;font-weight:700;color:#3b82f6">${r.모집}</td>
             <td style="text-align:center;color:#475569">${r.지원.toLocaleString()}</td>
             <td style="text-align:center;font-weight:700;color:#dc2626">${r.경쟁}</td>
@@ -335,7 +336,7 @@ function showUniversityDetail(key) {
   if (targetUni) {
     showUniversityDetail(targetUni);
   } else {
-    document.getElementById('info-panel').innerHTML = '<div style="padding:40px;text-align:center;color:#94a3b8">대학을 선택해주세요</div>';
+    document.getElementById('info-panel').innerHTML = '<div style="padding:40px;text-align:center;color:#64748b">대학을 선택해주세요</div>';
   }
 })();
 </script>

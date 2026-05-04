@@ -132,18 +132,31 @@ const UNI_DETAILS = {
   '대학명': {
     fullName: '정식명칭',
     location: '소재지',
-    badges: ['region', 'national', 'med'],
+    badges: ['region', 'national', 'med', 'new2028'],
+    total: { 수시: 000, 정시: 000, 총계: 000 },
     changes: [{ title, from, to }],
     susi: [{ type, name, count, minReq, method }],
     minScore: [{ name, track, 국, 수, 영, 탐, req, note }],
+    gradeConversion: { tables: [{ title, subtitle, grades, scores }], note: '' },
     jeongsi: [{ track, 국, 수, 영, 탐, 비고 }],
+    jeongsiGradeTable: [{ 영역, 전형명, 반영방법, scores }],
+    jeongsiNote: '',
+    comprehensiveEval: { title, desc, items: [{ 평가항목, 평가내용, 비율 }] },
     top10Susi: [...],
     top10Jeongsi: [...],
-    enrollment: {...},
-    // ... 추가 데이터
+    enrollmentImg: 'images/enrollment/xxx.png' 또는 ['img1.png','img2.png'],
   }
 }
 ```
+
+### badges 값
+| 값 | 설명 | 표시 |
+|-----|------|------|
+| `'seoul'` | 서울권 | 서울권 뱃지 |
+| `'gyeonggi'` | 경기·인천권 | 경기·인천권 뱃지 |
+| `'national'` | 국립 | 국립 뱃지 |
+| `'med'` | 의학계열 | 의학계열 뱃지 |
+| `'new2028'` | 2028 주요 변경 | **빨간 N 마크** (목록·지도·상세 3곳) |
 
 ---
 
@@ -185,3 +198,144 @@ const UNI_DETAILS = {
 - 줌 상태에서만 표시
 - 클릭 시 기본 viewBox로 애니메이션 줌 아웃
 - 스타일: `padding:9px 22px; border-radius:24px; font-size:18px; font-weight:700`
+
+---
+
+## 10. N 마크 (new2028 뱃지) — 필수 규칙
+
+> **⚠️ 반드시 지켜야 할 규칙**: 대학 데이터에 `badges: ['new2028']`가 포함되면, 아래 **3곳 모두** N마크가 표시되어야 한다. 하나라도 빠지면 안 된다.
+
+### 3곳 필수 표시
+
+| # | 위치 | 파일 | 크기 |
+|---|------|------|------|
+| ① | **우측 대학 목록 카드** (대학명 옆) | seoul.html, gyeonggi.html, index.html 등 | 16×16px |
+| ② | **좌측 지도 마커 라벨** (대학명 옆) | seoul.html, gyeonggi.html, index.html 등 | 14×14px |
+| ③ | **상세 페이지 대학명 헤더** | seoul-detail.html, gyeonggi-detail.html 등 | 20×20px |
+
+### 스타일 (공통: 빨간 원형 N)
+```html
+<!-- ① 목록 카드 (16px) -->
+<span style="display:inline-flex;align-items:center;justify-content:center;
+  width:16px;height:16px;border-radius:50%;background:#e11d48;color:#fff;
+  font-size:9px;font-weight:800;vertical-align:middle;line-height:1">N</span>
+
+<!-- ② 지도 마커 (14px) -->
+<span style="display:inline-flex;align-items:center;justify-content:center;
+  width:14px;height:14px;border-radius:50%;background:#e11d48;color:#fff;
+  font-size:8px;font-weight:800;line-height:1">N</span>
+
+<!-- ③ 상세 헤더 (20px) -->
+<span style="display:inline-flex;align-items:center;justify-content:center;
+  width:20px;height:20px;border-radius:50%;background:#e11d48;color:#fff;
+  font-size:11px;font-weight:800;vertical-align:middle;line-height:1">N</span>
+```
+
+### 판단 조건
+```javascript
+// 목록·마커: UNI_DETAILS에서 조회
+const det = UNI_DETAILS[key];
+const isNew = det && (det.badges||[]).includes('new2028');
+
+// 상세 헤더: badges 배열에서 직접 판단
+(d.badges||[]).includes('new2028')
+```
+
+### 데이터 동기화 필수
+- **지도 페이지** (seoul.html, gyeonggi.html 등)의 `UNI_DETAILS`
+- **상세 페이지** (seoul-detail.html, gyeonggi-detail.html 등)의 `UNI_DETAILS`
+- **양쪽 모두** `badges: [..., 'new2028']` 추가해야 3곳 전부 표시됨
+- 한쪽만 추가하면 지도/목록은 되는데 상세는 안 되거나, 그 반대가 발생
+
+---
+
+## 11. 글씨 크기 — 필수 규칙
+
+> **⚠️ 반드시 지켜야 할 규칙**: 상세 페이지의 모든 텍스트는 아래 최소 크기를 준수해야 한다. 10px, 11px 사용 금지.
+
+### 최소 글씨 크기 기준
+
+| 용도 | 최소 크기 | 비고 |
+|------|----------|------|
+| **본문 텍스트** (설명, 내용, 셀 데이터) | **12px** | 테이블 셀, 부제, 주의사항, 비고 등 |
+| **제목/라벨** (섹션명, 헤더, 전형명, 평가요소) | **13px** | 테이블 헤더, 항목명, 박스 텍스트 등 |
+| **강조 숫자** (점수, 인원, 등급) | **13px** | 환산점수, 모집인원 등 |
+
+### 적용 대상
+- `*-detail.html` 상세 페이지의 모든 렌더링 코드
+- 학생부교과 반영방법 (`gradeConversion`) 섹션
+- 학생부종합 평가방법 (`comprehensiveEval`) 섹션
+- 수시 전형방법, 최저학력기준, 정시 반영비율 등 모든 테이블
+
+### 금지 사항
+- `font-size:10px` → 최소 `12px`로 변경
+- `font-size:11px` → 최소 `12px`로 변경 (라벨이면 `13px`)
+- `color:#94a3b8` (너무 연한 회색) → `#64748b` 이상으로 진하게
+
+---
+
+## 12. enrollmentImg (전형별 모집인원 이미지)
+
+> 대학별 전형별 모집인원 표 이미지를 클릭-줌 방식으로 표시하는 섹션
+
+### 데이터 형식
+```javascript
+// 단일 이미지
+enrollmentImg: 'images/enrollment/dongduck.png'
+
+// 복수 이미지 (배열)
+enrollmentImg: ['images/enrollment/myongji-susi-2.png', 'images/enrollment/myongji-susi-1.png']
+```
+
+### 이미지 파일 위치
+`images/enrollment/` 폴더
+
+### 현재 등록된 이미지
+| 대학 | 파일명 | 지역 |
+|------|--------|------|
+| 경기대(수원) | kyonggi-susi-1.png, kyonggi-susi-2.png | 경기 |
+| 한양대(ERICA) | hanyang-erica-susi.png, hanyang-erica-jeongsi.png | 경기 |
+| 명지대(자연) | myongji-susi-2.png(인문), myongji-susi-1.png(자연) | 경기 |
+| 동덕여대 | dongduck.png | 서울 |
+| 서울여대 | seoulWoman.png | 서울 |
+| 상명대(천안) | sangmung.png | 충청 |
+
+### 렌더링 코드 (클릭 줌 인/아웃)
+```javascript
+${d.enrollmentImg ? `
+<div class="detail-section">
+  <div class="detail-section-title" style="--accent:#6366f1">전형별 모집인원</div>
+  <div style="overflow-x:auto;margin:0 -20px;padding:0 20px">
+    ${(Array.isArray(d.enrollmentImg) ? d.enrollmentImg : [d.enrollmentImg]).map(img => `
+      <img src="${img}" ... onclick="this.style.maxWidth=this.style.maxWidth==='100%'?'none':'100%'">
+    `).join('')}
+  </div>
+  <div style="font-size:12px;color:#64748b;margin-top:4px">※ 이미지를 클릭하면 확대/축소됩니다</div>
+</div>` : ''}
+```
+
+### 데이터 동기화 필수
+- **지도 페이지** (seoul.html, gyeonggi.html)와 **상세 페이지** (*-detail.html) **양쪽 모두** `enrollmentImg` 필드 추가 필요
+- SVG 줌 방식 지역(충청, 강원 등)은 detail 파일만 수정하면 됨
+
+### 주의사항
+- seoul-detail.html에서는 `secNum`/`nextSec()` 자동번호와 연동 — `enrollImgHtml` 선언은 반드시 `secNum` 선언 이후에 위치
+- 이미지 순서: 배열 순서대로 표시됨 (예: 인문→자연 순)
+
+---
+
+## 13. index.html의 new2028 마커 플래그
+
+> SVG 줌 방식 지역(충청, 강원, 경상, 전라, 제주)에서 N마크를 표시하려면 index.html의 markers와 universities 배열 **양쪽 모두**에 `new2028:true` 추가 필요
+
+```javascript
+// markers 배열
+{name:'상명대(천안)', x:410, y:348, color:'#374151', new2028:true},
+
+// universities 배열
+{name:'상명대(천안)', location:'충남 천안', national:false, tags:['수시','정시'], new2028:true},
+```
+
+- markers의 `new2028` → 지도 마커 라벨 옆 N 뱃지
+- universities의 `new2028` → 우측 대학 목록 카드 옆 N 뱃지
+- detail 파일의 `badges: ['new2028']` → 상세 페이지 헤더 N 뱃지

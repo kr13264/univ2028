@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>쎈(SEN)진학 PreView — 2027 대입전형 시행계획</title>
+  <title>대학 진학 PreView — 2028 대입전형 시행계획</title>
   <link rel="stylesheet" href="style.css">
   <style>body{background:#fff}</style>
 </head>
@@ -11,9 +11,8 @@
 
 <header>
   <div class="logo-wrap">
-    <div class="logo"><span class="sen">쎈(SEN)</span><span class="main">진학—PreView</span></div>
-    <div class="header-title">2027 대입전형 시행계획</div>
-    <span class="badge">V1.0</span>
+    <div class="logo"><span class="sen">대학</span><span class="main">진학 PreView</span></div>
+    <div class="header-title">2028 대입전형 시행계획</div>
   </div>
   <div class="header-sub">서울특별시교육연구정보원<br>진학지원단</div>
 </header>
@@ -168,9 +167,9 @@ const REGIONS = {
       {name:'서울시립대',x:411,y:240,color:'#374151'},
       {name:'세종대',x:410,y:245,color:'#374151'},
       // 중하단 (용산/관악/동작)
-      {name:'숙명여대',x:399,y:244,color:'#e11d48'},
+      {name:'숙명여대',x:399,y:244,color:'#e11d48',new2028:true},
       {name:'중앙대',x:398,y:249,color:'#374151'},
-      {name:'숭실대',x:400,y:250,color:'#374151'},
+      {name:'숭실대',x:400,y:250,color:'#374151',new2028:true},
       {name:'서울교대',x:403,y:252,color:'#a21caf'},
       {name:'서울대',x:400,y:259,color:'#374151'},
       // 기타
@@ -191,9 +190,9 @@ const REGIONS = {
       {name:'건국대학교',location:'서울 광진',national:false,tags:['수시','정시','의예'],special:['논술']},
       {name:'동국대학교',location:'서울 중구',national:false,tags:['수시','정시'],special:['논술']},
       {name:'홍익대학교',location:'서울 마포',national:false,tags:['수시','정시'],special:['논술']},
-      {name:'숙명여대',location:'서울 용산',national:false,tags:['수시','정시'],special:['논술']},
+      {name:'숙명여대',location:'서울 용산',national:false,tags:['수시','정시'],special:['논술'],new2028:true},
       {name:'국민대학교',location:'서울 성북',national:false,tags:['수시','정시'],special:['논술']},
-      {name:'숭실대학교',location:'서울 동작',national:false,tags:['수시','정시'],special:['논술']},
+      {name:'숭실대학교',location:'서울 동작',national:false,tags:['수시','정시'],special:['논술'],new2028:true},
       {name:'세종대학교',location:'서울 광진',national:false,tags:['수시','정시'],special:['논술']},
       {name:'덕성여대',location:'서울 도봉',national:false,tags:['수시','정시']},
       {name:'서울교대',location:'서울 서초',national:true,tags:['수시','정시'],special:['교육']},
@@ -219,23 +218,23 @@ const REGIONS = {
       // 안양/군포
       {name:'성결대학교',x:375,y:282,color:'#374151'},
       {name:'안양대',x:390,y:288,color:'#374151'},
-      {name:'한세대학교',x:370,y:298,color:'#374151'},
+      {name:'한세대학교',x:370,y:298,color:'#374151',new2028:true},
       // 안산/화성
-      {name:'한양대(ERICA)',x:360,y:312,color:'#374151'},
+      {name:'한양대(ERICA)',x:360,y:312,color:'#374151',new2028:true},
       {name:'협성대학교',x:380,y:358,color:'#374151'},
       // 성남/용인
-      {name:'가천대',x:435,y:275,color:'#e11d48'},
+      {name:'가천대',x:435,y:275,color:'#e11d48',new2028:true},
       {name:'을지대',x:445,y:282,color:'#e11d48'},
       {name:'경희대(국제)',x:455,y:320,color:'#374151'},
       {name:'한국외대(글로벌)',x:465,y:328,color:'#374151'},
       {name:'단국대(죽전)',x:445,y:310,color:'#e11d48'},
-      {name:'명지대(자연)',x:440,y:330,color:'#374151'},
+      {name:'명지대(자연)',x:440,y:330,color:'#374151',new2028:true},
       {name:'강남대학교',x:450,y:342,color:'#374151'},
       {name:'용인대',x:460,y:348,color:'#374151'},
       // 수원/오산
       {name:'성균관대(자연)',x:405,y:325,color:'#374151'},
-      {name:'아주대',x:395,y:335,color:'#e11d48'},
-      {name:'경기대(수원)',x:390,y:348,color:'#374151'},
+      {name:'아주대',x:395,y:335,color:'#e11d48',new2028:true},
+      {name:'경기대(수원)',x:390,y:348,color:'#374151',new2028:true},
       {name:'한신대학교',x:410,y:350,color:'#374151'},
       // 화성/평택/안성
       {name:'수원대',x:380,y:368,color:'#374151'},
@@ -244,21 +243,21 @@ const REGIONS = {
       {name:'평택대학교',x:385,y:392,color:'#374151'},
     ],
     universities:[
-      {name:'가천대학교',location:'경기 성남',national:false,tags:['수시','정시','의예'],special:['논술']},
-      {name:'아주대학교',location:'경기 수원',national:false,tags:['수시','정시','의예'],special:['논술']},
+      {name:'가천대학교',location:'경기 성남',national:false,tags:['수시','정시','의예'],special:['논술'],new2028:true},
+      {name:'아주대학교',location:'경기 수원',national:false,tags:['수시','정시','의예'],special:['논술'],new2028:true},
       {name:'인하대학교',location:'인천',national:false,tags:['수시','정시','의예'],special:['논술','첨단학과']},
       {name:'인천대학교',location:'인천 연수',national:true,tags:['수시','정시'],special:['첨단학과']},
       {name:'단국대학교(죽전)',location:'경기 용인',national:false,tags:['수시','정시','의예'],special:['논술']},
-      {name:'경기대학교',location:'경기 수원',national:false,tags:['수시','정시'],special:['논술']},
+      {name:'경기대(수원)',location:'경기 수원',national:false,tags:['수시','정시'],special:['논술'],new2028:true},
       {name:'성균관대(자연)',location:'경기 수원',national:false,tags:['수시','정시'],special:['첨단학과']},
-      {name:'한양대(ERICA)',location:'경기 안산',national:false,tags:['수시','정시'],special:['첨단학과']},
+      {name:'한양대(ERICA)',location:'경기 안산',national:false,tags:['수시','정시'],special:['첨단학과'],new2028:true},
       {name:'경희대(국제)',location:'경기 용인',national:false,tags:['수시','정시'],special:['첨단학과']},
       {name:'중앙대(안성)',location:'경기 안성',national:false,tags:['수시','정시']},
       {name:'한국외대(글로벌)',location:'경기 용인',national:false,tags:['수시','정시']},
       {name:'가톨릭대(성심)',location:'경기 부천',national:false,tags:['수시','정시','의예']},
       {name:'한국산업기술대',location:'경기 시흥',national:true,tags:['수시','정시']},
       {name:'한경국립대',location:'경기 안성',national:true,tags:['수시','정시']},
-      {name:'명지대(자연)',location:'경기 용인',national:false,tags:['수시','정시']},
+      {name:'명지대(자연)',location:'경기 용인',national:false,tags:['수시','정시'],new2028:true},
       {name:'수원대학교',location:'경기 화성',national:false,tags:['수시','정시']},
       {name:'안양대학교',location:'경기 안양',national:false,tags:['수시','정시']},
       {name:'용인대학교',location:'경기 용인',national:false,tags:['수시','정시']},
@@ -268,7 +267,7 @@ const REGIONS = {
       {name:'한국항공대학교',location:'경기 고양',national:false,tags:['수시','정시']},
       {name:'대진대학교',location:'경기 포천',national:false,tags:['수시','정시']},
       {name:'강남대학교',location:'경기 용인',national:false,tags:['수시','정시']},
-      {name:'한세대학교',location:'경기 군포',national:false,tags:['수시','정시']},
+      {name:'한세대학교',location:'경기 군포',national:false,tags:['수시','정시'],new2028:true},
       {name:'협성대학교',location:'경기 화성',national:false,tags:['수시','정시']},
       {name:'성결대학교',location:'경기 안양',national:false,tags:['수시','정시']},
       {name:'한신대학교',location:'경기 오산',national:false,tags:['수시','정시']},
@@ -296,14 +295,14 @@ const REGIONS = {
       // 충주
       {name:'한국교통대',x:500,y:340,color:'#1d4ed8'},
       // 청주권
-      {name:'충북대학교',x:480,y:375,color:'#1d4ed8'},
+      {name:'충북대학교',x:480,y:375,color:'#1d4ed8',new2028:true},
       {name:'한국교원대',x:500,y:388,color:'#1d4ed8'},
       {name:'청주대학교',x:468,y:385,color:'#374151'},
       {name:'서원대학교',x:492,y:370,color:'#374151'},
       // 천안권
-      {name:'단국대(천안)',x:395,y:355,color:'#e11d48'},
+      {name:'단국대(천안)',x:395,y:355,color:'#e11d48',new2028:true},
       {name:'백석대학교',x:380,y:348,color:'#374151'},
-      {name:'상명대(천안)',x:410,y:348,color:'#374151'},
+      {name:'상명대(천안)',x:410,y:348,color:'#374151',new2028:true},
       {name:'남서울대학교',x:395,y:340,color:'#374151'},
       // 아산권
       {name:'순천향대학교',x:360,y:372,color:'#e11d48'},
@@ -327,8 +326,8 @@ const REGIONS = {
     universities:[
       {name:'KAIST',location:'대전 유성',national:true,tags:['수시'],special:['첨단학과']},
       {name:'충남대학교',location:'대전 유성',national:true,tags:['수시','정시','의예'],special:['수의예','첨단학과']},
-      {name:'충북대학교',location:'충북 청주',national:true,tags:['수시','정시','의예'],special:['수의예']},
-      {name:'단국대(천안)',location:'충남 천안',national:false,tags:['수시','정시','의예']},
+      {name:'충북대학교',location:'충북 청주',national:true,tags:['수시','정시','의예'],special:['수의예'],new2028:true},
+      {name:'단국대(천안)',location:'충남 천안',national:false,tags:['수시','정시','의예'],new2028:true},
       {name:'순천향대학교',location:'충남 아산',national:false,tags:['수시','정시','의예']},
       {name:'건양대학교',location:'충남 논산',national:false,tags:['수시','정시','의예']},
       {name:'대전대학교',location:'대전 동구',national:false,tags:['수시','정시'],special:['한의예']},
@@ -340,7 +339,7 @@ const REGIONS = {
       {name:'호서대학교',location:'충남 아산',national:false,tags:['수시','정시']},
       {name:'백석대학교',location:'충남 천안',national:false,tags:['수시','정시']},
       {name:'선문대학교',location:'충남 아산',national:false,tags:['수시','정시']},
-      {name:'상명대(천안)',location:'충남 천안',national:false,tags:['수시','정시']},
+      {name:'상명대(천안)',location:'충남 천안',national:false,tags:['수시','정시'],new2028:true},
       {name:'남서울대학교',location:'충남 천안',national:false,tags:['수시','정시']},
       {name:'한남대학교',location:'대전 대덕',national:false,tags:['수시','정시']},
       {name:'배재대학교',location:'대전 서구',national:false,tags:['수시','정시']},
@@ -446,7 +445,7 @@ function zoomToRegion(key) {
     const g = document.getElementById('uni-markers-overlay');
     g.style.display = '';
     g.innerHTML = (r.markers || []).map(m => `
-      <g class="svg-uni-marker" style="cursor:pointer" data-uni="${m.name}">
+      <g class="svg-uni-marker" style="cursor:pointer" data-uni="${m.name}"${m.new2028?' data-new2028="1"':''}>
         <circle cx="${m.x}" cy="${m.y}" r="1.4" fill="${m.color}" stroke="#fff" stroke-width="0.5"/>
         <rect class="uni-bg" rx="2" ry="2" fill="#fff" stroke="#e2e8f0" stroke-width="0.4" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,.1))"/>
         <text class="uni-txt" x="${m.x + 5}" y="${m.y - 0.5}" font-size="4.2" font-weight="700" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic',sans-serif" dominant-baseline="central" alignment-baseline="central">${m.name}</text>
@@ -456,10 +455,32 @@ function zoomToRegion(key) {
       const txt = mk.querySelector('.uni-txt');
       const bg = mk.querySelector('.uni-bg');
       const bb = txt.getBBox();
+      const isNew = mk.dataset.new2028 === '1';
       bg.setAttribute('x', bb.x - 2);
       bg.setAttribute('y', bb.y - 1.5);
-      bg.setAttribute('width', bb.width + 4);
+      bg.setAttribute('width', bb.width + (isNew ? 7 : 4));
       bg.setAttribute('height', bb.height + 3);
+      if (isNew) {
+        const cx = bb.x + bb.width + 2.5;
+        const cy = bb.y + bb.height / 2;
+        const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        circle.setAttribute('cx', cx);
+        circle.setAttribute('cy', cy);
+        circle.setAttribute('r', '2');
+        circle.setAttribute('fill', '#e11d48');
+        const nTxt = document.createElementNS('http://www.w3.org/2000/svg','text');
+        nTxt.setAttribute('x', cx);
+        nTxt.setAttribute('y', cy);
+        nTxt.setAttribute('font-size', '2.2');
+        nTxt.setAttribute('font-weight', '800');
+        nTxt.setAttribute('fill', '#fff');
+        nTxt.setAttribute('text-anchor', 'middle');
+        nTxt.setAttribute('dominant-baseline', 'central');
+        nTxt.setAttribute('font-family', "'Apple SD Gothic Neo','Malgun Gothic',sans-serif");
+        nTxt.textContent = 'N';
+        mk.appendChild(circle);
+        mk.appendChild(nTxt);
+      }
       // 클릭 핸들러
       mk.addEventListener('click', () => {
         g.querySelectorAll('.svg-uni-marker').forEach(m => m.classList.remove('selected'));
@@ -475,6 +496,18 @@ function zoomToRegion(key) {
         }
       });
     });
+
+    // 경기 지도일 때 서울 바로가기 라벨 추가
+    if (key === 'gyeonggi') {
+      const sx = 400, sy = 230;
+      const seoulLink = document.createElementNS('http://www.w3.org/2000/svg','g');
+      seoulLink.setAttribute('style','cursor:pointer');
+      seoulLink.innerHTML = `
+        <rect rx="3" ry="3" x="${sx-14}" y="${sy-5}" width="28" height="10" fill="#fff" stroke="#93c5fd" stroke-width="0.5" style="filter:drop-shadow(0 1px 3px rgba(0,0,0,.12))"/>
+        <text x="${sx}" y="${sy}" font-size="5" font-weight="800" fill="#2563eb" font-family="'Apple SD Gothic Neo','Malgun Gothic',sans-serif" text-anchor="middle" dominant-baseline="central">서울 →</text>`;
+      seoulLink.addEventListener('click', () => { window.location.href = 'seoul.html'; });
+      g.appendChild(seoulLink);
+    }
   }, 400);
 
   // Render region info panel
@@ -598,8 +631,9 @@ function renderRegionInfo(key) {
   const mapSec = (!isZoomed && r.mapImage) ? `<div class="sub-map"><img src="${r.mapImage}" alt="${r.mapLabel}"><div class="sub-map-label">${r.mapLabel}</div></div>` : '';
   const uniList = r.universities.map(u => {
     const allTags = [...u.tags,...(u.special||[])];
+    const nBadge = u.new2028 ? '<span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#e11d48;color:#fff;font-size:9px;font-weight:800;margin-left:4px;vertical-align:middle;line-height:1">N</span>' : '';
     return `<div class="uni-item" onmouseenter="highlightMarker('${u.name}')" onmouseleave="clearMarkerHighlight()" onclick="openUniDetail('${u.name}')" style="cursor:pointer">
-      <div class="uni-item-top"><div class="uni-name">${u.name}</div>${u.national?'<span class="uni-national">국립</span>':''}</div>
+      <div class="uni-item-top"><div class="uni-name">${u.name}${nBadge}</div>${u.national?'<span class="uni-national">국립</span>':''}</div>
       <div class="uni-location">📍 ${u.location}</div>
       <div class="uni-tags">${allTags.map(t=>`<span class="tag ${TAG_STYLES[t]||'tag-susi'}">${t}</span>`).join('')}</div>
     </div>`;

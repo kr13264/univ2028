@@ -43,44 +43,148 @@ const UNI_DETAILS = {
   '충북대학교': {
     fullName: '충북대학교',
     location: '충북 청주',
-    badges: ['chungcheong', 'national', 'med'],
+    badges: ['chungcheong', 'national', 'med', 'new2028'],
+    total: { 수시: 2702, 정시: 559, 총계: 3291 },
     changes: [
-      { title: '지역인재전형 확대', from: '기존 비율', to: '의예·수의예·약학 지역인재 비율 확대' },
+      { title: '지역의사진료권 전형 신설 (의예과)', from: '미운영', to: '청주16+충주5+제천2+광역10=33명(수시), 정시16명 별도' },
+      { title: 'SW우수인재전형 폐지', from: '13명 선발', to: '미선발 (폐지)' },
+      { title: '간호대학 수능최저 변경', from: '종합Ⅱ·교과·지역인재: 2합6', to: '3합10 (지역경제배려: 3합11)' },
+      { title: '학생부교과 성적 반영방법 변경', from: '석차등급(9등급) 단일', to: '2028이후 졸업자: 성취도(5단계)+석차등급(5등급) 합산' },
+      { title: '정시나군 지역인재 대폭 감소', from: '77명', to: '30명 (△47명)' },
+      { title: '학교폭력 조치사항 강화', from: '기존 반영', to: '전 전형 실질반영점수 10~50% 감점 또는 부적격' },
     ],
     susi: [
-      { type:'교과', name:'학생부교과',    count:665, minReq:'일부●', method:'학생부(교과) 100' },
-      { type:'종합', name:'학생부종합Ⅰ',  count:549, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류70+면접30' },
-      { type:'종합', name:'학생부종합Ⅱ',  count:254, minReq:'—', method:'서류100' },
+      { type:'종합', name:'학생부종합Ⅰ',        count:542, minReq:'—', method:'서류100 (일괄합산)' },
+      { type:'종합', name:'학생부종합Ⅱ',        count:387, minReq:'●', method:'서류100 (일괄합산, 수능최저 적용)' },
+      { type:'교과', name:'학생부교과',          count:751, minReq:'●', method:'교과100 (일괄합산)' },
+      { type:'교과', name:'지역인재',            count:630, minReq:'●', method:'교과100 (충청권 고교)' },
+      { type:'교과', name:'지역의사진료권(청주)', count:16,  minReq:'●', method:'교과100 (의예과, 10년 의무복무)' },
+      { type:'교과', name:'지역의사진료권(충주)', count:5,   minReq:'●', method:'교과100 (의예과, 10년 의무복무)' },
+      { type:'교과', name:'지역의사진료권(제천)', count:2,   minReq:'●', method:'교과100 (의예과, 10년 의무복무)' },
+      { type:'교과', name:'지역의사광역권',       count:10,  minReq:'●', method:'교과100 (의예과, 10년 의무복무)' },
+      { type:'교과', name:'지역경제배려대상자',   count:5,   minReq:'●', method:'교과100 (충청권, 기초생활수급자 등)' },
+      { type:'교과', name:'국가보훈대상자',       count:16,  minReq:'—', method:'교과100' },
+      { type:'교과', name:'경제배려대상자',       count:73,  minReq:'—', method:'교과100' },
+      { type:'종합', name:'농어촌학생(정원외)',   count:119, minReq:'—', method:'서류100 (일괄합산)' },
+      { type:'실기', name:'실기우수자',          count:34,  minReq:'—', method:'교과20+실기80' },
+      { type:'실기', name:'체육특기자',          count:7,   minReq:'—', method:'교과27.6+출결3.4+특기실적69' },
     ],
     minScore: [
-      { name:'학생부교과', track:'의예과',   국:'○', 수:'○(미/기)', 영:'○', 탐:'과2', req:'4합5', note:'' },
-      { name:'학생부교과', track:'수의예과', 국:'○', 수:'○', 영:'○', 탐:'2', req:'3합6', note:'' },
+      { name:'학생부종합Ⅱ', track:'인문·자연',   국:'○', 수:'○', 영:'○', 탐:'1', req:'2합8', note:'자연계 수학필수(일부 제외)' },
+      { name:'학생부종합Ⅱ', track:'수의예과',    국:'○', 수:'○', 영:'○', 탐:'과1', req:'3합8', note:'' },
+      { name:'학생부종합Ⅱ', track:'약학대학',    국:'○', 수:'○', 영:'○', 탐:'과1', req:'3합7', note:'' },
+      { name:'학생부종합Ⅱ', track:'의예과',      국:'○', 수:'○', 영:'○', 탐:'과1', req:'3합5', note:'' },
+      { name:'학생부종합Ⅱ', track:'간호학과',    국:'○', 수:'○', 영:'○', 탐:'1', req:'3합10', note:'' },
+      { name:'학생부교과', track:'인문·자연',     국:'○', 수:'○', 영:'○', 탐:'1', req:'2합8', note:'사범대 2합7, 자연계 수학필수(일부 제외)' },
+      { name:'학생부교과', track:'수의예과',      국:'○', 수:'○', 영:'○', 탐:'과1', req:'3합7', note:'지역인재 3합8' },
+      { name:'학생부교과', track:'약학대학',      국:'○', 수:'○', 영:'○', 탐:'과1', req:'3합6', note:'지역인재 3합7 / 지역경제배려 3합8' },
+      { name:'학생부교과', track:'의예과',        국:'○', 수:'○', 영:'○', 탐:'과1', req:'3합4', note:'지역인재 3합5 / 지역의사 3합6 / 지역경제배려 3합6' },
+      { name:'학생부교과', track:'간호학과',      국:'○', 수:'○', 영:'○', 탐:'1', req:'3합10', note:'지역경제배려 3합11' },
     ],
+    gradeConversion: {
+      target: '학생부교과 전 전형 (학생부교과전형, 지역인재, 지역의사, 국가보훈, 경제배려 등)',
+      subjects: [
+        { 교과: '국어, 영어, 수학, 사회(역사/도덕 포함), 과학', 반영방법: '1·2·3학년 해당교과 전과목 반영 (졸업예정자 3-1까지)' },
+      ],
+      period: '졸업예정자: 3학년 1학기까지 / 졸업자: 전학년',
+      method: '2028이후 졸업자: 성취도(ABCDE)+석차등급(1~5등급) 합산. 2027이전 졸업자: 석차등급(9등급) 활용. 진로선택과목은 성취도별 학생비율로 환산.',
+      tables: [
+        { title: '반영점수표 (5등급제, 2028이후)', subtitle: '성취도+석차등급 합산', grades: ['1A','1B','1C','2A','2B','3A','3B','4A','5A'], scores: [10.0,9.5,8.5,9.0,8.5,8.0,7.5,6.0,5.0] },
+        { title: '석차등급 환산점수 (9등급제, 2027이전)', subtitle: '', grades: ['1','2','3','4','5','6','7','8','9'], scores: [10,9.5,9,8,7,6,4.5,2.5,0] },
+      ],
+      note: '교과성적=[{등급별환산점수×이수학점}의 합/{이수학점의 합}]×4.0+40 (최고80점). 검정고시: 국영수3.0, 사과2.0, 한국사1.0 가중치.',
+    },
+    comprehensiveEval: {
+      title: '학생부종합 서류평가 (종합Ⅰ·Ⅱ·농어촌)',
+      desc: '학교생활기록부 기반 정성적 종합평가 (일괄합산, 면접 없음)',
+      items: [
+        { 평가요소:'서류평가', 평가내용:'학교생활기록부를 종합적으로 정성평가', 비율:'반영점수80(기본40+실질40)' },
+      ],
+      notes: ['종합Ⅰ: 서류100, 수능최저 미적용','종합Ⅱ: 서류100, 수능최저 적용 (계열별 상이)','농어촌학생: 서류100, 수능최저 미적용','학교폭력 기재 시 부적격 또는 실질반영점수에서 최고20점~최저4점 감점'],
+    },
     jeongsi: [
-      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
-      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+      { track:'인문', 국:30, 수:'20', 영:'20', 탐:'30', 비고:'탐구: 사회20+과학10' },
+      { track:'자연', 국:20, 수:'30', 영:'20', 탐:'30', 비고:'탐구: 사회10+과학20' },
+      { track:'예체능', 국:40, 수:'—', 영:'20', 탐:'40', 비고:'탐구: 사회20+과학20' },
     ],
+    jeongsiGradeTable: [
+      { 영역:'영어', 전형명:'전체', 반영방법:'등급별 점수(10점 만점)', scores:[10,9.5,9,8,7,6,4.5,2.5,0] },
+    ],
+    jeongsiNote: '가군 185명, 나군 276명, 다군 40명. 수능활용지표: 국·수·탐 표준점수, 영어 절대평가등급. 수능반영점수: 인문·자연 1,000점(기본800+실질200), 예체능 500~650점. 정시 지역인재: 가군4+나군30. 지역의사진료권: 나군(청주8+충주2+제천1+광역5).',
   },
 
   '단국대(천안)': {
-    fullName: '단국대학교(천안)',
+    fullName: '단국대학교 (천안캠퍼스)',
     location: '충남 천안',
-    badges: ['chungcheong', 'med'],
+    badges: ['chungcheong', 'med', 'new2028'],
+    enrollmentImg: ['images/enrollment/dankook1.png','images/enrollment/dankook2.png','images/enrollment/dankook3.png','images/enrollment/dankook4.png','images/enrollment/dankook5.png'],
+    total: { 수시: 1552, 정시: 918, 총계: 2500 },
     changes: [
-      { title: '논술전형 신설', from: '논술전형 미운영', to: '2027학년도 논술전형 신설' },
+      { title: '광역 모집단위 지역균형선발 신설', from: '지역균형선발 미운영', to: '율곡혁신칼리지 100명, 인문사회계열광역 54명, 자연공학계열광역 100명' },
+      { title: '지역의료인재 전형 신설 (의예과)', from: '미운영', to: '진료권 12명 + 광역권 6명 (❶서류100(5배수) ❷1단계60+면접40)' },
+      { title: '의예과 모집인원 대폭 변경', from: '정원내 120명', to: '정원내 58명 (지역의료인재 18명 신설 포함)' },
+      { title: 'DKU인재(면접형) 면접 비율 변경', from: '1단계성적70 + 면접30', to: '1단계성적60 + 면접40' },
+      { title: '정시 전형방법 변경 (전 모집단위)', from: '수능 100%', to: '수능 90% + 학생부정성 10%' },
+      { title: '수능최저 변경 (지역메디바이오인재)', from: '의예: 국수(미/기)영탐(과탐2개평균) 수학포함 3합4', to: '의예·치의예: 국수영탐(통합과학) 수학포함 3합4 / 약학: 수학포함 3합5' },
+      { title: '수능 반영영역 변경', from: '과탐 2개 과목 평균', to: '탐구→통합사회/통합과학 반영, 의약학 국어·수학 표준점수 활용' },
     ],
     susi: [
-      { type:'교과', name:'학생부교과(일반)', count:487, minReq:'●', method:'학생부(교과) 100' },
-      { type:'종합', name:'DKU인재',         count:572, minReq:'—', method:'❶ 서류100(3배수) ❷ 서류70+면접30' },
-      { type:'논술', name:'논술우수자',       count:210, minReq:'●', method:'논술70 + 학생부30' },
+      { type:'교과', name:'지역균형선발',       count:254, minReq:'●', method:'교과95+출결5 (최저: 2합8)' },
+      { type:'교과', name:'학생부교과우수자',    count:351, minReq:'●', method:'교과95+출결5 (최저: 2합8, 간호 2합5)' },
+      { type:'교과', name:'지역메디바이오인재',  count:52,  minReq:'●', method:'교과95+출결5 (의예 수학포함3합4, 약학 수학포함3합5)' },
+      { type:'종합', name:'DKU인재(서류형)',     count:296, minReq:'—', method:'서류 100%' },
+      { type:'종합', name:'DKU인재(면접형)',     count:49,  minReq:'●', method:'❶ 서류100(3배수) ❷ 1단계60+면접40 (의학 수학포함3합4)' },
+      { type:'종합', name:'지역의료인재(진료권)', count:12,  minReq:'●', method:'❶ 서류100(5배수) ❷ 1단계60+면접40 (수학포함3합6)' },
+      { type:'종합', name:'지역의료인재(광역권)', count:6,   minReq:'●', method:'❶ 서류100(5배수) ❷ 1단계60+면접40 (수학포함3합5)' },
+      { type:'실기', name:'실기우수자',          count:171, minReq:'—', method:'실기80+교과15+출결5 등' },
+      { type:'실기', name:'체육특기자',          count:87,  minReq:'—', method:'실적80+교과10+출결10' },
     ],
     minScore: [
-      { name:'학생부교과', track:'의예과', 국:'○', 수:'○(미/기)', 영:'○', 탐:'과2', req:'4합5', note:'' },
+      { name:'지역메디바이오인재', track:'의예·치의예',   국:'○', 수:'○(필수)', 영:'○', 탐:'통합과학', req:'수학포함 3합4', note:'' },
+      { name:'지역메디바이오인재', track:'약학과',       국:'○', 수:'○(필수)', 영:'○', 탐:'통합과학', req:'수학포함 3합5', note:'' },
+      { name:'DKU인재(면접형)',   track:'의학계열',     국:'○', 수:'○(필수)', 영:'○', 탐:'통합과학', req:'수학포함 3합4', note:'' },
+      { name:'DKU인재(면접형)',   track:'약학계열',     국:'○', 수:'○(필수)', 영:'○', 탐:'통합과학', req:'수학포함 3합5', note:'' },
+      { name:'지역의료인재(진료권)', track:'의예과',     국:'○', 수:'○(필수)', 영:'○', 탐:'통합과학', req:'수학포함 3합6', note:'' },
+      { name:'지역의료인재(광역권)', track:'의예과',     국:'○', 수:'○(필수)', 영:'○', 탐:'통합과학', req:'수학포함 3합5', note:'' },
+      { name:'지역균형선발',       track:'천안 전체',   국:'○', 수:'○', 영:'○', 탐:'○(1)', req:'2합8', note:'통합사회/통합과학 중 1개' },
+      { name:'학생부교과우수자',   track:'인문·자연',   국:'○', 수:'○', 영:'○', 탐:'○(1)', req:'2합8', note:'통합사회/통합과학 중 1개' },
+      { name:'학생부교과우수자',   track:'간호학과',    국:'○', 수:'○', 영:'○', 탐:'○(1)', req:'2합5', note:'통합사회/통합과학 중 1개' },
     ],
+    gradeConversion: {
+      target: '지역균형선발, 학생부교과우수자, 지역메디바이오인재, 실기우수자, 체육특기자',
+      subjects: [
+        { 교과: '국어, 영어, 수학, 사회, 과학', 반영방법: '석차등급(5등급/9등급) 환산점수, 반영교과 내 전과목 반영' },
+      ],
+      period: '재학생: 3학년 1학기까지 / 졸업생: 3학년 2학기까지',
+      method: '학년별·교과별 가중치 없음. 사회/과학 융합선택과목은 상위 3개 과목만 반영. 한국사는 사회교과에 포함.',
+      tables: [
+        { title: '석차등급 환산점수 (5등급제)', subtitle: '', grades: ['1','2','3','4','5'], scores: [100,98,93,60,0] },
+        { title: '석차등급 환산점수 (9등급제)', subtitle: '', grades: ['1','2','3','4','5','6','7','8','9'], scores: [100,99,98,96,93,85,60,10,0] },
+      ],
+      note: '비교과(출결): 미인정출결 일수에 따른 차등 배점, 전학년 출결사항 반영. 성취도는 보통교과에 한하여 반영(석차등급과 성취도 모두 기재 시 석차등급 반영).',
+    },
+    comprehensiveEval: {
+      title: '학생부종합 서류평가',
+      desc: 'DKU인재(서류형), 기회균형선발, 사회적배려대상자, 교육기회배려자, 농어촌학생, 특수교육대상자',
+      items: [
+        { 평가요소:'학업역량', 평가내용:'학교생활기록부를 통하여 학업역량, 진로역량, 공동체역량 등을 종합평가', 비율:'' },
+        { 평가요소:'진로역량', 평가내용:'', 비율:'' },
+        { 평가요소:'공동체역량', 평가내용:'', 비율:'' },
+      ],
+      notes: ['면접대상: DKU인재(면접형), 지역의료인재(진료권·광역권), 농어촌학생(의학·약학계열)','면접평가: 진로역량, 발전가능성, 공동체역량 등 종합평가','DKU인재(면접형): ❶서류100(3배수) → ❷1단계성적60+면접40','지역의료인재: ❶서류100(5배수) → ❷1단계성적60+면접40'],
+    },
     jeongsi: [
-      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
-      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+      { track:'인문', 국:35, 수:'25', 영:'20', 탐:'20', 비고:'탐구: 통합사회/통합과학 상위1과목' },
+      { track:'자연', 국:20, 수:'40', 영:'20', 탐:'20', 비고:'탐구: 통합사회/통합과학 상위1과목' },
+      { track:'간호·심리', 국:30, 수:'35', 영:'20', 탐:'15', 비고:'탐구: 통합사회/통합과학 합산' },
+      { track:'의예·치의예·약학', 국:25, 수:'40', 영:'15', 탐:'20', 비고:'국어·수학 표준점수, 탐구: 통합과학' },
     ],
+    jeongsiGradeTable: [
+      { 영역:'영어(전계열)', 전형명:'전체', 반영방법:'등급별 점수(100점)', scores:[100,98,95,85,70,40,15,5,0] },
+      { 영역:'영어(의학·약학)', 전형명:'의예·치의예·약학', 반영방법:'등급별 점수(100점)', scores:[100,90,70,40,30,20,15,5,0] },
+      { 영역:'한국사', 전형명:'전체', 반영방법:'가산점(총점1000점)', scores:['5','5','5','4','3','2','1','0','0'] },
+    ],
+    jeongsiNote: '정시 나군(대부분), 다군(의학·약학·일부 모집단위), 가군(글로벌한국어과·해병대군사학과·뉴뮤직학부). 수능활용지표: 백분위(단, 의학·약학계열 국어·수학은 표준점수). 전형방법: 수능90%+학생부정성10%.',
   },
 
   '순천향대학교': {
@@ -296,18 +400,64 @@ const UNI_DETAILS = {
   },
 
   '상명대(천안)': {
-    fullName: '상명대학교(천안)',
+    fullName: '상명대학교 (천안캠퍼스)',
     location: '충남 천안',
-    badges: ['chungcheong'],
-    changes: [],
+    badges: ['chungcheong','new2028'],
+    total: { 수시: 958, 정시: 483, 총계: 1441 },
+    changes: [
+      { title: '특성화고졸재직자전형 폐지', from: '수시 20명 / 정시 이월', to: '폐지' },
+      { title: '학생부교과전형 반영비율 변경', from: '교과 100%', to: '교과 95% + 출결 5%' },
+      { title: '교과성적 반영방법 변경 (5등급제 도입)', from: '석차등급(9등급)+진로선택(A~C)', to: '2028졸업예정: 5등급(100,95,93,70,0) / 2027이전졸업: 9등급(100,98,95,93,90,70,50,30,0)' },
+      { title: '출결 반영 신설', from: '학생부교과전형 출결 반영 없음', to: '교과전형·농어촌·특성화고: 출결 5% (6등급제)' },
+      { title: '상명인재전형 일부 전형방법 변경', from: 'AR·VR미디어디자인/문화예술경영: 일괄합산 서류100%', to: '1단계 서류100%(5배수) → 2단계 서류60%+면접40%' },
+      { title: '특수교육대상자 지원자격 확대', from: '청각장애를 가진 자', to: '장애를 가진 자 (전체 장애 가능)' },
+      { title: '정시 자연계열 수능 반영 변경', from: '국25+영20+수35+탐20 (4개영역)', to: '국/영 우수1개40%+수40%+탐20% (3개영역, 영역별 가산점 없음)' },
+      { title: '한국사 가산점 변경', from: '5등급이하 9.2~9.0점 (차이 적음)', to: '5등급=9.0, 6등급=8.0, 7등급=7.0, 8등급=6.0, 9등급=5.0 (차등 확대)' },
+    ],
     susi: [
-      { type:'교과', name:'학생부교과', count:350, minReq:'—', method:'학생부(교과) 100' },
-      { type:'종합', name:'상명인재', count:250, minReq:'—', method:'서류100' },
+      { type:'교과', name:'학생부교과전형',   count:395, minReq:'●', method:'교과95+출결5 (최저: 2합10, 간호 수영탐2합8)' },
+      { type:'종합', name:'상명인재전형',     count:144, minReq:'—', method:'인문/자연: 서류100% / 예체능: ❶서류100%(5배수) ❷서류60+면접40' },
+      { type:'종합', name:'기회균형전형',     count:69,  minReq:'—', method:'서류 100%' },
+      { type:'실기', name:'실기전형',         count:210, minReq:'—', method:'학생부교과40+실기60' },
+      { type:'실기', name:'특기자[체육]',     count:4,   minReq:'—', method:'교과20+출결10+실적70' },
     ],
+    minScore: [
+      { name:'학생부교과전형', track:'전체(간호 제외)', 국:'○', 수:'○', 영:'○', 탐:'○(1)', req:'2합10', note:'국수영탐 중 택2' },
+      { name:'학생부교과전형', track:'간호학과',       국:'—', 수:'○', 영:'○', 탐:'○(1)', req:'2합8',  note:'수영탐 중 택2' },
+    ],
+    gradeConversion: {
+      target: '학생부교과전형, 농어촌학생전형, 특성화고교졸업자전형, 실기전형, 특기자[체육]전형',
+      subjects: [
+        { 교과: '전 교과', 반영방법: '석차등급 환산점수 × 이수학점 가중평균' },
+      ],
+      period: '졸업예정자: 3학년 1학기까지 / 기졸업자: 3학년 2학기까지',
+      method: '과목별 석차등급 및 이수학점(단위)에 따른 환산점수 반영, 학년별 가중치 없음',
+      tables: [
+        { title: '석차등급 환산점수 (5등급제)', subtitle: '2028년도 이후 졸업(예정)자', grades: ['1','2','3','4','5'], scores: [100,95,93,70,0] },
+        { title: '석차등급 환산점수 (9등급제)', subtitle: '2027년도 이전 졸업자', grades: ['1','2','3','4','5','6','7','8','9'], scores: [100,98,95,93,90,70,50,30,0] },
+      ],
+      note: '성취도로 평가된 과목은 반영하지 않음 / 출결: 교과전형·농어촌·특성화고 5%, 특기자[체육] 10% (결석 0~1일=5점, 2~4일=4점, 5~7일=3점, 8~10일=2점, 11~13일=1점, 14일이상=0점)',
+    },
+    comprehensiveEval: {
+      title: '학생부종합 서류평가',
+      desc: '상명인재전형, 기회균형전형, 특수교육대상자전형, 조기취업형계약학과전형',
+      items: [
+        { 평가요소:'학업역량', 평가내용:'학교생활기록부(교과 및 비교과)를 활용하여 종합적으로 평가', 비율:'' },
+        { 평가요소:'진로역량', 평가내용:'', 비율:'' },
+        { 평가요소:'공동체역량', 평가내용:'', 비율:'' },
+      ],
+      notes: ['면접: 서류기반 개별면접(블라인드), 면접위원2인 수험생1인, 10분 내외','면접대상: 상명인재(예체능계열), 조기취업형계약학과전형 — 1단계 통과자'],
+    },
     jeongsi: [
-      { track:'인문', 국:30, 수:'25', 영:'20', 탐:25, 비고:'' },
-      { track:'자연', 국:25, 수:'30', 영:'20', 탐:25, 비고:'' },
+      { track:'인문/예체능', 국:'우수2개 각40%', 수:'(국영수 택2)', 영:'', 탐:'20%(1)', 비고:'국영수 중 백분위 우수 2개 영역' },
+      { track:'자연',       국:'우수1개 40%', 수:'40%(필수)',   영:'(국/영 택1)', 탐:'20%(1)', 비고:'수학 필수, 국/영 중 택1' },
     ],
+    jeongsiGradeTable: [
+      { 영역:'영어', 전형명:'전체', 반영방법:'등급별 점수 반영', scores:[100,98,96,94,90,80,60,40,0] },
+      { 영역:'한국사', 전형명:'전체', 반영방법:'가산점', scores:[10,9.8,9.6,9.4,9.0,8.0,7.0,6.0,5.0] },
+    ],
+    jeongsiNote: '정시 가군 6명(사진영상미디어), 나군 347명(수능)+130명(실기). 수능활용지표: 국·수·탐 백분위, 영어 등급환산. 영역별 가산점 없음(한국사만 가산).',
+    enrollmentImg: 'images/enrollment/sangmung.png',
   },
 
   '남서울대학교': {
@@ -411,7 +561,8 @@ function renderRegionSummary() {
 }
 
 function showUniversityDetail(key) {
-  const d = UNI_DETAILS[key];
+  let _d = UNI_DETAILS[key]; if(!_d){const _f=Object.keys(UNI_DETAILS).find(k=>key.includes(k)||k.includes(key));if(_f)_d=UNI_DETAILS[_f];}
+  const d = _d;
   document.getElementById('info-panel').classList.add('wide');
 
   if (!d) {
@@ -426,7 +577,7 @@ function showUniversityDetail(key) {
         <div class="no-data">
           <div style="font-size:32px;margin-bottom:12px">📋</div>
           <div style="color:#64748b;font-size:14px;font-weight:600">상세 정보 준비중</div>
-          <div style="color:#334155;font-size:12px;margin-top:8px">2027 모집요강 발표 후 업데이트 예정입니다</div>
+          <div style="color:#334155;font-size:13px;margin-top:8px">2027 모집요강 발표 후 업데이트 예정입니다</div>
         </div>
       </div>`;
     return;
@@ -473,11 +624,11 @@ function showUniversityDetail(key) {
   // Min score table
   const minRows = (d.minScore||[]).map(r => `<tr>
     <td class="row-name" style="color:#e2e8f0;font-weight:700;white-space:nowrap">${r.name}</td>
-    <td class="row-track" style="color:#94a3b8;font-size:10px">${r.track}</td>
+    <td class="row-track" style="color:#64748b;font-size:13px">${r.track}</td>
     <td class="td-ok">${r.국||'—'}</td>
     <td>${r.수==='☆'?`<span style="color:#fbbf24">☆</span>`:(r.수||'—')}</td>
     <td class="td-ok">${r.영||'—'}</td>
-    <td style="text-align:center;color:#94a3b8">${r.탐||'—'}</td>
+    <td style="text-align:center;color:#64748b">${r.탐||'—'}</td>
     <td class="td-req">${r.req}</td>
     <td class="td-note">${r.note||''}</td>
   </tr>`).join('');
@@ -489,7 +640,7 @@ function showUniversityDetail(key) {
     <td class="pct-hi">${r.수}</td>
     <td>${r.영}</td>
     <td class="pct">${r.탐}</td>
-    <td style="color:#64748b;font-size:10px;text-align:left">${r.비고||''}</td>
+    <td style="color:#64748b;font-size:13px;text-align:left">${r.비고||''}</td>
   </tr>`).join('');
 
   document.getElementById('info-panel').innerHTML = `
@@ -498,7 +649,7 @@ function showUniversityDetail(key) {
       <div class="detail-nav">
         <button class="detail-back" onclick="renderRegionSummary()">← 목록으로</button>
       </div>
-      <div class="detail-uni-name">${d.fullName}</div>
+      <div class="detail-uni-name">${d.fullName}${(d.badges||[]).includes('new2028') ? ' <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#e11d48;color:#fff;font-size:13px;font-weight:800;vertical-align:middle;line-height:1">N</span>':''}</div>
       <div class="detail-badges">${badgeHtml}</div>
     </div>
     <div class="detail-body">
@@ -529,18 +680,18 @@ function showUniversityDetail(key) {
         <div class="detail-section-title" style="--accent:#a78bfa">3. 수시모집 — 최저학력기준</div>
         <table class="adm-table min-table">
           <thead><tr>
-            <th style="background:#1a1a2e;color:#94a3b8">전형</th>
-            <th style="background:#1a1a2e;color:#94a3b8">계열</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">국</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">수</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">영</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">탐</th>
-            <th style="background:#1a1a2e;color:#f87171">최저</th>
-            <th style="background:#1a1a2e;color:#64748b">비고</th>
+            <th style="background:#f1f5f9;color:#475569">전형</th>
+            <th style="background:#f1f5f9;color:#475569">계열</th>
+            <th style="background:#f1f5f9;color:#475569">국</th>
+            <th style="background:#f1f5f9;color:#475569">수</th>
+            <th style="background:#f1f5f9;color:#475569">영</th>
+            <th style="background:#f1f5f9;color:#475569">탐</th>
+            <th style="background:#f1f5f9;color:#475569">최저</th>
+            <th style="background:#f1f5f9;color:#475569">비고</th>
           </tr></thead>
           <tbody>${minRows}</tbody>
         </table>
-        <div style="font-size:10px;color:#475569;margin-top:6px">☆ = 수학 필수 / ○ = 해당 영역</div>
+        <div style="font-size:13px;color:#475569;margin-top:6px">☆ = 수학 필수 / ○ = 해당 영역</div>
       </div>` : ''}
 
       ${d.jeongsi && d.jeongsi.length ? `
@@ -559,22 +710,81 @@ function showUniversityDetail(key) {
         </table>
       </div>` : ''}
 
+      ${d.gradeConversion ? `
+      <div class="detail-section">
+        <div class="detail-section-title" style="--accent:#10b981">5. 학생부교과 반영방법</div>
+        ${d.gradeConversion.target ? `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:13px;color:#166534"><strong>대상전형:</strong> ${d.gradeConversion.target}</div>` : ''}
+        ${d.gradeConversion.subjects ? `
+        <table class="adm-table" style="font-size:13px;margin-bottom:10px">
+          <thead><tr><th style="background:#f1f5f9;color:#475569;width:120px">반영교과</th><th style="background:#f1f5f9;color:#475569">반영방법</th></tr></thead>
+          <tbody>${d.gradeConversion.subjects.map(s => `<tr><td style="font-weight:600;text-align:center">${s.교과}</td><td>${s.반영방법}</td></tr>`).join('')}</tbody>
+        </table>` : ''}
+        ${d.gradeConversion.period ? `<div style="font-size:13px;color:#475569;margin-bottom:6px"><strong>반영기간:</strong> ${d.gradeConversion.period}</div>` : ''}
+        ${d.gradeConversion.method ? `<div style="font-size:13px;color:#475569;margin-bottom:10px"><strong>성적반영:</strong> ${d.gradeConversion.method}</div>` : ''}
+        ${d.gradeConversion.tables.map(t => `
+        <div style="margin-bottom:10px">
+          <div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:4px">${t.title}</div>
+          ${t.subtitle ? `<div style="font-size:13px;color:#64748b;margin-bottom:4px">${t.subtitle}</div>` : ''}
+          <table class="adm-table" style="font-size:13px">
+            <thead><tr><th style="background:#f1f5f9;color:#475569">등급</th>${t.grades.map(g => `<th style="background:#f1f5f9;color:#475569;text-align:center">${g}</th>`).join('')}</tr></thead>
+            <tbody><tr><td style="font-weight:700;color:#1e293b">환산점수</td>${t.scores.map(s => `<td style="text-align:center;font-weight:600;color:#2563eb">${s}</td>`).join('')}</tr></tbody>
+          </table>
+        </div>`).join('')}
+        ${d.gradeConversion.note ? `<div style="font-size:13px;color:#64748b;margin-top:6px;line-height:1.6">${d.gradeConversion.note}</div>` : ''}
+      </div>` : ''}
+
+      ${d.comprehensiveEval ? `
+      <div class="detail-section">
+        <div class="detail-section-title" style="--accent:#8b5cf6">6. 학생부종합 평가방법</div>
+        ${d.comprehensiveEval.desc ? `<div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:13px;color:#5b21b6"><strong>대상전형:</strong> ${d.comprehensiveEval.desc}</div>` : ''}
+        <table class="adm-table" style="font-size:13px;margin-bottom:10px">
+          <thead><tr><th style="background:#f1f5f9;color:#475569">평가요소</th><th style="background:#f1f5f9;color:#475569">평가내용</th></tr></thead>
+          <tbody>${d.comprehensiveEval.items.map(i => `<tr><td style="font-weight:600;text-align:center;white-space:nowrap">${i.평가요소}</td><td>${i.평가내용||''}</td></tr>`).join('')}</tbody>
+        </table>
+        ${(d.comprehensiveEval.notes||[]).map(n => `<div style="font-size:13px;color:#64748b;margin-top:4px;line-height:1.5">※ ${n}</div>`).join('')}
+      </div>` : ''}
+
+      ${d.jeongsiGradeTable && d.jeongsiGradeTable.length ? `
+      <div class="detail-section">
+        <div class="detail-section-title" style="--accent:#06b6d4">7. 정시 영어·한국사 등급별 반영</div>
+        ${d.jeongsiGradeTable.map(r => `
+        <div style="margin-bottom:10px">
+          <div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:4px">${r.영역} — ${r.반영방법}</div>
+          <table class="adm-table" style="font-size:13px">
+            <thead><tr><th style="background:#f1f5f9;color:#475569">등급</th>${r.scores.map((_,i) => `<th style="background:#f1f5f9;color:#475569;text-align:center">${i+1}</th>`).join('')}</tr></thead>
+            <tbody><tr><td style="font-weight:700;color:#1e293b">점수</td>${r.scores.map(s => `<td style="text-align:center;font-weight:600;color:#2563eb">${s}</td>`).join('')}</tr></tbody>
+          </table>
+        </div>`).join('')}
+        ${d.jeongsiNote ? `<div style="font-size:13px;color:#475569;margin-top:6px;line-height:1.6">${d.jeongsiNote}</div>` : ''}
+      </div>` : ''}
+
+      ${d.enrollmentImg ? `
+      <div class="detail-section">
+        <div class="detail-section-title" style="--accent:#6366f1">전형별 모집인원</div>
+        <div style="overflow-x:auto;margin:0 -20px;padding:0 20px">
+          ${(Array.isArray(d.enrollmentImg) ? d.enrollmentImg : [d.enrollmentImg]).map(img => `
+            <img src="${img}" alt="전형별 모집인원" style="width:100%;max-width:100%;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;cursor:zoom-in" onclick="this.style.maxWidth=this.style.maxWidth==='100%'?'none':'100%';this.style.cursor=this.style.maxWidth==='100%'?'zoom-in':'zoom-out'">
+          `).join('')}
+        </div>
+        <div style="font-size:13px;color:#64748b;margin-top:4px">※ 이미지를 클릭하면 확대/축소됩니다</div>
+      </div>` : ''}
+
       ${d.top10Susi ? `
       <div class="detail-section">
         <div class="detail-section-title" style="--accent:#f59e0b">원서접수 TOP 10 — 수시 (2025학년도)</div>
-        <table class="adm-table" style="font-size:12px">
+        <table class="adm-table" style="font-size:13px">
           <thead><tr>
-            <th style="background:#334155;color:#fff;width:24px">#</th>
-            <th style="background:#334155;color:#fff;text-align:left">모집단위</th>
-            <th style="background:#334155;color:#fff;text-align:left">전형명</th>
-            <th style="background:#334155;color:#fff;width:40px">모집</th>
-            <th style="background:#334155;color:#fff;width:48px">지원</th>
-            <th style="background:#334155;color:#fff;width:60px">경쟁률</th>
+            <th style="background:#f1f5f9;color:#475569;width:24px">#</th>
+            <th style="background:#f1f5f9;color:#475569;text-align:left">모집단위</th>
+            <th style="background:#f1f5f9;color:#475569;text-align:left">전형명</th>
+            <th style="background:#f1f5f9;color:#475569;width:40px">모집</th>
+            <th style="background:#f1f5f9;color:#475569;width:48px">지원</th>
+            <th style="background:#f1f5f9;color:#475569;width:60px">경쟁률</th>
           </tr></thead>
           <tbody>${d.top10Susi.map(r => `<tr>
             <td style="text-align:center;font-weight:800;color:#f59e0b">${r.rank}</td>
             <td style="text-align:left;font-weight:600;color:#1e293b">${r.dept}</td>
-            <td style="text-align:left;font-size:10px;color:#64748b">${r.type}</td>
+            <td style="text-align:left;font-size:13px;color:#64748b">${r.type}</td>
             <td style="text-align:center;font-weight:700;color:#3b82f6">${r.모집}</td>
             <td style="text-align:center;color:#475569">${r.지원.toLocaleString()}</td>
             <td style="text-align:center;font-weight:700;color:#dc2626">${r.경쟁}</td>
@@ -585,21 +795,21 @@ function showUniversityDetail(key) {
       ${d.top10Jeongsi ? `
       <div class="detail-section">
         <div class="detail-section-title" style="--accent:#0ea5e9">원서접수 TOP 10 — 정시 (2025학년도)</div>
-        <table class="adm-table" style="font-size:12px">
+        <table class="adm-table" style="font-size:13px">
           <thead><tr>
-            <th style="background:#0e4272;color:#fff;width:24px">#</th>
-            <th style="background:#0e4272;color:#fff;width:50px">시기</th>
-            <th style="background:#0e4272;color:#fff;text-align:left">모집단위</th>
-            <th style="background:#0e4272;color:#fff;text-align:left">전형명</th>
-            <th style="background:#0e4272;color:#fff;width:40px">모집</th>
-            <th style="background:#0e4272;color:#fff;width:48px">지원</th>
-            <th style="background:#0e4272;color:#fff;width:60px">경쟁률</th>
+            <th style="background:#f1f5f9;color:#475569;width:24px">#</th>
+            <th style="background:#f1f5f9;color:#475569;width:50px">시기</th>
+            <th style="background:#f1f5f9;color:#475569;text-align:left">모집단위</th>
+            <th style="background:#f1f5f9;color:#475569;text-align:left">전형명</th>
+            <th style="background:#f1f5f9;color:#475569;width:40px">모집</th>
+            <th style="background:#f1f5f9;color:#475569;width:48px">지원</th>
+            <th style="background:#f1f5f9;color:#475569;width:60px">경쟁률</th>
           </tr></thead>
           <tbody>${d.top10Jeongsi.map(r => `<tr>
             <td style="text-align:center;font-weight:800;color:#0ea5e9">${r.rank}</td>
-            <td style="text-align:center;font-size:10px;color:#64748b">${r.시기}</td>
+            <td style="text-align:center;font-size:13px;color:#64748b">${r.시기}</td>
             <td style="text-align:left;font-weight:600;color:#1e293b">${r.dept}</td>
-            <td style="text-align:left;font-size:10px;color:#64748b">${r.type}</td>
+            <td style="text-align:left;font-size:13px;color:#64748b">${r.type}</td>
             <td style="text-align:center;font-weight:700;color:#3b82f6">${r.모집}</td>
             <td style="text-align:center;color:#475569">${r.지원.toLocaleString()}</td>
             <td style="text-align:center;font-weight:700;color:#dc2626">${r.경쟁}</td>
@@ -626,7 +836,7 @@ function showUniversityDetail(key) {
   if (targetUni) {
     showUniversityDetail(targetUni);
   } else {
-    document.getElementById('info-panel').innerHTML = '<div style="padding:40px;text-align:center;color:#94a3b8">대학을 선택해주세요</div>';
+    document.getElementById('info-panel').innerHTML = '<div style="padding:40px;text-align:center;color:#64748b">대학을 선택해주세요</div>';
   }
 })();
 </script>

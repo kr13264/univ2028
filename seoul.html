@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>쎈(SEN)진학 PreView — 2027 대입전형 시행계획 — 서울</title>
+  <title>대학 진학 PreView — 2028 대입전형 시행계획 — 서울</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <div class="logo-wrap">
-    <div class="logo"><span class="sen">쎈(SEN)</span><span class="main">진학—PreView</span></div>
-    <div class="header-title">2027 대입전형 시행계획</div>
-    <span class="badge">V1.0</span>
+    <div class="logo"><span class="sen">대학</span><span class="main">진학 PreView</span></div>
+    <div class="header-title">2028 대입전형 시행계획</div>
   </div>
   <div class="header-sub">서울특별시교육연구정보원<br>진학지원단</div>
 </header>
@@ -774,21 +773,30 @@ const UNI_DETAILS = {
   '서울여대': {
     fullName: '서울여자대학교',
     location: '서울 노원구',
-    badges: ['seoul'],
-    changes: [],
+    badges: ['seoul','new2028'],
+    changes: [
+      { title: 'SW융합인재→AI융합인재 전형 변경', from: '29명', to: '34명 (+5명)' },
+      { title: '교과우수자 증가', from: '181명', to: '183명' },
+      { title: '바롬인재서류 증가', from: '179명', to: '182명' },
+      { title: '정시 수능반영 변경', from: '상위 3영역 균등반영', to: '4영역 우수순 35/30/20/15%' },
+    ],
     susi: [
-      { type:'교과', name:'교과우수자',      count:181, minReq:'●', method:'학생부(교과) 100' },
-      { type:'종합', name:'바롬인재서류',    count:179, minReq:'—', method:'서류100' },
-      { type:'종합', name:'바롬인재면접',    count:202, minReq:'—', method:'서류100 (5배수) → 1단계50+면접50' },
-      { type:'종합', name:'SW융합인재',      count:29,  minReq:'—', method:'서류100' },
-      { type:'논술', name:'논술우수자',      count:120, minReq:'—', method:'학생부20 + 논술80' },
+      { type:'교과', name:'교과우수자',        count:183, minReq:'●', method:'학생부교과90+출결10 (학교장추천)' },
+      { type:'종합', name:'바롬인재서류',      count:182, minReq:'—', method:'서류평가 100%' },
+      { type:'종합', name:'바롬인재면접',      count:202, minReq:'—', method:'서류100%(5배수) → 1단계50+면접50' },
+      { type:'종합', name:'AI융합인재',        count:34,  minReq:'—', method:'서류100%(5배수) → 1단계50+면접50' },
+      { type:'논술', name:'논술우수자',        count:120, minReq:'—', method:'논술80+학생부교과20' },
+      { type:'실기', name:'실기우수자(미술)',   count:61,  minReq:'—', method:'실기 100%' },
     ],
     minScore: [
-      { name:'교과우수자', track:'전모집단위', 국:'○', 수:'○', 영:'○', 탐:'1', req:'2합7', note:'' },
+      { name:'교과우수자', track:'전 계열 공통', 국:'○', 수:'○', 영:'○', 탐:'1', req:'2합7', note:'탐구 상위1과목' },
     ],
     jeongsi: [
-      { track:'전모집단위', 국:33, 수:'33', 영:'33', 탐:0, 비고:'상위 3개 영역 각 33.3' },
+      { track:'인문사회/자연', 국:'우수순 35%', 수:'30%', 영:'20%', 탐:'15%(1과목)', 비고:'4영역 우수순 배정' },
+      { track:'수학과', 국:'30%', 수:'필수 35%', 영:'20%', 탐:'15%', 비고:'수학 필수' },
+      { track:'스포츠/디자인/미술', 국:'40%', 수:'40%', 영:'20%', 탐:'—', 비고:'상위3영역, 수능60+실기40' },
     ],
+    enrollmentImg: 'images/enrollment/seoulWoman.png',
   },
 
   '덕성여대': {
@@ -815,21 +823,33 @@ const UNI_DETAILS = {
   '동덕여대': {
     fullName: '동덕여자대학교',
     location: '서울 성북구',
-    badges: ['seoul'],
-    changes: [],
+    badges: ['seoul','new2028'],
+    changes: [
+      { title: '수시 모집인원 감소', from: '정원내 1,104명', to: '정원내 1,010명 (94명 감소)' },
+      { title: '정시 가군 수능우수자 증가', from: '160명', to: '255명 (95명 증가)' },
+      { title: '수능최저 완화 (교과/논술)', from: '2합6', to: '2합7' },
+      { title: '수능최저 변경 (약학)', from: '3합6 (과학 상위1)', to: '3합5 (과학)' },
+      { title: '학생부 반영방법 신설 (2028졸업예정자)', from: '9등급제', to: '5등급제 석차백분율' },
+      { title: '학교폭력 감점 강화', from: '4~5호 30점', to: '4~5호 100점 (교과/실기/특기자 4호이상 결격)' },
+    ],
     susi: [
-      { type:'교과', name:'학생부교과우수자', count:196, minReq:'●', method:'학생부(교과) 100' },
-      { type:'종합', name:'동덕창의리더',     count:255, minReq:'약학●', method:'서류100 (3배수) → 1단계40+면접60' },
-      { type:'논술', name:'논술우수자',       count:264, minReq:'●', method:'논술 100' },
+      { type:'종합', name:'동덕창의리더',     count:208, minReq:'약학●', method:'서류100 (3배수) → 1단계40+면접60' },
+      { type:'종합', name:'기회균형',         count:12,  minReq:'—',     method:'서류 100' },
+      { type:'교과', name:'학생부교과우수자', count:181, minReq:'●',     method:'학생부(교과) 100' },
+      { type:'논술', name:'논술우수자',       count:232, minReq:'●',     method:'논술 100' },
+      { type:'실기', name:'실기우수자',       count:359, minReq:'—',     method:'실기80+학생부교과20' },
+      { type:'실기', name:'특기자',           count:12,  minReq:'—',     method:'서류100 (5배수) → 실기80+교과20' },
     ],
     minScore: [
-      { name:'교과/논술', track:'전모집단위(약학 제외)', 국:'○', 수:'○', 영:'○', 탐:'1', req:'2합6', note:'' },
-      { name:'교과/논술', track:'약학',                  국:'○', 수:'과(1)', 영:'○', 탐:'과(1)', req:'3합6', note:'' },
+      { name:'교과우수자/논술우수자', track:'전모집단위(약학 제외)', 국:'○', 수:'○', 영:'○', 탐:'사·과 상위1', req:'2합7', note:'' },
+      { name:'교과우수자/동덕창의리더', track:'약학', 국:'○', 수:'○', 영:'', 탐:'과학', req:'3합5', note:'국·수·탐(과학)' },
     ],
     jeongsi: [
-      { track:'인문/자연', 국:35, 수:'25', 영:'20', 탐:20, 비고:'우수순, 탐구 1과목' },
-      { track:'약학',      국:25, 수:'35', 영:'20', 탐:20, 비고:'' },
+      { track:'인문/자연(약학 제외)', 국:'우수순 35%', 수:'우수순 25%', 영:'20%', 탐:'20%(1과목)', 비고:'국·수 중 우수 35%' },
+      { track:'약학', 국:25, 수:35, 영:'20%', 탐:'20%(과학)', 비고:'' },
+      { track:'체육/예술/디자인/공연', 국:'33.3%', 수:'', 영:'33.3%', 탐:'33.3%', 비고:'국or수 택1, 3영역 균등' },
     ],
+    enrollmentImg: 'images/enrollment/dongduck.png',
   },
 
   '서울시립대': {
@@ -1011,8 +1031,8 @@ function renderSeoulSummary() {
           const hasDetail = !!detail;
           return `<div class="uni-item" onmouseenter="document.querySelectorAll('.uni-marker').forEach(m=>{m.classList.remove('selected');if(m.title==='${key}')m.classList.add('selected')})" onmouseleave="document.querySelectorAll('.uni-marker').forEach(m=>m.classList.remove('selected'))" onclick="openSeoulDetail('${key}')" style="${hasDetail?'':'opacity:.6'}">
             <div class="uni-item-top">
-              <div class="uni-name">${key}</div>
-              ${hasDetail ? '<span style="font-size:10px;color:#34d399;border:1px solid #34d39944;padding:1px 5px;border-radius:3px;background:rgba(52,211,153,.1)">상세정보</span>' : '<span style="font-size:10px;color:#475569">준비중</span>'}
+              <div class="uni-name">${key}${detail&&(detail.badges||[]).includes('new2028')?' <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#e11d48;color:#fff;font-size:13px;font-weight:800;vertical-align:middle;line-height:1">N</span>':''}</div>
+              ${hasDetail ? '<span style="font-size:13px;color:#34d399;border:1px solid #34d39944;padding:1px 5px;border-radius:3px;background:rgba(52,211,153,.1)">상세정보</span>' : '<span style="font-size:13px;color:#475569">준비중</span>'}
             </div>
             ${detail ? `<div class="uni-location">📍 ${detail.location}</div>` : ''}
           </div>`;
@@ -1035,7 +1055,8 @@ function openSeoulDetail(key) {
 // University Detail Page
 // ═══════════════════════════════════════════
 function showUniversityDetail(key) {
-  const d = UNI_DETAILS[key];
+  let _d = UNI_DETAILS[key]; if(!_d){const _f=Object.keys(UNI_DETAILS).find(k=>key.includes(k)||k.includes(key));if(_f)_d=UNI_DETAILS[_f];}
+  const d = _d;
   document.getElementById('info-panel').classList.add('wide');
 
   if (!d) {
@@ -1050,7 +1071,7 @@ function showUniversityDetail(key) {
         <div class="no-data">
           <div style="font-size:32px;margin-bottom:12px">📋</div>
           <div style="color:#64748b;font-size:14px;font-weight:600">상세 정보 준비중</div>
-          <div style="color:#334155;font-size:12px;margin-top:8px">2027 모집요강 발표 후 업데이트 예정입니다</div>
+          <div style="color:#334155;font-size:13px;margin-top:8px">2027 모집요강 발표 후 업데이트 예정입니다</div>
         </div>
       </div>`;
     return;
@@ -1092,11 +1113,11 @@ function showUniversityDetail(key) {
   // Min score table
   const minRows = (d.minScore||[]).map(r => `<tr>
     <td class="row-name" style="color:#e2e8f0;font-weight:700;white-space:nowrap">${r.name}</td>
-    <td class="row-track" style="color:#94a3b8;font-size:10px">${r.track}</td>
+    <td class="row-track" style="color:#64748b;font-size:13px">${r.track}</td>
     <td class="td-ok">${r.국||'—'}</td>
     <td>${r.수==='☆'?`<span style="color:#fbbf24">☆</span>`:(r.수||'—')}</td>
     <td class="td-ok">${r.영||'—'}</td>
-    <td style="text-align:center;color:#94a3b8">${r.탐||'—'}</td>
+    <td style="text-align:center;color:#64748b">${r.탐||'—'}</td>
     <td class="td-req">${r.req}</td>
     <td class="td-note">${r.note||''}</td>
   </tr>`).join('');
@@ -1113,8 +1134,8 @@ function showUniversityDetail(key) {
       <td class="pct">${r.영||''}</td>
       <td class="pct">${r.탐사||''}</td>
       <td class="pct">${r.탐과||''}</td>
-      <td style="color:#94a3b8;text-align:center">${r.한국사||''}</td>
-      <td style="color:#64748b;font-size:10px;text-align:left">${r.기타||''}</td>
+      <td style="color:#64748b;text-align:center">${r.한국사||''}</td>
+      <td style="color:#64748b;font-size:13px;text-align:left">${r.기타||''}</td>
     </tr>`).join('');
   } else {
     jeongsiRows = (d.jeongsi||[]).map(r => `<tr>
@@ -1123,7 +1144,7 @@ function showUniversityDetail(key) {
       <td class="pct-hi">${r.수}</td>
       <td>${r.영}</td>
       <td class="pct">${r.탐}</td>
-      <td style="color:#64748b;font-size:10px;text-align:left">${r.비고||''}</td>
+      <td style="color:#64748b;font-size:13px;text-align:left">${r.비고||''}</td>
     </tr>`).join('');
   }
 
@@ -1136,32 +1157,32 @@ function showUniversityDetail(key) {
     const jinroCells = h.진로점수 ? `<td style="text-align:center;font-weight:600;color:#16a34a">${h.진로점수.A}</td><td style="text-align:center;font-weight:600;color:#16a34a">${h.진로점수.B}</td><td style="text-align:center;font-weight:600;color:#16a34a">${h.진로점수.C}</td>` : '';
     hakbuHtml = `
       <div class="detail-section">
-        <div class="detail-section-title" style="--accent:#10b981">4. 수시모집 — 학생부반영방법 <span style="font-size:11px;font-weight:400;color:#94a3b8">※ 참고: 2026학년도</span></div>
-        <table class="adm-table" style="font-size:12px;margin-bottom:8px">
+        <div class="detail-section-title" style="--accent:#10b981">4. 수시모집 — 학생부반영방법 <span style="font-size:13px;font-weight:400;color:#64748b">※ 참고: 2026학년도</span></div>
+        <table class="adm-table" style="font-size:13px;margin-bottom:8px">
           <thead><tr>
-            <th style="background:#166534;color:#fff;width:70px">과목</th>
-            <th style="background:#166534;color:#fff" colspan="9">공통과목(30%) / 일반선택과목(50%)</th>
-            <th style="background:#166534;color:#fff" colspan="3">진로선택과목(20%)</th>
+            <th style="background:#f1f5f9;color:#475569;width:70px">과목</th>
+            <th style="background:#f1f5f9;color:#475569" colspan="9">공통과목(30%) / 일반선택과목(50%)</th>
+            <th style="background:#f1f5f9;color:#475569" colspan="3">진로선택과목(20%)</th>
           </tr></thead>
           <tbody>
             <tr>
               <td style="font-weight:700;background:#f0fdf4">반영교과</td>
-              <td colspan="9" style="font-size:11px;line-height:1.6">
+              <td colspan="9" style="font-size:13px;line-height:1.6">
                 <div>전과목</div>
                 <div style="color:#475569">반영과목A : ${h.반영과목A}</div>
-                <div style="color:#94a3b8">반영과목B : ${h.반영과목B}</div>
+                <div style="color:#64748b">반영과목B : ${h.반영과목B}</div>
               </td>
-              <td colspan="3" style="font-size:11px;color:#475569">${h.진로선택}</td>
+              <td colspan="3" style="font-size:13px;color:#475569">${h.진로선택}</td>
             </tr>
           </tbody>
         </table>
-        <table class="adm-table" style="font-size:12px">
+        <table class="adm-table" style="font-size:13px">
           <thead><tr>
-            <th style="background:#1a1a2e;color:#94a3b8;width:70px">석차등급</th>
-            ${gradeHeaders.map(g => `<th style="background:#1a1a2e;color:#6ee7b7;text-align:center;padding:6px 4px">${g}</th>`).join('')}
-            <th style="background:#1a1a2e;color:#a78bfa;text-align:center;padding:6px 4px">A</th>
-            <th style="background:#1a1a2e;color:#a78bfa;text-align:center;padding:6px 4px">B</th>
-            <th style="background:#1a1a2e;color:#a78bfa;text-align:center;padding:6px 4px">C</th>
+            <th style="background:#f1f5f9;color:#475569;width:70px">석차등급</th>
+            ${gradeHeaders.map(g => `<th style="background:#f1f5f9;color:#475569;text-align:center;padding:6px 4px">${g}</th>`).join('')}
+            <th style="background:#f1f5f9;color:#475569;text-align:center;padding:6px 4px">A</th>
+            <th style="background:#f1f5f9;color:#475569;text-align:center;padding:6px 4px">B</th>
+            <th style="background:#f1f5f9;color:#475569;text-align:center;padding:6px 4px">C</th>
           </tr></thead>
           <tbody><tr>
             <td style="font-weight:700;background:#f8fafc">${h.전형}</td>
@@ -1169,7 +1190,7 @@ function showUniversityDetail(key) {
             ${jinroCells}
           </tr></tbody>
         </table>
-        ${h.note ? `<div style="font-size:10px;color:#475569;margin-top:6px;line-height:1.6;padding:8px;background:#fffbeb;border:1px solid #fde68a;border-radius:6px">※ ${h.note}</div>` : ''}
+        ${h.note ? `<div style="font-size:13px;color:#475569;margin-top:6px;line-height:1.6;padding:8px;background:#fffbeb;border:1px solid #fde68a;border-radius:6px">※ ${h.note}</div>` : ''}
       </div>`;
   }
 
@@ -1179,24 +1200,24 @@ function showUniversityDetail(key) {
     const engCells = d.jeongsiEng.map(v => `<td style="text-align:center;font-weight:600">${v}</td>`).join('');
     const histCells = (d.jeongsiHist||[]).map(v => `<td style="text-align:center;font-weight:600;color:${v>0?'#dc2626':'#16a34a'}">${v}</td>`).join('');
     jeongsiGradeHtml = `
-      <table class="adm-table" style="font-size:12px;margin-top:10px">
+      <table class="adm-table" style="font-size:13px;margin-top:10px">
         <thead><tr>
-          <th style="background:#0e4272;color:#fff;width:50px">영역</th>
-          <th style="background:#0e4272;color:#fff;width:40px">계열</th>
-          <th style="background:#0e4272;color:#fff;width:55px">반영방법</th>
-          ${[1,2,3,4,5,6,7,8,9].map(g => `<th style="background:#0e4272;color:#fff;text-align:center;padding:5px 3px">${g}등급</th>`).join('')}
+          <th style="background:#f1f5f9;color:#475569;width:50px">영역</th>
+          <th style="background:#f1f5f9;color:#475569;width:40px">계열</th>
+          <th style="background:#f1f5f9;color:#475569;width:55px">반영방법</th>
+          ${[1,2,3,4,5,6,7,8,9].map(g => `<th style="background:#f1f5f9;color:#475569;text-align:center;padding:5px 3px">${g}등급</th>`).join('')}
         </tr></thead>
         <tbody>
           <tr>
             <td style="font-weight:700;background:#f0f9ff">영어</td>
-            <td style="color:#94a3b8">공통</td>
-            <td style="font-size:10px;color:#64748b">${d.jeongsiEngMethod||'비율적용'}</td>
+            <td style="color:#64748b">공통</td>
+            <td style="font-size:13px;color:#64748b">${d.jeongsiEngMethod||'비율적용'}</td>
             ${engCells}
           </tr>
           ${d.jeongsiHist ? `<tr>
             <td style="font-weight:700;background:#f0f9ff">한국사</td>
-            <td style="color:#94a3b8">공통</td>
-            <td style="font-size:10px;color:#64748b">${d.jeongsiHistMethod||'감산'}</td>
+            <td style="color:#64748b">공통</td>
+            <td style="font-size:13px;color:#64748b">${d.jeongsiHistMethod||'감산'}</td>
             ${histCells}
           </tr>` : ''}
         </tbody>
@@ -1210,22 +1231,22 @@ function showUniversityDetail(key) {
     const mozipRows = d.mozip.map(r => {
       const [계열,단과,모집단위,수능,추천,활동,국제,논술,정시] = r;
       return `<tr>
-        <td style="text-align:center;font-size:10px;color:#64748b;white-space:nowrap">${계열}</td>
-        <td style="font-size:10px;color:#94a3b8;white-space:nowrap">${단과}</td>
-        <td style="font-weight:600;font-size:11px;white-space:nowrap">${모집단위}</td>
-        <td style="text-align:center;font-size:10px;color:#7c3aed;font-weight:700">${수능||''}</td>
+        <td style="text-align:center;font-size:13px;color:#64748b;white-space:nowrap">${계열}</td>
+        <td style="font-size:13px;color:#64748b;white-space:nowrap">${단과}</td>
+        <td style="font-weight:600;font-size:13px;white-space:nowrap">${모집단위}</td>
+        <td style="text-align:center;font-size:13px;color:#7c3aed;font-weight:700">${수능||''}</td>
         <td style="text-align:center;font-weight:700;color:#1e293b">${v(추천,0)}</td>
-        <td style="text-align:center;color:#94a3b8;font-size:10px">${v(추천,1)}</td>
-        <td style="text-align:center;color:#64748b;font-size:10px">${v(추천,2)}</td>
+        <td style="text-align:center;color:#64748b;font-size:13px">${v(추천,1)}</td>
+        <td style="text-align:center;color:#64748b;font-size:13px">${v(추천,2)}</td>
         <td style="text-align:center;font-weight:700;color:#1e293b">${v(활동,0)}</td>
-        <td style="text-align:center;color:#94a3b8;font-size:10px">${v(활동,1)}</td>
-        <td style="text-align:center;color:#64748b;font-size:10px">${v(활동,2)}</td>
+        <td style="text-align:center;color:#64748b;font-size:13px">${v(활동,1)}</td>
+        <td style="text-align:center;color:#64748b;font-size:13px">${v(활동,2)}</td>
         <td style="text-align:center;font-weight:700;color:#1e293b">${v(국제,0)}</td>
-        <td style="text-align:center;color:#94a3b8;font-size:10px">${v(국제,1)}</td>
-        <td style="text-align:center;color:#64748b;font-size:10px">${v(국제,2)}</td>
+        <td style="text-align:center;color:#64748b;font-size:13px">${v(국제,1)}</td>
+        <td style="text-align:center;color:#64748b;font-size:13px">${v(국제,2)}</td>
         <td style="text-align:center;font-weight:700;color:#1e293b">${v(논술,0)}</td>
-        <td style="text-align:center;color:#94a3b8;font-size:10px">${v(논술,1)}</td>
-        <td style="text-align:center;color:#64748b;font-size:10px">${v(논술,2)}</td>
+        <td style="text-align:center;color:#64748b;font-size:13px">${v(논술,1)}</td>
+        <td style="text-align:center;color:#64748b;font-size:13px">${v(논술,2)}</td>
         <td style="text-align:center;font-weight:700;color:#2563eb">${v(정시,0)}</td>
       </tr>`;
     }).join('');
@@ -1234,39 +1255,39 @@ function showUniversityDetail(key) {
       <div class="detail-section">
         <div class="detail-section-title" style="--accent:#6366f1">6. 모집인원</div>
         <div style="overflow-x:auto;margin:0 -20px;padding:0 20px">
-          <table class="adm-table" style="font-size:12px;min-width:820px">
+          <table class="adm-table" style="font-size:13px;min-width:820px">
             <thead>
               <tr>
-                <th rowspan="2" style="background:#334155;color:#fff;width:32px">계열</th>
-                <th rowspan="2" style="background:#334155;color:#fff;width:70px">단과대학</th>
-                <th rowspan="2" style="background:#334155;color:#fff">모집단위</th>
-                <th rowspan="2" style="background:#334155;color:#fff;width:28px">수능</th>
-                <th colspan="3" style="background:#1e40af;color:#fff">추천형</th>
-                <th colspan="3" style="background:#15803d;color:#fff">활동우수형</th>
-                <th colspan="3" style="background:#7c3aed;color:#fff">국제형/국제인재</th>
-                <th colspan="3" style="background:#991b1b;color:#fff">논술</th>
-                <th style="background:#0e4272;color:#fff;width:36px">정시가</th>
+                <th rowspan="2" style="background:#f1f5f9;color:#475569;width:32px">계열</th>
+                <th rowspan="2" style="background:#f1f5f9;color:#475569;width:70px">단과대학</th>
+                <th rowspan="2" style="background:#f1f5f9;color:#475569">모집단위</th>
+                <th rowspan="2" style="background:#f1f5f9;color:#475569;width:28px">수능</th>
+                <th colspan="3" style="background:#f1f5f9;color:#475569">추천형</th>
+                <th colspan="3" style="background:#f1f5f9;color:#475569">활동우수형</th>
+                <th colspan="3" style="background:#f1f5f9;color:#475569">국제형/국제인재</th>
+                <th colspan="3" style="background:#f1f5f9;color:#475569">논술</th>
+                <th style="background:#f1f5f9;color:#475569;width:36px">정시가</th>
               </tr>
               <tr>
-                <th style="background:#1e3a8a;color:#93c5fd;font-size:9px;padding:4px 2px">27</th>
-                <th style="background:#1e3a8a;color:#93c5fd;font-size:9px;padding:4px 2px">26</th>
-                <th style="background:#1e3a8a;color:#93c5fd;font-size:9px;padding:4px 2px">경쟁</th>
-                <th style="background:#14532d;color:#86efac;font-size:9px;padding:4px 2px">27</th>
-                <th style="background:#14532d;color:#86efac;font-size:9px;padding:4px 2px">26</th>
-                <th style="background:#14532d;color:#86efac;font-size:9px;padding:4px 2px">경쟁</th>
-                <th style="background:#4c1d95;color:#c4b5fd;font-size:9px;padding:4px 2px">27</th>
-                <th style="background:#4c1d95;color:#c4b5fd;font-size:9px;padding:4px 2px">26</th>
-                <th style="background:#4c1d95;color:#c4b5fd;font-size:9px;padding:4px 2px">경쟁</th>
-                <th style="background:#7f1d1d;color:#fca5a5;font-size:9px;padding:4px 2px">27</th>
-                <th style="background:#7f1d1d;color:#fca5a5;font-size:9px;padding:4px 2px">26</th>
-                <th style="background:#7f1d1d;color:#fca5a5;font-size:9px;padding:4px 2px">경쟁</th>
-                <th style="background:#0c4a6e;color:#7dd3fc;font-size:9px;padding:4px 2px">가</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">27</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">26</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">경쟁</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">27</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">26</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">경쟁</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">27</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">26</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">경쟁</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">27</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">26</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">경쟁</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">가</th>
               </tr>
             </thead>
             <tbody>${mozipRows}</tbody>
           </table>
         </div>
-        ${d.mozipNote ? `<div style="font-size:10px;color:#475569;margin-top:6px">${d.mozipNote}</div>` : ''}
+        ${d.mozipNote ? `<div style="font-size:13px;color:#475569;margin-top:6px">${d.mozipNote}</div>` : ''}
       </div>`;
   }
 
@@ -1307,18 +1328,18 @@ function showUniversityDetail(key) {
         <div class="detail-section-title" style="--accent:#a78bfa">3. 수시모집 — 최저학력기준</div>
         <table class="adm-table min-table">
           <thead><tr>
-            <th style="background:#1a1a2e;color:#94a3b8">전형</th>
-            <th style="background:#1a1a2e;color:#94a3b8">계열</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">국</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">수</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">영</th>
-            <th style="background:#1a1a2e;color:#6ee7b7">탐</th>
-            <th style="background:#1a1a2e;color:#f87171">최저</th>
-            <th style="background:#1a1a2e;color:#64748b">비고</th>
+            <th style="background:#f1f5f9;color:#475569">전형</th>
+            <th style="background:#f1f5f9;color:#475569">계열</th>
+            <th style="background:#f1f5f9;color:#475569">국</th>
+            <th style="background:#f1f5f9;color:#475569">수</th>
+            <th style="background:#f1f5f9;color:#475569">영</th>
+            <th style="background:#f1f5f9;color:#475569">탐</th>
+            <th style="background:#f1f5f9;color:#475569">최저</th>
+            <th style="background:#f1f5f9;color:#475569">비고</th>
           </tr></thead>
           <tbody>${minRows}</tbody>
         </table>
-        <div style="font-size:10px;color:#475569;margin-top:6px">☆ = 필수 영역 / ○ = 해당 영역</div>
+        <div style="font-size:13px;color:#475569;margin-top:6px">☆ = 필수 영역 / ○ = 해당 영역</div>
       </div>` : ''}
 
       ${hakbuHtml}
@@ -1327,7 +1348,7 @@ function showUniversityDetail(key) {
       <div class="detail-section">
         <div class="detail-section-title" style="--accent:#7dd3fc">${d.hakbu ? '5' : '4'}. 정시모집 — 수능 반영 비율 (%)</div>
         ${jeongsiIsExtended ? `
-        <div style="font-size:10px;color:#64748b;margin-bottom:6px">활용지표 : 표준점수/백분위/등급 + 변환표준점수</div>
+        <div style="font-size:13px;color:#64748b;margin-bottom:6px">활용지표 : 표준점수/백분위/등급 + 변환표준점수</div>
         <table class="adm-table jeongsi-table">
           <thead><tr>
             <th class="th-jeongsi" rowspan="2">계열</th>
@@ -1338,10 +1359,10 @@ function showUniversityDetail(key) {
             <th class="th-jeongsi" rowspan="2">한국사</th>
             <th class="th-jeongsi" rowspan="2" style="text-align:left">기타(가산점)</th>
           </tr><tr>
-            <th class="th-jeongsi" style="font-size:10px">확</th>
-            <th class="th-jeongsi" style="font-size:10px">미/기</th>
-            <th class="th-jeongsi" style="font-size:10px">사</th>
-            <th class="th-jeongsi" style="font-size:10px">과</th>
+            <th class="th-jeongsi" style="font-size:13px">확</th>
+            <th class="th-jeongsi" style="font-size:13px">미/기</th>
+            <th class="th-jeongsi" style="font-size:13px">사</th>
+            <th class="th-jeongsi" style="font-size:13px">과</th>
           </tr></thead>
           <tbody>${jeongsiRows}</tbody>
         </table>` : `
@@ -1356,7 +1377,7 @@ function showUniversityDetail(key) {
           </tr></thead>
           <tbody>${jeongsiRows}</tbody>
         </table>`}
-        ${d.jeongsiNote ? `<div style="font-size:10px;color:#475569;margin-top:6px;line-height:1.6">${d.jeongsiNote}</div>` : ''}
+        ${d.jeongsiNote ? `<div style="font-size:13px;color:#475569;margin-top:6px;line-height:1.6">${d.jeongsiNote}</div>` : ''}
         ${jeongsiGradeHtml}
       </div>` : ''}
 
@@ -1394,7 +1415,9 @@ function showUniversityDetail(key) {
 
     const label = document.createElement('span');
     label.className = 'uni-label';
-    label.textContent = key;
+    const det = UNI_DETAILS[key];
+    const isNew = det && (det.badges||[]).includes('new2028');
+    label.innerHTML = key + (isNew ? ' <span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:#e11d48;color:#fff;font-size:13px;font-weight:800;line-height:1">N</span>' : '');
     label.style.color = color === '#374151' ? '#1a1a1a' : color;
 
     const wrap = document.createElement('span');

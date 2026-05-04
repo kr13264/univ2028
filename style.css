@@ -5,10 +5,10 @@ body{font-family:'Apple SD Gothic Neo','Malgun Gothic','맑은 고딕','Noto San
 header{background:#fff;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .logo-wrap{display:flex;align-items:baseline;gap:12px}
 .logo{font-size:21px;font-weight:900;letter-spacing:-.5px}
-.logo .sen{color:#f59e0b}
+.logo .sen{color:#1e293b}
 .logo .main{color:#1e293b}
-.badge{font-size:11px;background:#eff6ff;border:1px solid #bfdbfe;color:#2563eb;padding:2px 10px;border-radius:100px;font-weight:600}
-.header-sub{font-size:12px;color:#94a3b8;text-align:right;line-height:1.6}
+.badge{font-size:12px;background:#eff6ff;border:1px solid #bfdbfe;color:#2563eb;padding:2px 10px;border-radius:100px;font-weight:600}
+.header-sub{font-size:12px;color:#64748b;text-align:right;line-height:1.6}
 .header-title{font-size:15px;font-weight:700;color:#64748b;margin-left:12px}
 
 /* ── Main layout ── */
@@ -21,12 +21,12 @@ main{flex:1;display:flex;overflow:hidden}
 .breadcrumb{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:8px;z-index:10}
 .bc-btn{background:#fff;border:1px solid #cbd5e1;color:#2563eb;padding:9px 22px;border-radius:24px;font-size:18px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;box-shadow:0 2px 6px rgba(0,0,0,.1)}
 .bc-btn:hover{background:#eff6ff;border-color:#93c5fd}
-.bc-sep{color:#cbd5e1;font-size:12px}
-.bc-cur{color:#94a3b8;font-size:12px}
+.bc-sep{color:#94a3b8;font-size:12px}
+.bc-cur{color:#64748b;font-size:12px}
 
 /* Korea SVG legend */
-.legend{position:absolute;top:14px;left:14px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-size:11px;z-index:5;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.legend-title{color:#94a3b8;font-weight:700;margin-bottom:6px;font-size:10px;letter-spacing:.05em;text-transform:uppercase}
+.legend{position:absolute;top:14px;left:14px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-size:12px;z-index:5;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.legend-title{color:#64748b;font-weight:700;margin-bottom:6px;font-size:11px;letter-spacing:.05em;text-transform:uppercase}
 .legend-item{display:flex;align-items:center;gap:7px;margin-bottom:4px;color:#475569}
 .legend-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
 
@@ -40,7 +40,7 @@ main{flex:1;display:flex;overflow:hidden}
 .region.active{filter:brightness(.88) saturate(1.5)}
 .region.dimmed{opacity:.25}
 .map-label{pointer-events:none;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-weight:700}
-.map-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:12px;color:#94a3b8;pointer-events:none}
+.map-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:12px;color:#64748b;pointer-events:none}
 
 /* ── Seoul/Gyeonggi University Map ── */
 #seoul-view{width:100%;height:100%;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;padding-top:8px}
@@ -67,8 +67,8 @@ main{flex:1;display:flex;overflow:hidden}
 /* Placeholder */
 .placeholder{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;gap:10px}
 .placeholder-icon{width:72px;height:72px;border-radius:16px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:4px}
-.placeholder h3{font-size:16px;color:#94a3b8;font-weight:600}
-.placeholder p{font-size:13px;color:#cbd5e1;line-height:1.6}
+.placeholder h3{font-size:16px;color:#64748b;font-weight:600}
+.placeholder p{font-size:13px;color:#94a3b8;line-height:1.6}
 
 /* Region summary */
 .region-content{padding:24px 20px;animation:fadeSlide .25s ease}
@@ -77,21 +77,21 @@ main{flex:1;display:flex;overflow:hidden}
 .region-color-bar{width:36px;height:4px;border-radius:2px;margin-bottom:10px}
 .region-name{font-size:22px;font-weight:800;color:#0f172a}
 .region-meta{display:flex;gap:14px;margin-top:6px}
-.region-stat{font-size:12px;color:#94a3b8}
+.region-stat{font-size:12px;color:#64748b}
 .region-stat strong{color:#475569;font-weight:700}
 .sub-map{width:100%;border-radius:8px;overflow:hidden;margin-bottom:16px;border:1px solid #e2e8f0;background:#f8fafc}
 .sub-map img{width:100%;display:block}
-.sub-map-label{background:#f8fafc;padding:7px 12px;font-size:11px;color:#94a3b8;text-align:center;border-top:1px solid #e2e8f0}
-.section-title{font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase;margin:14px 0 8px}
+.sub-map-label{background:#f8fafc;padding:7px 12px;font-size:12px;color:#64748b;text-align:center;border-top:1px solid #e2e8f0}
+.section-title{font-size:11px;font-weight:700;color:#64748b;letter-spacing:.08em;text-transform:uppercase;margin:14px 0 8px}
 .uni-list{display:flex;flex-direction:column;gap:5px}
 .uni-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:9px;padding:10px 13px;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:3px}
 .uni-item:hover{background:#eff6ff;border-color:#93c5fd;transform:translateX(2px)}
 .uni-item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
 .uni-name{font-size:13px;font-weight:700;color:#1e293b;flex:1}
-.uni-national{font-size:10px;background:#fefce8;border:1px solid #fde68a;color:#d97706;padding:1px 5px;border-radius:3px;white-space:nowrap}
-.uni-location{font-size:11px;color:#94a3b8}
+.uni-national{font-size:11px;background:#fefce8;border:1px solid #fde68a;color:#d97706;padding:1px 5px;border-radius:3px;white-space:nowrap}
+.uni-location{font-size:12px;color:#64748b}
 .uni-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:2px}
-.tag{font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;white-space:nowrap}
+.tag{font-size:11px;padding:2px 6px;border-radius:3px;font-weight:600;white-space:nowrap}
 .tag-susi{background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe}
 .tag-jeongsi{background:#f5f3ff;color:#7c3aed;border:1px solid #ddd6fe}
 .tag-med{background:#fff1f2;color:#e11d48;border:1px solid #fecdd3}
@@ -102,20 +102,21 @@ main{flex:1;display:flex;overflow:hidden}
 .detail-page{padding:0;animation:fadeSlide .25s ease}
 .detail-header{padding:18px 20px 14px;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:10;box-shadow:0 1px 4px rgba(0,0,0,.05)}
 .detail-nav{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.detail-back{background:#f8fafc;border:1px solid #e2e8f0;color:#64748b;padding:4px 12px;border-radius:14px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .15s}
+.detail-back{background:#f8fafc;border:1px solid #e2e8f0;color:#64748b;padding:4px 12px;border-radius:14px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .15s}
 .detail-back:hover{background:#eff6ff;border-color:#93c5fd;color:#2563eb}
 .detail-uni-name{font-size:24px;font-weight:900;color:#0f172a;letter-spacing:-.3px}
 .detail-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.detail-badge{font-size:10px;padding:3px 9px;border-radius:4px;font-weight:700}
+.detail-badge{font-size:11px;padding:3px 9px;border-radius:4px;font-weight:700}
 .badge-seoul{background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe}
 .badge-gyeonggi{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0}
 .badge-national{background:#fffbeb;color:#d97706;border:1px solid #fde68a}
 .badge-med{background:#fff1f2;color:#e11d48;border:1px solid #fecdd3}
+.badge-new2028{background:#dbeafe;color:#1d4ed8;border:1px solid #93c5fd;font-weight:800}
 
 .detail-body{padding:16px 20px 24px}
-.detail-section{margin-bottom:20px}
-.detail-section-title{font-size:16px;font-weight:800;color:#334155;letter-spacing:.02em;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #f1f5f9;display:flex;align-items:center;gap:8px}
-.detail-section-title::before{content:'';display:inline-block;width:3px;height:16px;border-radius:2px;background:var(--accent,#2563eb)}
+.detail-section{margin-bottom:36px}
+.detail-section-title{font-size:18px;font-weight:800;color:#334155;letter-spacing:.02em;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f1f5f9;display:flex;align-items:center;gap:8px}
+.detail-section-title::before{display:none}
 
 /* Changes box */
 .changes-box{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px}
@@ -123,7 +124,7 @@ main{flex:1;display:flex;overflow:hidden}
 .change-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
 .change-title{font-size:16px;font-weight:700;color:#b45309;margin-bottom:4px}
 .change-arrow{display:flex;align-items:flex-start;gap:6px;font-size:15px;color:#64748b;line-height:1.5}
-.change-arrow .from{color:#94a3b8}
+.change-arrow .from{color:#64748b}
 .change-arrow .arr{color:#f59e0b;flex-shrink:0;margin-top:1px}
 .change-arrow .to{color:#1e293b}
 
@@ -133,11 +134,11 @@ main{flex:1;display:flex;overflow:hidden}
 .adm-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;vertical-align:middle;line-height:1.4}
 .adm-table tr:last-child td{border-bottom:none}
 .adm-table tr:hover td{background:#f8fafc}
-.th-susi{background:#1e40af;color:#fff}
-.th-gyogwa{background:#166534;color:#fff}
-.th-jonghap{background:#5b21b6;color:#fff}
-.th-nonsul{background:#991b1b;color:#fff}
-.th-jeongsi{background:#0e4272;color:#fff}
+.th-susi{background:#f1f5f9;color:#475569}
+.th-gyogwa{background:#f1f5f9;color:#475569}
+.th-jonghap{background:#f1f5f9;color:#475569}
+.th-nonsul{background:#f1f5f9;color:#475569}
+.th-jeongsi{background:#f1f5f9;color:#475569}
 .td-type{font-weight:700;text-align:center;font-size:13px;padding:7px 6px}
 .td-type.gyogwa{color:#16a34a}
 .td-type.jonghap{color:#7c3aed}
@@ -151,7 +152,7 @@ main{flex:1;display:flex;overflow:hidden}
 .td-ok{color:#16a34a;text-align:center}
 .td-star{color:#d97706;text-align:center}
 .td-req{font-weight:700;color:#dc2626;text-align:center}
-.td-note{color:#94a3b8;font-size:13px}
+.td-note{color:#64748b;font-size:13px}
 .score-good{color:#16a34a;font-weight:700}
 .score-neutral{color:#64748b}
 
@@ -161,19 +162,19 @@ main{flex:1;display:flex;overflow:hidden}
 .min-table .row-track{color:#64748b;font-size:13px}
 
 /* Jeongsi table */
-.jeongsi-table th{background:#f0f9ff;color:#0369a1;text-align:center;font-size:13px;border-bottom:1px solid #e2e8f0}
+.jeongsi-table th{background:#f1f5f9;color:#475569;text-align:center;font-size:13px;border-bottom:1px solid #e2e8f0}
 .jeongsi-table td{text-align:center}
 .jeongsi-table .td-track{text-align:left;color:#1e293b;font-weight:600}
 .jeongsi-table .pct{color:#2563eb;font-weight:700}
 .jeongsi-table .pct-hi{color:#16a34a;font-weight:700}
-.jeongsi-table .nd{color:#cbd5e1}
+.jeongsi-table .nd{color:#94a3b8}
 
 /* Notes */
 .detail-note{margin-top:16px;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;line-height:1.7}
 .detail-note strong{color:#475569}
 
 /* No data */
-.no-data{text-align:center;padding:30px;color:#94a3b8;font-size:13px}
+.no-data{text-align:center;padding:30px;color:#64748b;font-size:13px}
 
 /* SVG university markers */
 .svg-uni-marker{transition:opacity .15s}
@@ -187,5 +188,5 @@ main{flex:1;display:flex;overflow:hidden}
 /* Adm types grid */
 .adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px}
 .adm-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:7px;padding:9px 11px}
-.adm-name{color:#475569;font-weight:600;font-size:11px;margin-bottom:2px}
-.adm-desc{color:#94a3b8;font-size:10px}
+.adm-name{color:#475569;font-weight:600;font-size:12px;margin-bottom:2px}
+.adm-desc{color:#64748b;font-size:12px}
