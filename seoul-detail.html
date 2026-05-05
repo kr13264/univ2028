@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>서울 대학 상세정보</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet" href="style.css">
   <style>
     body { height:100vh; overflow:hidden; margin:0; }
@@ -1031,7 +1032,7 @@ function showUniversityDetail(key) {
         <div class="no-data">
           <div style="font-size:32px;margin-bottom:12px">📋</div>
           <div style="color:#64748b;font-size:14px;font-weight:600">상세 정보 준비중</div>
-          <div style="color:#334155;font-size:13px;margin-top:8px">2027 모집요강 발표 후 업데이트 예정입니다</div>
+          <div style="color:#334155;font-size:15px;margin-top:8px">2027 모집요강 발표 후 업데이트 예정입니다</div>
         </div>
       </div>`;
     return;
@@ -1074,7 +1075,7 @@ function showUniversityDetail(key) {
   // Min score table
   const minRows = (d.minScore||[]).map(r => `<tr>
     <td class="row-name" style="color:#1e293b;font-weight:700;white-space:nowrap">${r.name}</td>
-    <td class="row-track" style="color:#475569;font-size:13px">${r.track}</td>
+    <td class="row-track" style="color:#475569;font-size:15px">${r.track}</td>
     <td class="td-ok">${r.국||'—'}</td>
     <td>${r.수==='☆'?`<span style="color:#fbbf24">☆</span>`:(r.수||'—')}</td>
     <td class="td-ok">${r.영||'—'}</td>
@@ -1096,7 +1097,7 @@ function showUniversityDetail(key) {
       <td class="pct">${r.탐사||''}</td>
       <td class="pct">${r.탐과||''}</td>
       <td style="color:#64748b;text-align:center">${r.한국사||''}</td>
-      <td style="color:#64748b;font-size:13px;text-align:left">${r.기타||''}</td>
+      <td style="color:#64748b;font-size:15px;text-align:left">${r.기타||''}</td>
     </tr>`).join('');
   } else {
     jeongsiRows = (d.jeongsi||[]).map(r => `<tr>
@@ -1105,7 +1106,7 @@ function showUniversityDetail(key) {
       <td class="pct-hi">${r.수}</td>
       <td>${r.영}</td>
       <td class="pct">${r.탐}</td>
-      <td style="color:#64748b;font-size:13px;text-align:left">${r.비고||''}</td>
+      <td style="color:#64748b;font-size:15px;text-align:left">${r.비고||''}</td>
     </tr>`).join('');
   }
 
@@ -1118,8 +1119,8 @@ function showUniversityDetail(key) {
     const jinroCells = h.진로점수 ? `<td style="text-align:center;font-weight:600;color:#16a34a">${h.진로점수.A}</td><td style="text-align:center;font-weight:600;color:#16a34a">${h.진로점수.B}</td><td style="text-align:center;font-weight:600;color:#16a34a">${h.진로점수.C}</td>` : '';
     hakbuHtml = `
       <div class="detail-section">
-        <div class="detail-section-title" style="--accent:#10b981">${nextSec()}. 수시모집 — 학생부반영방법 <span style="font-size:13px;font-weight:400;color:#64748b">※ 참고: 2026학년도</span></div>
-        <table class="adm-table" style="font-size:13px;margin-bottom:8px">
+        <div class="detail-section-title" style="--accent:#10b981">${nextSec()}. 수시모집 — 학생부반영방법 <span style="font-size:15px;font-weight:400;color:#64748b">※ 참고: 2026학년도</span></div>
+        <table class="adm-table" style="font-size:15px;margin-bottom:8px">
           <thead><tr>
             <th style="background:#f1f5f9;color:#475569;width:70px">과목</th>
             <th style="background:#f1f5f9;color:#475569" colspan="9">공통과목(30%) / 일반선택과목(50%)</th>
@@ -1128,16 +1129,16 @@ function showUniversityDetail(key) {
           <tbody>
             <tr>
               <td style="font-weight:700;background:#f0fdf4">반영교과</td>
-              <td colspan="9" style="font-size:13px;line-height:1.6">
+              <td colspan="9" style="font-size:15px;line-height:1.6">
                 <div>전과목</div>
                 <div style="color:#475569">반영과목A : ${h.반영과목A}</div>
                 <div style="color:#64748b">반영과목B : ${h.반영과목B}</div>
               </td>
-              <td colspan="3" style="font-size:13px;color:#475569">${h.진로선택}</td>
+              <td colspan="3" style="font-size:15px;color:#475569">${h.진로선택}</td>
             </tr>
           </tbody>
         </table>
-        <table class="adm-table" style="font-size:13px">
+        <table class="adm-table" style="font-size:15px">
           <thead><tr>
             <th style="background:#f1f5f9;color:#475569;width:70px">석차등급</th>
             ${gradeHeaders.map(g => `<th style="background:#f1f5f9;color:#475569;text-align:center;padding:6px 4px">${g}</th>`).join('')}
@@ -1151,7 +1152,7 @@ function showUniversityDetail(key) {
             ${jinroCells}
           </tr></tbody>
         </table>
-        ${h.note ? `<div style="font-size:13px;color:#475569;margin-top:6px;line-height:1.6;padding:8px;background:#fffbeb;border:1px solid #fde68a;border-radius:6px">※ ${h.note}</div>` : ''}
+        ${h.note ? `<div style="font-size:15px;color:#475569;margin-top:6px;line-height:1.6;padding:8px;background:#fffbeb;border:1px solid #fde68a;border-radius:6px">※ ${h.note}</div>` : ''}
       </div>`;
   }
 
@@ -1161,7 +1162,7 @@ function showUniversityDetail(key) {
     const engCells = d.jeongsiEng.map(v => `<td style="text-align:center;font-weight:600">${v}</td>`).join('');
     const histCells = (d.jeongsiHist||[]).map(v => `<td style="text-align:center;font-weight:600;color:${v>0?'#dc2626':'#16a34a'}">${v}</td>`).join('');
     jeongsiGradeHtml = `
-      <table class="adm-table" style="font-size:13px;margin-top:10px">
+      <table class="adm-table" style="font-size:15px;margin-top:10px">
         <thead><tr>
           <th style="background:#f1f5f9;color:#475569;width:50px">영역</th>
           <th style="background:#f1f5f9;color:#475569;width:40px">계열</th>
@@ -1172,13 +1173,13 @@ function showUniversityDetail(key) {
           <tr>
             <td style="font-weight:700;background:#f0f9ff">영어</td>
             <td style="color:#64748b">공통</td>
-            <td style="font-size:13px;color:#64748b">${d.jeongsiEngMethod||'비율적용'}</td>
+            <td style="font-size:15px;color:#64748b">${d.jeongsiEngMethod||'비율적용'}</td>
             ${engCells}
           </tr>
           ${d.jeongsiHist ? `<tr>
             <td style="font-weight:700;background:#f0f9ff">한국사</td>
             <td style="color:#64748b">공통</td>
-            <td style="font-size:13px;color:#64748b">${d.jeongsiHistMethod||'감산'}</td>
+            <td style="font-size:15px;color:#64748b">${d.jeongsiHistMethod||'감산'}</td>
             ${histCells}
           </tr>` : ''}
         </tbody>
@@ -1186,7 +1187,7 @@ function showUniversityDetail(key) {
   }
   if (d.jeongsiGradeTable) {
     jeongsiGradeHtml = `
-      <table class="adm-table" style="font-size:13px;margin-top:10px">
+      <table class="adm-table" style="font-size:15px;margin-top:10px">
         <thead><tr>
           <th style="background:#f1f5f9;color:#475569;width:50px">영역</th>
           <th style="background:#f1f5f9;color:#475569;width:80px">전형</th>
@@ -1195,8 +1196,8 @@ function showUniversityDetail(key) {
         </tr></thead>
         <tbody>${d.jeongsiGradeTable.map(r => `<tr>
           <td style="font-weight:700;background:#f0f9ff">${r.영역}</td>
-          <td style="font-size:13px;color:#64748b">${r.전형명}</td>
-          <td style="font-size:13px;color:#64748b">${r.반영방법}</td>
+          <td style="font-size:15px;color:#64748b">${r.전형명}</td>
+          <td style="font-size:15px;color:#64748b">${r.반영방법}</td>
           ${r.scores.map(v => `<td style="text-align:center;font-weight:600">${v!==''?v:'—'}</td>`).join('')}
         </tr>`).join('')}
         </tbody>
@@ -1210,22 +1211,22 @@ function showUniversityDetail(key) {
     const mozipRows = d.mozip.map(r => {
       const [계열,단과,모집단위,수능,추천,활동,국제,논술,정시] = r;
       return `<tr>
-        <td style="text-align:center;font-size:13px;color:#64748b;white-space:nowrap">${계열}</td>
-        <td style="font-size:13px;color:#64748b;white-space:nowrap">${단과}</td>
-        <td style="font-weight:600;font-size:13px;white-space:nowrap">${모집단위}</td>
-        <td style="text-align:center;font-size:13px;color:#7c3aed;font-weight:700">${수능||''}</td>
+        <td style="text-align:center;font-size:15px;color:#64748b;white-space:nowrap">${계열}</td>
+        <td style="font-size:15px;color:#64748b;white-space:nowrap">${단과}</td>
+        <td style="font-weight:600;font-size:15px;white-space:nowrap">${모집단위}</td>
+        <td style="text-align:center;font-size:15px;color:#7c3aed;font-weight:700">${수능||''}</td>
         <td style="text-align:center;font-weight:700;color:#1e293b">${v(추천,0)}</td>
-        <td style="text-align:center;color:#64748b;font-size:13px">${v(추천,1)}</td>
-        <td style="text-align:center;color:#64748b;font-size:13px">${v(추천,2)}</td>
+        <td style="text-align:center;color:#64748b;font-size:15px">${v(추천,1)}</td>
+        <td style="text-align:center;color:#64748b;font-size:15px">${v(추천,2)}</td>
         <td style="text-align:center;font-weight:700;color:#1e293b">${v(활동,0)}</td>
-        <td style="text-align:center;color:#64748b;font-size:13px">${v(활동,1)}</td>
-        <td style="text-align:center;color:#64748b;font-size:13px">${v(활동,2)}</td>
+        <td style="text-align:center;color:#64748b;font-size:15px">${v(활동,1)}</td>
+        <td style="text-align:center;color:#64748b;font-size:15px">${v(활동,2)}</td>
         <td style="text-align:center;font-weight:700;color:#1e293b">${v(국제,0)}</td>
-        <td style="text-align:center;color:#64748b;font-size:13px">${v(국제,1)}</td>
-        <td style="text-align:center;color:#64748b;font-size:13px">${v(국제,2)}</td>
+        <td style="text-align:center;color:#64748b;font-size:15px">${v(국제,1)}</td>
+        <td style="text-align:center;color:#64748b;font-size:15px">${v(국제,2)}</td>
         <td style="text-align:center;font-weight:700;color:#1e293b">${v(논술,0)}</td>
-        <td style="text-align:center;color:#64748b;font-size:13px">${v(논술,1)}</td>
-        <td style="text-align:center;color:#64748b;font-size:13px">${v(논술,2)}</td>
+        <td style="text-align:center;color:#64748b;font-size:15px">${v(논술,1)}</td>
+        <td style="text-align:center;color:#64748b;font-size:15px">${v(논술,2)}</td>
         <td style="text-align:center;font-weight:700;color:#2563eb">${v(정시,0)}</td>
       </tr>`;
     }).join('');
@@ -1234,7 +1235,7 @@ function showUniversityDetail(key) {
       <div class="detail-section">
         <div class="detail-section-title" style="--accent:#6366f1">${nextSec()}. 모집인원</div>
         <div style="overflow-x:auto;margin:0 -20px;padding:0 20px">
-          <table class="adm-table" style="font-size:13px;min-width:820px">
+          <table class="adm-table" style="font-size:15px;min-width:820px">
             <thead>
               <tr>
                 <th rowspan="2" style="background:#f1f5f9;color:#475569;width:32px">계열</th>
@@ -1248,25 +1249,25 @@ function showUniversityDetail(key) {
                 <th style="background:#f1f5f9;color:#475569;width:36px">정시가</th>
               </tr>
               <tr>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">27</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">26</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">경쟁</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">27</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">26</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">경쟁</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">27</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">26</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">경쟁</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">27</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">26</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">경쟁</th>
-                <th style="background:#f8fafc;color:#64748b;font-size:13px;padding:4px 2px">가</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">27</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">26</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">경쟁</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">27</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">26</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">경쟁</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">27</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">26</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">경쟁</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">27</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">26</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">경쟁</th>
+                <th style="background:#f8fafc;color:#64748b;font-size:14px;padding:4px 2px">가</th>
               </tr>
             </thead>
             <tbody>${mozipRows}</tbody>
           </table>
         </div>
-        ${d.mozipNote ? `<div style="font-size:13px;color:#475569;margin-top:6px">${d.mozipNote}</div>` : ''}
+        ${d.mozipNote ? `<div style="font-size:15px;color:#475569;margin-top:6px">${d.mozipNote}</div>` : ''}
       </div>`;
   }
 
@@ -1281,7 +1282,7 @@ function showUniversityDetail(key) {
             <img src="${img}" alt="전형별 모집인원" style="width:100%;max-width:100%;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;cursor:zoom-in" onclick="this.style.maxWidth=this.style.maxWidth==='100%'?'none':'100%';this.style.cursor=this.style.maxWidth==='100%'?'zoom-in':'zoom-out'">
           `).join('')}
         </div>
-        <div style="font-size:13px;color:#64748b;margin-top:4px">※ 이미지를 클릭하면 확대/축소됩니다</div>
+        <div style="font-size:15px;color:#64748b;margin-top:4px">※ 이미지를 클릭하면 확대/축소됩니다</div>
       </div>` : '';
 
   document.getElementById('info-panel').innerHTML = `
@@ -1290,7 +1291,7 @@ function showUniversityDetail(key) {
       <div class="detail-nav">
         <button class="detail-back" onclick="renderSeoulSummary()">← 서울 목록</button>
       </div>
-      <div class="detail-uni-name">${d.fullName}${(d.badges||[]).includes('new2028') ? ' <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#e11d48;color:#fff;font-size:13px;font-weight:800;vertical-align:middle;line-height:1">N</span>':''}</div>
+      <div class="detail-uni-name">${d.fullName}${(d.badges||[]).includes('new2028') ? ' <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#e11d48;color:#fff;font-size:15px;font-weight:800;vertical-align:middle;line-height:1">N</span>':''}</div>
       <div class="detail-badges">${badgeHtml}</div>
     </div>
     <div class="detail-body">
@@ -1306,10 +1307,10 @@ function showUniversityDetail(key) {
         <div class="detail-section-title" style="--accent:#3b82f6">${nextSec()}. 수시모집 — 전형방법</div>
         <table class="adm-table">
           <thead><tr>
-            <th class="th-susi" style="width:38px">구분</th>
+            <th class="th-susi" style="width:52px;white-space:nowrap">구분</th>
             <th class="th-susi">전형명</th>
             <th class="th-susi" style="width:44px">인원</th>
-            <th class="th-susi" style="width:44px">최저</th>
+            <th class="th-susi" style="width:52px;white-space:nowrap">최저</th>
             <th class="th-susi">전형방법</th>
           </tr></thead>
           <tbody>${susiRows}</tbody>
@@ -1332,7 +1333,7 @@ function showUniversityDetail(key) {
           </tr></thead>
           <tbody>${minRows}</tbody>
         </table>
-        <div style="font-size:13px;color:#475569;margin-top:6px">☆ = 필수 영역 / ○ = 해당 영역</div>
+        <div style="font-size:15px;color:#475569;margin-top:6px">☆ = 필수 영역 / ○ = 해당 영역</div>
       </div>` : ''}
 
       ${hakbuHtml}
@@ -1340,22 +1341,22 @@ function showUniversityDetail(key) {
       ${d.gradeConversion ? `
       <div class="detail-section">
         <div class="detail-section-title" style="--accent:#10b981">${nextSec()}. 학생부교과 반영방법</div>
-        ${d.gradeConversion.target ? `<div style="font-size:13px;color:#1e293b;margin-bottom:8px;line-height:1.6;padding:8px 10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px"><strong>대상전형</strong>: ${d.gradeConversion.target}</div>` : ''}
+        ${d.gradeConversion.target ? `<div style="font-size:15px;color:#1e293b;margin-bottom:8px;line-height:1.6;padding:8px 10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px"><strong>대상전형</strong>: ${d.gradeConversion.target}</div>` : ''}
         ${d.gradeConversion.subjects ? `
-        <table class="adm-table" style="font-size:13px;margin-bottom:10px">
+        <table class="adm-table" style="font-size:15px;margin-bottom:10px">
           <thead><tr><th style="background:#f1f5f9;color:#475569">전형</th><th style="background:#f1f5f9;color:#475569">반영교과</th></tr></thead>
           <tbody>${d.gradeConversion.subjects.map(s => `<tr><td style="font-weight:600;color:#1e293b;white-space:nowrap">${s.전형}</td><td style="color:#334155">${s.반영교과}</td></tr>`).join('')}</tbody>
         </table>` : ''}
-        ${d.gradeConversion.period ? `<div style="font-size:13px;color:#475569;margin-bottom:4px">※ 반영기간: ${d.gradeConversion.period}</div>` : ''}
-        ${d.gradeConversion.method ? `<div style="font-size:13px;color:#475569;margin-bottom:10px">※ 성적반영: ${d.gradeConversion.method}</div>` : ''}
+        ${d.gradeConversion.period ? `<div style="font-size:15px;color:#475569;margin-bottom:4px">※ 반영기간: ${d.gradeConversion.period}</div>` : ''}
+        ${d.gradeConversion.method ? `<div style="font-size:15px;color:#475569;margin-bottom:20px">※ 성적반영: ${d.gradeConversion.method}</div>` : ''}
         ${d.gradeConversion.tables.map(t => `
-          <div style="margin-bottom:14px">
-            <div style="font-size:13px;font-weight:700;color:#334155;margin-bottom:4px">${t.title}</div>
-            ${t.subtitle ? `<div style="font-size:13px;color:#64748b;margin-bottom:6px">${t.subtitle}</div>` : ''}
-            <table class="adm-table" style="font-size:13px">
+          <div style="margin-top:24px;margin-bottom:18px">
+            <div style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:6px">● ${t.title}</div>
+            ${t.subtitle ? `<div style="font-size:15px;color:#64748b;margin-bottom:6px">${t.subtitle}</div>` : ''}
+            <table class="adm-table" style="font-size:15px">
               <thead><tr>
-                <th style="background:#f1f5f9;color:#475569;font-size:13px">등급</th>
-                ${t.grades.map(g => `<th style="background:#f1f5f9;color:#475569;text-align:center;padding:5px 4px;font-size:13px">${g}</th>`).join('')}
+                <th style="background:#f1f5f9;color:#475569;font-size:15px">등급</th>
+                ${t.grades.map(g => `<th style="background:#f1f5f9;color:#475569;text-align:center;padding:5px 4px;font-size:15px">${g}</th>`).join('')}
               </tr></thead>
               <tbody><tr>
                 <td style="font-weight:700;background:#f0fdf4">환산점수</td>
@@ -1363,14 +1364,14 @@ function showUniversityDetail(key) {
               </tr></tbody>
             </table>
           </div>`).join('')}
-        ${d.gradeConversion.note ? `<div style="font-size:13px;color:#475569;margin-top:8px;line-height:1.6;padding:8px;background:#fffbeb;border:1px solid #fde68a;border-radius:6px">※ ${d.gradeConversion.note}</div>` : ''}
+        ${d.gradeConversion.note ? `<div style="font-size:15px;color:#475569;margin-top:8px;line-height:1.6;padding:8px;background:#fffbeb;border:1px solid #fde68a;border-radius:6px">※ ${d.gradeConversion.note}</div>` : ''}
       </div>` : ''}
 
       ${d.jeongsi && d.jeongsi.length ? `
       <div class="detail-section">
         <div class="detail-section-title" style="--accent:#7dd3fc">${nextSec()}. 정시모집 — 수능 반영 비율 (%)</div>
         ${jeongsiIsExtended ? `
-        <div style="font-size:13px;color:#64748b;margin-bottom:6px">활용지표 : 표준점수/백분위/등급 + 변환표준점수</div>
+        <div style="font-size:15px;color:#64748b;margin-bottom:6px">활용지표 : 표준점수/백분위/등급 + 변환표준점수</div>
         <table class="adm-table jeongsi-table">
           <thead><tr>
             <th class="th-jeongsi" rowspan="2">계열</th>
@@ -1381,10 +1382,10 @@ function showUniversityDetail(key) {
             <th class="th-jeongsi" rowspan="2">한국사</th>
             <th class="th-jeongsi" rowspan="2" style="text-align:left">기타(가산점)</th>
           </tr><tr>
-            <th class="th-jeongsi" style="font-size:13px">확</th>
-            <th class="th-jeongsi" style="font-size:13px">미/기</th>
-            <th class="th-jeongsi" style="font-size:13px">사</th>
-            <th class="th-jeongsi" style="font-size:13px">과</th>
+            <th class="th-jeongsi" style="font-size:15px">확</th>
+            <th class="th-jeongsi" style="font-size:15px">미/기</th>
+            <th class="th-jeongsi" style="font-size:15px">사</th>
+            <th class="th-jeongsi" style="font-size:15px">과</th>
           </tr></thead>
           <tbody>${jeongsiRows}</tbody>
         </table>` : `
@@ -1399,7 +1400,7 @@ function showUniversityDetail(key) {
           </tr></thead>
           <tbody>${jeongsiRows}</tbody>
         </table>`}
-        ${d.jeongsiNote ? `<div style="font-size:13px;color:#475569;margin-top:6px;line-height:1.6">${d.jeongsiNote}</div>` : ''}
+        ${d.jeongsiNote ? `<div style="font-size:15px;color:#475569;margin-top:6px;line-height:1.6">${d.jeongsiNote}</div>` : ''}
         ${jeongsiGradeHtml}
       </div>` : ''}
 

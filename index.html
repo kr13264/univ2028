@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>대학 진학 PreView — 2028 대입전형 시행계획</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet" href="style.css">
   <style>body{background:#fff}</style>
 </head>
@@ -118,6 +119,9 @@
     </div>
 
   </div><!-- /map-panel -->
+
+  <!-- ── Resize Handle ── -->
+  <div class="resize-handle" id="resize-handle"></div>
 
   <!-- ── Right: Info Panel ── -->
   <div class="info-panel" id="info-panel">
@@ -448,7 +452,7 @@ function zoomToRegion(key) {
       <g class="svg-uni-marker" style="cursor:pointer" data-uni="${m.name}"${m.new2028?' data-new2028="1"':''}>
         <circle cx="${m.x}" cy="${m.y}" r="1.4" fill="${m.color}" stroke="#fff" stroke-width="0.5"/>
         <rect class="uni-bg" rx="2" ry="2" fill="#fff" stroke="#e2e8f0" stroke-width="0.4" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,.1))"/>
-        <text class="uni-txt" x="${m.x + 5}" y="${m.y - 0.5}" font-size="4.2" font-weight="700" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic',sans-serif" dominant-baseline="central" alignment-baseline="central">${m.name}</text>
+        <text class="uni-txt" x="${m.x + 5}" y="${m.y - 0.5}" font-size="4.2" font-weight="700" fill="#1e293b" font-family="'Pretendard Variable',Pretendard,sans-serif" dominant-baseline="central" alignment-baseline="central">${m.name}</text>
       </g>`).join('');
     // 텍스트 실측 후 rect 크기 맞추기
     g.querySelectorAll('.svg-uni-marker').forEach(mk => {
@@ -490,6 +494,7 @@ function zoomToRegion(key) {
           // 상세 페이지를 iframe으로 오른쪽 패널에 로드
           const panel = document.getElementById('info-panel');
           panel.classList.add('wide');
+          panel.style.width = '50%';
           panel.innerHTML = `<iframe src="${region.detailPage}?uni=${encodeURIComponent(mk.dataset.uni)}&embed=1" style="width:100%;height:100%;border:none"></iframe>`;
         } else {
           selectUniversityInPanel(mk.dataset.uni);
@@ -504,7 +509,7 @@ function zoomToRegion(key) {
       seoulLink.setAttribute('style','cursor:pointer');
       seoulLink.innerHTML = `
         <rect rx="3" ry="3" x="${sx-14}" y="${sy-5}" width="28" height="10" fill="#fff" stroke="#93c5fd" stroke-width="0.5" style="filter:drop-shadow(0 1px 3px rgba(0,0,0,.12))"/>
-        <text x="${sx}" y="${sy}" font-size="5" font-weight="800" fill="#2563eb" font-family="'Apple SD Gothic Neo','Malgun Gothic',sans-serif" text-anchor="middle" dominant-baseline="central">서울 →</text>`;
+        <text x="${sx}" y="${sy}" font-size="5" font-weight="800" fill="#2563eb" font-family="'Pretendard Variable',Pretendard,sans-serif" text-anchor="middle" dominant-baseline="central">서울 →</text>`;
       seoulLink.addEventListener('click', () => { window.location.href = 'seoul.html'; });
       g.appendChild(seoulLink);
     }
@@ -539,6 +544,7 @@ function openUniDetail(uniName) {
     highlightMarker(uniName);
     const panel = document.getElementById('info-panel');
     panel.classList.add('wide');
+    panel.style.width = '50%';
     panel.innerHTML = `<iframe src="${region.detailPage}?uni=${encodeURIComponent(uniName)}&embed=1" style="width:100%;height:100%;border:none"></iframe>`;
   }
 }
@@ -661,12 +667,46 @@ window.addEventListener('message', e => {
   if (e.data && e.data.type === 'backToList') {
     const panel = document.getElementById('info-panel');
     panel.classList.remove('wide');
+    panel.style.width = '';
     // 마커 선택 해제
     document.querySelectorAll('.svg-uni-marker').forEach(m => m.classList.remove('selected'));
     // 현재 줌된 지역의 목록 다시 표시
     if (selectedRegion) renderRegionInfo(selectedRegion);
   }
 });
+
+// ── Resize Handle ──
+(function() {
+  const handle = document.getElementById('resize-handle');
+  const panel = document.getElementById('info-panel');
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;cursor:col-resize;display:none';
+  document.body.appendChild(overlay);
+  let dragging = false, startX, startW;
+
+  handle.addEventListener('mousedown', e => {
+    dragging = true;
+    startX = e.clientX;
+    startW = panel.offsetWidth;
+    handle.classList.add('active');
+    overlay.style.display = 'block';
+    e.preventDefault();
+  });
+
+  overlay.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const newW = startW - (e.clientX - startX);
+    const min = 280, max = window.innerWidth * 0.75;
+    panel.style.width = Math.max(min, Math.min(max, newW)) + 'px';
+  });
+
+  overlay.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    handle.classList.remove('active');
+    overlay.style.display = 'none';
+  });
+})();
 </script>
 </body>
 </html>

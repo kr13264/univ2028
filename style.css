@@ -1,5 +1,5 @@
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Apple SD Gothic Neo','Malgun Gothic','맑은 고딕','Noto Sans KR',sans-serif;background:#f1f5f9;color:#1e293b;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+body{font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,'Helvetica Neue','Segoe UI',sans-serif;background:#f1f5f9;color:#1e293b;height:100vh;overflow:hidden;display:flex;flex-direction:column}
 
 /* ── Header ── */
 header{background:#fff;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.06)}
@@ -39,7 +39,7 @@ main{flex:1;display:flex;overflow:hidden}
 .region:hover{filter:brightness(.93) saturate(1.3)}
 .region.active{filter:brightness(.88) saturate(1.5)}
 .region.dimmed{opacity:.25}
-.map-label{pointer-events:none;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-weight:700}
+.map-label{pointer-events:none;font-family:'Pretendard Variable',Pretendard,sans-serif;font-weight:700}
 .map-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:12px;color:#64748b;pointer-events:none}
 
 /* ── Seoul/Gyeonggi University Map ── */
@@ -58,9 +58,14 @@ main{flex:1;display:flex;overflow:hidden}
 .uni-marker.selected .uni-dot{transform:scale(1.8);border-color:#f59e0b;box-shadow:0 0 8px rgba(245,158,11,.5)}
 .uni-marker.selected .uni-label{color:#d97706!important}
 
+/* ── Resize Handle ── */
+.resize-handle{width:6px;cursor:col-resize;background:transparent;position:relative;flex-shrink:0;z-index:20;margin:0 -3px}
+.resize-handle::after{content:'';position:absolute;top:0;left:2px;width:2px;height:100%;background:#e2e8f0;transition:background .15s}
+.resize-handle:hover::after,.resize-handle.active::after{background:#93c5fd;width:4px;left:1px}
+
 /* ── Info Panel ── */
-.info-panel{width:420px;min-width:400px;background:#fff;border-left:1px solid #e2e8f0;overflow-y:auto;display:flex;flex-direction:column;transition:width .3s}
-.info-panel.wide{width:55%;min-width:55%}
+.info-panel{width:420px;min-width:280px;background:#fff;border-left:1px solid #e2e8f0;overflow-y:auto;display:flex;flex-direction:column}
+.info-panel.wide{width:50%;min-width:280px}
 .info-panel::-webkit-scrollbar{width:4px}
 .info-panel::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:2px}
 
@@ -100,7 +105,7 @@ main{flex:1;display:flex;overflow:hidden}
 
 /* ── University Detail Page ── */
 .detail-page{padding:0;animation:fadeSlide .25s ease}
-.detail-header{padding:18px 20px 14px;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:10;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.detail-header{padding:36px 40px 28px;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:10;box-shadow:0 1px 4px rgba(0,0,0,.05)}
 .detail-nav{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .detail-back{background:#f8fafc;border:1px solid #e2e8f0;color:#64748b;padding:4px 12px;border-radius:14px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .15s}
 .detail-back:hover{background:#eff6ff;border-color:#93c5fd;color:#2563eb}
@@ -113,13 +118,13 @@ main{flex:1;display:flex;overflow:hidden}
 .badge-med{background:#fff1f2;color:#e11d48;border:1px solid #fecdd3}
 .badge-new2028{background:#dbeafe;color:#1d4ed8;border:1px solid #93c5fd;font-weight:800}
 
-.detail-body{padding:16px 20px 24px}
-.detail-section{margin-bottom:36px}
+.detail-body{padding:32px 40px 48px}
+.detail-section{margin-bottom:52px}
 .detail-section-title{font-size:18px;font-weight:800;color:#334155;letter-spacing:.02em;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f1f5f9;display:flex;align-items:center;gap:8px}
 .detail-section-title::before{display:none}
 
 /* Changes box */
-.changes-box{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px}
+.changes-box{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:24px 28px}
 .change-item{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #fef3c7}
 .change-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
 .change-title{font-size:16px;font-weight:700;color:#b45309;margin-bottom:4px}
@@ -131,7 +136,7 @@ main{flex:1;display:flex;overflow:hidden}
 /* Tables */
 .adm-table{width:100%;border-collapse:collapse;font-size:16px;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0}
 .adm-table th{padding:10px 12px;text-align:center;font-weight:700;font-size:15px;letter-spacing:.03em}
-.adm-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;vertical-align:middle;line-height:1.4}
+.adm-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;vertical-align:middle;line-height:1.4;font-size:15px}
 .adm-table tr:last-child td{border-bottom:none}
 .adm-table tr:hover td{background:#f8fafc}
 .th-susi{background:#f1f5f9;color:#475569}
@@ -139,30 +144,30 @@ main{flex:1;display:flex;overflow:hidden}
 .th-jonghap{background:#f1f5f9;color:#475569}
 .th-nonsul{background:#f1f5f9;color:#475569}
 .th-jeongsi{background:#f1f5f9;color:#475569}
-.td-type{font-weight:700;text-align:center;font-size:13px;padding:7px 6px}
+.td-type{font-weight:700;text-align:center;font-size:14px;padding:7px 10px;white-space:nowrap;min-width:50px}
 .td-type.gyogwa{color:#16a34a}
 .td-type.jonghap{color:#7c3aed}
 .td-type.nonsul{color:#dc2626}
 .td-name{color:#1e293b;font-weight:600}
 .td-count{text-align:center;color:#64748b;font-weight:700}
-.td-min{text-align:center}
+.td-min{text-align:center;white-space:nowrap}
 .td-min .dot-req{color:#dc2626}
 .td-method{color:#334155;font-size:15px}
 .td-method .step{color:#2563eb;font-weight:700}
 .td-ok{color:#16a34a;text-align:center}
 .td-star{color:#d97706;text-align:center}
 .td-req{font-weight:700;color:#dc2626;text-align:center}
-.td-note{color:#64748b;font-size:13px}
+.td-note{color:#64748b;font-size:14px}
 .score-good{color:#16a34a;font-weight:700}
 .score-neutral{color:#64748b}
 
 /* Min score table */
-.min-table th{background:#f1f5f9;color:#475569;text-align:center;font-size:13px;border-bottom:1px solid #e2e8f0}
+.min-table th{background:#f1f5f9;color:#475569;text-align:center;font-size:15px;border-bottom:1px solid #e2e8f0}
 .min-table .row-name{color:#1e293b;font-weight:700}
-.min-table .row-track{color:#64748b;font-size:13px}
+.min-table .row-track{color:#64748b;font-size:14px}
 
 /* Jeongsi table */
-.jeongsi-table th{background:#f1f5f9;color:#475569;text-align:center;font-size:13px;border-bottom:1px solid #e2e8f0}
+.jeongsi-table th{background:#f1f5f9;color:#475569;text-align:center;font-size:15px;border-bottom:1px solid #e2e8f0}
 .jeongsi-table td{text-align:center}
 .jeongsi-table .td-track{text-align:left;color:#1e293b;font-weight:600}
 .jeongsi-table .pct{color:#2563eb;font-weight:700}
@@ -170,11 +175,11 @@ main{flex:1;display:flex;overflow:hidden}
 .jeongsi-table .nd{color:#94a3b8}
 
 /* Notes */
-.detail-note{margin-top:16px;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;line-height:1.7}
+.detail-note{margin-top:16px;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:14px;color:#64748b;line-height:1.7}
 .detail-note strong{color:#475569}
 
 /* No data */
-.no-data{text-align:center;padding:30px;color:#64748b;font-size:13px}
+.no-data{text-align:center;padding:30px;color:#64748b;font-size:14px}
 
 /* SVG university markers */
 .svg-uni-marker{transition:opacity .15s}
