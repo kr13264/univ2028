@@ -339,3 +339,61 @@ ${d.enrollmentImg ? `
 - markers의 `new2028` → 지도 마커 라벨 옆 N 뱃지
 - universities의 `new2028` → 우측 대학 목록 카드 옆 N 뱃지
 - detail 파일의 `badges: ['new2028']` → 상세 페이지 헤더 N 뱃지
+
+---
+
+## 14. 수능최저 필터 탭 (index.html 홈 화면)
+
+> 홈 화면 우측 패널에 2028 업데이트 대학을 수능최저 기준별로 필터링하는 탭 UI
+
+### 동작 흐름
+1. 페이지 로드 → `renderRecentUpdates()` 호출 → "전체 보기" 탭 활성
+2. `REGIONS` 객체 순회 → `new2028: true`인 대학만 수집 → 카드 목록 렌더링
+3. 탭 클릭 → `renderRecentUpdates('2합6')` 등으로 재호출 → 해당 최저 대학만 표시
+4. 대학 카드 클릭 → `jumpToUni(regionKey, uniName)` → 해당 지역 줌 + 상세 오픈
+
+### 수능최저 데이터 (`MIN_SCORE_MAP`)
+```javascript
+const MIN_SCORE_MAP = {
+  '최저없음': [{ name:'서울여대', detail:'논술·바롬인재', regionKey:'seoul' }, ...],
+  '2합5':    [{ name:'숙명여대', detail:'논술 인문/자연', regionKey:'seoul' }, ...],
+  '2합6':    [...],
+  '2합7':    [...],
+  '2합8':    [...],
+  '3합5':    [...],
+  '3합7':    [...],
+};
+```
+
+### 데이터 규칙
+- **의학계열(의예·치의예·약학) 제외** — 일반학과 기준만 수록
+- 각 항목의 `detail` 필드: 해당 최저가 적용되는 전형명을 간략 표기
+- `regionKey`: 클릭 시 `jumpToUni()`에서 해당 지역으로 줌하는 데 사용
+
+### 탭 UI
+- 한 줄 가로 스크롤 (`overflow-x:auto`, `scrollbar-width:none`)
+- 활성 탭: `background:#e11d48; color:#fff; border-color:#e11d48`
+- 비활성 탭: `background:#fff; color:#475569; border-color:#e2e8f0`
+- 패딩: 부모 `region-content`의 `padding:24px 20px`에 맞춤 (탭 자체 padding:0)
+
+### `jumpToUni(regionKey, uniName)` — 대학 클릭 이동 로직
+| 지역 | 동작 |
+|------|------|
+| 서울 (`seoul`) | `seoul.html?uni=대학명`으로 페이지 이동 → auto-open |
+| 기타 지역 | `zoomToRegion()` → 500ms 후 `*-detail.html?uni=대학명&embed=1` iframe |
+
+### 이름 매칭 (fuzzy match)
+- `대학교` → `대`, `학교` → `` 로 정규화하여 매칭
+- 예: `단국대학교(죽전)` ↔ `단국대(죽전)` 매칭 성공
+- 적용 위치: `gyeonggi-detail.html` `showUniversityDetail()`, `seoul.html` auto-open
+
+### 대학 업데이트 후 반영 체크리스트
+1. `*-detail.html` UNI_DETAILS에 데이터 추가 (badges에 `'new2028'` 포함)
+2. 지도 페이지의 UNI_DETAILS에도 동일 데이터 추가 (seoul.html 또는 gyeonggi.html)
+3. index.html `REGIONS[지역].markers[]`에 `new2028:true` 추가
+4. index.html `REGIONS[지역].universities[]`에 `new2028:true` 추가
+5. **index.html `MIN_SCORE_MAP`에 수능최저 정보 추가:**
+   - 최저 없는 전형 → `'최저없음'`에 추가
+   - 해당 등급(2합5, 2합6 등)에 추가
+   - 의학계열 제외
+6. 브라우저에서 각 탭 클릭하여 필터 정상 동작 확인

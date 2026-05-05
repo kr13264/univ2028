@@ -125,11 +125,6 @@
 
   <!-- ── Right: Info Panel ── -->
   <div class="info-panel" id="info-panel">
-    <div class="placeholder">
-      <div class="placeholder-icon">🗺️</div>
-      <h3>지역을 선택하세요</h3>
-      <p>지도에서 관심 있는 지역을 클릭하면<br>해당 지역의 대학교 정보와<br>2027 입시 전형 안내를 볼 수 있습니다.</p>
-    </div>
   </div>
 </main>
 
@@ -162,7 +157,7 @@ const REGIONS = {
       {name:'한국외대',x:412,y:238,color:'#374151'},
       // 중앙 (서대문/마포/용산/성동)
       {name:'연세대',x:394,y:239,color:'#374151'},
-      {name:'이화여대',x:397,y:241,color:'#e11d48'},
+      {name:'이화여대',x:397,y:241,color:'#e11d48',new2028:true},
       {name:'홍익대',x:395,y:241,color:'#374151'},
       {name:'서강대',x:396,y:242,color:'#374151'},
       {name:'동국대',x:404,y:242,color:'#374151'},
@@ -186,7 +181,7 @@ const REGIONS = {
       {name:'고려대학교',location:'서울 성북',national:false,tags:['수시','정시','의예']},
       {name:'성균관대학교',location:'서울 종로',national:false,tags:['수시','정시','의예']},
       {name:'한양대학교',location:'서울 성동',national:false,tags:['수시','정시','의예']},
-      {name:'이화여대',location:'서울 서대문',national:false,tags:['수시','정시','의예'],special:['논술']},
+      {name:'이화여대',location:'서울 서대문',national:false,tags:['수시','정시','의예'],special:['논술','약학'],new2028:true},
       {name:'경희대학교',location:'서울 동대문',national:false,tags:['수시','정시','의예'],special:['논술','치의예','한의예']},
       {name:'중앙대학교',location:'서울 동작',national:false,tags:['수시','정시','의예'],special:['논술']},
       {name:'서울시립대',location:'서울 동대문',national:true,tags:['수시','정시']},
@@ -217,7 +212,7 @@ const REGIONS = {
       {name:'인천가톨릭대',x:300,y:250,color:'#374151'},
       {name:'인하대',x:325,y:248,color:'#e11d48'},
       {name:'가톨릭대(성심)',x:345,y:240,color:'#374151'},
-      {name:'인천대',x:310,y:268,color:'#1d4ed8'},
+      {name:'인천대',x:310,y:268,color:'#1d4ed8',new2028:true},
       {name:'한국산업기술대',x:340,y:260,color:'#1d4ed8'},
       // 안양/군포
       {name:'성결대학교',x:375,y:282,color:'#374151'},
@@ -231,7 +226,7 @@ const REGIONS = {
       {name:'을지대',x:445,y:282,color:'#e11d48'},
       {name:'경희대(국제)',x:455,y:320,color:'#374151'},
       {name:'한국외대(글로벌)',x:465,y:328,color:'#374151'},
-      {name:'단국대(죽전)',x:445,y:310,color:'#e11d48'},
+      {name:'단국대(죽전)',x:445,y:310,color:'#e11d48',new2028:true},
       {name:'명지대(자연)',x:440,y:330,color:'#374151',new2028:true},
       {name:'강남대학교',x:450,y:342,color:'#374151'},
       {name:'용인대',x:460,y:348,color:'#374151'},
@@ -250,8 +245,8 @@ const REGIONS = {
       {name:'가천대학교',location:'경기 성남',national:false,tags:['수시','정시','의예'],special:['논술'],new2028:true},
       {name:'아주대학교',location:'경기 수원',national:false,tags:['수시','정시','의예'],special:['논술'],new2028:true},
       {name:'인하대학교',location:'인천',national:false,tags:['수시','정시','의예'],special:['논술','첨단학과']},
-      {name:'인천대학교',location:'인천 연수',national:true,tags:['수시','정시'],special:['첨단학과']},
-      {name:'단국대학교(죽전)',location:'경기 용인',national:false,tags:['수시','정시','의예'],special:['논술']},
+      {name:'인천대학교',location:'인천 연수',national:true,tags:['수시','정시'],special:['첨단학과'],new2028:true},
+      {name:'단국대학교(죽전)',location:'경기 용인',national:false,tags:['수시','정시','의예'],special:['논술'],new2028:true},
       {name:'경기대(수원)',location:'경기 수원',national:false,tags:['수시','정시'],special:['논술'],new2028:true},
       {name:'성균관대(자연)',location:'경기 수원',national:false,tags:['수시','정시'],special:['첨단학과']},
       {name:'한양대(ERICA)',location:'경기 안산',national:false,tags:['수시','정시'],special:['첨단학과'],new2028:true},
@@ -597,13 +592,156 @@ function resetMapZoom() {
   animateViewBox(svg, currentVB, FULL_VIEWBOX, 500);
 
   // Reset info panel
+  renderRecentUpdates();
+}
+
+// ═══════════════════════════════════════════
+// Recent updates panel (home default)
+// ═══════════════════════════════════════════
+// 수능최저 데이터 (의학계열 제외, new2028 대학만)
+const MIN_SCORE_MAP = {
+  '최저없음': [
+    { name:'서울여대', detail:'논술우수자·바롬인재·AI융합인재', regionKey:'seoul' },
+    { name:'아주대학교', detail:'논술우수자 전모집단위', regionKey:'gyeonggi' },
+    { name:'경기대(수원)', detail:'논술·학교장추천·KGU종합·SW', regionKey:'gyeonggi' },
+    { name:'단국대학교(죽전)', detail:'논술(일반학과)·SW인재·DKU면접형', regionKey:'gyeonggi' },
+    { name:'한양대(ERICA)', detail:'면접형·고른기회', regionKey:'gyeonggi' },
+    { name:'명지대(자연)', detail:'교과면접·명지인재면접·크리스천리더', regionKey:'gyeonggi' },
+    { name:'한세대학교', detail:'전 전형 최저 없음', regionKey:'gyeonggi' },
+    { name:'충북대학교', detail:'학생부종합Ⅰ', regionKey:'chungcheong' },
+    { name:'상명대(천안)', detail:'상명인재·기회균형', regionKey:'chungcheong' },
+  ],
+  '2합5': [
+    { name:'숙명여대', detail:'논술우수자 인문/자연', regionKey:'seoul' },
+    { name:'아주대학교', detail:'고교추천·ACE 자연', regionKey:'gyeonggi' },
+    { name:'가천대학교', detail:'논술·학생부 바이오로직스', regionKey:'gyeonggi' },
+    { name:'단국대(천안)', detail:'교과우수자 간호', regionKey:'chungcheong' },
+  ],
+  '2합6': [
+    { name:'숭실대학교', detail:'교과·논술 전계열', regionKey:'seoul' },
+    { name:'가천대학교', detail:'논술·학생부 인문/자연', regionKey:'gyeonggi' },
+    { name:'아주대학교', detail:'고교추천·ACE 인문', regionKey:'gyeonggi' },
+    { name:'인천대학교', detail:'교과 동북아통상', regionKey:'gyeonggi' },
+    { name:'단국대학교(죽전)', detail:'지역균형선발', regionKey:'gyeonggi' },
+    { name:'한양대(ERICA)', detail:'논술 전모집단위(신설)', regionKey:'gyeonggi' },
+    { name:'명지대(자연)', detail:'학교장추천·인재 인문', regionKey:'gyeonggi' },
+  ],
+  '2합7': [
+    { name:'이화여대', detail:'고교추천·논술 일반', regionKey:'seoul' },
+    { name:'서울여대', detail:'교과우수자 전계열', regionKey:'seoul' },
+    { name:'동덕여대', detail:'교과·논술 전모집단위', regionKey:'seoul' },
+    { name:'경기대(수원)', detail:'교과성적우수자', regionKey:'gyeonggi' },
+    { name:'인천대학교', detail:'교과 전모집단위', regionKey:'gyeonggi' },
+    { name:'명지대(자연)', detail:'학교장추천·인재 자연', regionKey:'gyeonggi' },
+  ],
+  '2합8': [
+    { name:'충북대학교', detail:'교과·종합 인문/자연', regionKey:'chungcheong' },
+    { name:'단국대(천안)', detail:'지역균형·교과 전체', regionKey:'chungcheong' },
+    { name:'상명대(천안)', detail:'교과 간호', regionKey:'chungcheong' },
+  ],
+  '3합5': [
+    { name:'이화여대', detail:'고교추천·미래인재 스크랜튼', regionKey:'seoul' },
+  ],
+  '3합7': [
+    { name:'이화여대', detail:'고교추천·미래인재·논술 일반', regionKey:'seoul' },
+  ],
+};
+
+function renderRecentUpdates(activeTab) {
+  activeTab = activeTab || 'all';
+  const TAG_STYLES = {'수시':'tag-susi','정시':'tag-jeongsi','의예':'tag-med','치의예':'tag-med','한의예':'tag-med','수의예':'tag-med','논술':'tag-eng','교육':'tag-edu','사관학교':'tag-edu','첨단학과':'tag-eng'};
+  const updated = [];
+  Object.keys(REGIONS).forEach(key => {
+    const r = REGIONS[key];
+    if (!r.universities) return;
+    r.universities.forEach(u => {
+      if (u.new2028) updated.push({ ...u, regionKey: key, regionName: r.name });
+    });
+  });
+
+  const tabs = ['all', ...Object.keys(MIN_SCORE_MAP)];
+  const tabLabels = { all: '전체 보기' };
+  const tabHtml = tabs.map(t => {
+    const label = tabLabels[t] || t;
+    const isActive = t === activeTab;
+    return `<button onclick="renderRecentUpdates('${t}')" style="
+      padding:6px 12px;border-radius:20px;border:1px solid ${isActive ? '#e11d48' : '#e2e8f0'};
+      background:${isActive ? '#e11d48' : '#fff'};color:${isActive ? '#fff' : '#475569'};
+      font-size:13px;font-weight:${isActive ? '700' : '500'};cursor:pointer;white-space:nowrap;
+      transition:all .15s">${label}</button>`;
+  }).join('');
+
+  let listHtml = '';
+  if (activeTab === 'all') {
+    listHtml = updated.map(u => {
+      const allTags = [...u.tags, ...(u.special || [])];
+      return `<div class="uni-item" style="cursor:pointer" onclick="jumpToUni('${u.regionKey}','${u.name}')">
+        <div class="uni-item-top">
+          <div class="uni-name">${u.name}<span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#e11d48;color:#fff;font-size:9px;font-weight:800;margin-left:4px;vertical-align:middle;line-height:1">N</span></div>
+          ${u.national ? '<span class="uni-national">국립</span>' : ''}
+        </div>
+        <div class="uni-location">📍 ${u.location}</div>
+        <div class="uni-tags">${allTags.map(t => `<span class="tag ${TAG_STYLES[t] || 'tag-susi'}">${t}</span>`).join('')}</div>
+      </div>`;
+    }).join('');
+  } else {
+    const entries = MIN_SCORE_MAP[activeTab] || [];
+    listHtml = entries.map(e => {
+      const u = updated.find(u => u.name === e.name || u.name.includes(e.name) || e.name.includes(u.name.replace('학교','')));
+      const loc = u ? u.location : '';
+      const rk = e.regionKey;
+      const clickName = e.name;
+      return `<div class="uni-item" style="cursor:pointer" onclick="jumpToUni('${rk}','${clickName}')">
+        <div class="uni-item-top">
+          <div class="uni-name">${e.name}<span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#e11d48;color:#fff;font-size:9px;font-weight:800;margin-left:4px;vertical-align:middle;line-height:1">N</span></div>
+        </div>
+        ${loc ? `<div class="uni-location">📍 ${loc}</div>` : ''}
+        <div style="font-size:13px;color:#475569;margin-top:2px;padding:0 12px 0 0">${e.detail}</div>
+      </div>`;
+    }).join('');
+  }
+
+  const countText = activeTab === 'all'
+    ? `<strong>${updated.length}개교</strong> 2028 시행계획 반영 완료`
+    : `수능최저 <strong>${activeTab}</strong> — ${(MIN_SCORE_MAP[activeTab]||[]).length}개교 (의학계열 제외)`;
+
   document.getElementById('info-panel').innerHTML = `
-    <div class="placeholder">
-      <div class="placeholder-icon">🗺️</div>
-      <h3>지역을 선택하세요</h3>
-      <p>지도에서 관심 있는 지역을 클릭하면<br>해당 지역의 대학교 정보와<br>2027 입시 전형 안내를 볼 수 있습니다.</p>
+    <div class="region-content">
+      <div class="region-header">
+        <div class="region-color-bar" style="background:#e11d48"></div>
+        <div class="region-name">2028 업데이트</div>
+        <div class="region-meta">
+          <span class="region-stat">${countText}</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:6px;padding:0;margin-bottom:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none">${tabHtml}</div>
+      <div class="section-title">${activeTab === 'all' ? '최근 업데이트 대학' : activeTab === '최저없음' ? '수능최저 없는 전형' : '수능최저 ' + activeTab + ' 대학'}</div>
+      <div class="uni-list">${listHtml}</div>
+      <div style="padding:16px 20px;color:#9ca3af;font-size:12px;text-align:center">지도에서 지역을 클릭하면 해당 지역 전체 대학을 볼 수 있습니다</div>
     </div>`;
 }
+
+function jumpToUni(regionKey, uniName) {
+  if (regionKey === 'seoul') {
+    window.location.href = 'seoul.html?uni=' + encodeURIComponent(uniName);
+    return;
+  }
+  const r = REGIONS[regionKey];
+  if (r && r.zoomViewBox) {
+    zoomToRegion(regionKey);
+    if (r.detailPage) {
+      setTimeout(() => {
+        highlightMarker(uniName);
+        const panel = document.getElementById('info-panel');
+        panel.classList.add('wide');
+        panel.style.width = '50%';
+        panel.innerHTML = `<iframe src="${r.detailPage}?uni=${encodeURIComponent(uniName)}&embed=1" style="width:100%;height:100%;border:none"></iframe>`;
+      }, 500);
+    }
+  }
+}
+
+renderRecentUpdates();
 
 // ═══════════════════════════════════════════
 // Korea Map: region click handlers

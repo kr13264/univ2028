@@ -108,7 +108,7 @@ const UNI_DETAILS = {
   '숙명여대': {
     fullName: '숙명여자대학교',
     location: '서울 용산구',
-    badges: ['seoul'],
+    badges: ['seoul','new2028'],
     changes: [
       {
         title: '학생부교과(지역균형) 전형방법 변경',
@@ -313,28 +313,39 @@ const UNI_DETAILS = {
   '이화여대': {
     fullName: '이화여자대학교',
     location: '서울 서대문구',
-    badges: ['seoul','med'],
+    badges: ['seoul','med','new2028'],
+    total: { susi: 2085, jeongsi: 1191, total: 3276 },
     changes: [
-      { title: '고교추천 전형 수능최저 변경', from: '2개 등급 합 4', to: '2개 등급 합 5로 완화' },
-      { title: '미래인재 모집인원 확대', from: '645명', to: '680명' },
+      { title: '미래인재전형 서류형/면접형 분리', from: '미래인재 680명', to: '서류형 931명 + 면접형 181명' },
+      { title: '고교추천 모집인원 감소', from: '420명', to: '377명' },
+      { title: '수능최저 변경 (고교추천·미래인재서류·논술)', from: '3합5 / 2합5', to: '3합7 (탐구 상위1개)' },
+      { title: '고른기회전형 신설', from: '—', to: '164명 (서류100%)' },
+      { title: '논술전형 모집인원 감소', from: '330명', to: '296명' },
+      { title: '정시 수능-학생부전형 신설', from: '—', to: '358명 (수능85%+서류15%)' },
     ],
     susi: [
-      { type:'교과', name:'고교추천',    count:420, minReq:'●', method:'학생부(교과)80 + 서류20' },
-      { type:'종합', name:'미래인재',    count:680, minReq:'—', method:'서류100 (1단계 3배수) → 서류+면접' },
-      { type:'종합', name:'사회기여·배려',count:50, minReq:'—', method:'서류100 → 서류+면접' },
-      { type:'논술', name:'논술전형',    count:330, minReq:'●', method:'논술100 (수능최저 있음)' },
+      { type:'교과', name:'고교추천',        count:377, minReq:'●', method:'교과80% + 비교과5% + 서류15%' },
+      { type:'종합', name:'미래인재(서류형)', count:931, minReq:'●', method:'서류100%' },
+      { type:'종합', name:'미래인재(면접형)', count:181, minReq:'—', method:'1단계(5배수) 서류100% → 2단계 성적70%+면접30%' },
+      { type:'종합', name:'고른기회',         count:164, minReq:'—', method:'서류100%' },
+      { type:'종합', name:'사회기여자',       count:16,  minReq:'—', method:'서류100%' },
+      { type:'논술', name:'논술전형',         count:296, minReq:'●', method:'논술100%' },
+      { type:'실기', name:'예체능실기',       count:81,  minReq:'—', method:'실기80% + 서류20%' },
     ],
     minScore: [
-      { name:'고교추천', track:'인문/자연', 국:'○', 수:'○', 영:'○', 탐:'1', req:'2합5', note:'' },
-      { name:'고교추천', track:'의예', 국:'○', 수:'○', 영:'○', 탐:'1', req:'4합5', note:'수학 포함' },
-      { name:'논술',    track:'인문/자연', 국:'○', 수:'○', 영:'○', 탐:'1', req:'2합5', note:'' },
+      { name:'고교추천',        track:'일반', 국:'○', 수:'○', 영:'○', 탐:'1', req:'3합7', note:'탐구 상위1개' },
+      { name:'고교추천',        track:'의예', 국:'○', 수:'○', 영:'○', 탐:'1', req:'4합5', note:'' },
+      { name:'고교추천',        track:'약학', 국:'○', 수:'○', 영:'○', 탐:'1', req:'4합6', note:'' },
+      { name:'미래인재(서류형)', track:'일반', 국:'○', 수:'○', 영:'○', 탐:'1', req:'3합7', note:'' },
+      { name:'논술',            track:'일반', 국:'○', 수:'○', 영:'○', 탐:'1', req:'3합7', note:'' },
+      { name:'논술',            track:'의예', 국:'○', 수:'○', 영:'○', 탐:'1', req:'4합5', note:'' },
     ],
     jeongsi: [
-      { track:'인문',  국:35, 수:'25(확/미기)', 영:'등급', 탐:30, 비고:'' },
-      { track:'자연',  국:25, 수:'35(확/미기)', 영:'등급', 탐:30, 비고:'' },
-      { track:'의예',  국:20, 수:'30(미기필)', 영:'등급', 탐:40, 비고:'탐구 2과목 필수' },
+      { track:'가/나군 전체',  국:30, 수:30, 영:'등급(10%)', 탐:'20+10', 비고:'표준점수' },
+      { track:'다군 간호·AI데이터', 국:35, 수:35, 영:'등급(10%)', 탐:20, 비고:'' },
+      { track:'다군 국제학부', 국:35, 수:25, 영:'등급(20%)', 탐:20, 비고:'' },
     ],
-    jeongsiNote: '영어: 1등=100, 2등=99, 3등=98, 4등=96, 5등=90 이하 차등',
+    jeongsiNote: '영어: 1등=100, 2등=96, 3등=88, 4등=76, 5등=68 / 한국사 등급별 가산점',
   },
 
   '한양대': {
@@ -639,7 +650,7 @@ const UNI_DETAILS = {
   '숭실대': {
     fullName: '숭실대학교',
     location: '서울 동작구',
-    badges: ['seoul'],
+    badges: ['seoul','new2028'],
     changes: [],
     susi: [
       { type:'교과', name:'교과우수자',          count:450, minReq:'●', method:'학생부(교과) 100' },
@@ -1451,7 +1462,15 @@ function showUniversityDetail(key) {
   });
 
   // Show Seoul summary in info panel
-  renderSeoulSummary();
+  try { renderSeoulSummary(); } catch(e) { console.error('renderSeoulSummary error:', e); }
+
+  // Auto-open university from URL query param
+  const _autoUni = new URLSearchParams(window.location.search).get('uni');
+  if (_autoUni) {
+    const norm = s => s.replace(/대학교/g,'대').replace(/학교/g,'');
+    const matched = Object.keys(UNI_DETAILS).find(k => _autoUni.includes(k) || k.includes(_autoUni) || norm(_autoUni).includes(norm(k)) || norm(k).includes(norm(_autoUni)));
+    if (matched) setTimeout(() => openSeoulDetail(matched), 600);
+  }
 })();
 
 // iframe에서 "목록으로" 클릭 시 복원
